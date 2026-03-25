@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 512">
+  <defs>
+    <linearGradient id="a-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a3028"/>
+      <stop offset="100%" style="stop-color:#241e18"/>
+    </linearGradient>
+  </defs>
+  <rect width="768" height="512" fill="url(#a-bg)"/>
+  <!-- Workshop tools suggestion -->
+  <rect x="200" y="150" width="368" height="240" rx="6" fill="#4a3d2e" opacity="0.4"/>
+  <!-- Wood planks -->
+  <rect x="220" y="170" width="328" height="40" rx="2" fill="#5a4a38" opacity="0.4"/>
+  <rect x="220" y="220" width="328" height="40" rx="2" fill="#5a4a38" opacity="0.35"/>
+  <rect x="220" y="270" width="328" height="40" rx="2" fill="#5a4a38" opacity="0.4"/>
+  <rect x="220" y="320" width="328" height="40" rx="2" fill="#5a4a38" opacity="0.35"/>
+  <!-- Accent line -->
+  <rect x="280" y="420" width="208" height="3" fill="#c9a96e" opacity="0.4"/>
+</svg>

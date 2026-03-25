@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 768 512">
+  <defs>
+    <linearGradient id="w-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2c2820"/>
+      <stop offset="100%" style="stop-color:#1e1a14"/>
+    </linearGradient>
+  </defs>
+  <rect width="768" height="512" fill="url(#w-bg)"/>
+  <!-- Wardrobe -->
+  <rect x="150" y="40" width="468" height="432" rx="4" fill="#3d3025" opacity="0.5"/>
+  <!-- Doors -->
+  <rect x="160" y="50" width="148" height="412" rx="2" fill="#4a3d2e" opacity="0.5"/>
+  <rect x="316" y="50" width="148" height="412" rx="2" fill="#4a3d2e" opacity="0.4"/>
+  <rect x="472" y="50" width="138" height="412" rx="2" fill="#4a3d2e" opacity="0.5"/>
+  <!-- Handles -->
+  <g fill="#c9a96e" opacity="0.5">
+    <rect x="298" y="240" width="3" height="30" rx="1"/>
+    <rect x="322" y="240" width="3" height="30" rx="1"/>
+    <rect x="458" y="240" width="3" height="30" rx="1"/>
+  </g>
+</svg>

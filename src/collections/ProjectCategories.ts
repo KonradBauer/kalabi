@@ -1,0 +1,34 @@
+import type { CollectionConfig } from 'payload'
+
+export const ProjectCategories: CollectionConfig = {
+  slug: 'project-categories',
+  admin: {
+    useAsTitle: 'name',
+  },
+  access: {
+    read: () => true,
+  },
+  fields: [
+    {
+      name: 'name',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      index: true,
+    },
+    {
+      name: 'description',
+      type: 'textarea',
+    },
+    {
+      name: 'order',
+      type: 'number',
+      defaultValue: 0,
+    },
+  ],
+}

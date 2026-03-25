@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#1a1a1a"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#c9a96e"/>
+  <text x="600" y="290" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="72" font-weight="700" fill="#faf9f6" letter-spacing="12">
+    KALABI
+  </text>
+  <text x="600" y="350" text-anchor="middle" font-family="'Inter', sans-serif" font-size="24" fill="#9a9a9a" letter-spacing="4">
+    MEBLE NA WYMIAR
+  </text>
+  <line x1="480" y1="380" x2="720" y2="380" stroke="#c9a96e" stroke-width="2"/>
+  <rect x="0" y="626" width="1200" height="4" fill="#c9a96e"/>
+</svg>
