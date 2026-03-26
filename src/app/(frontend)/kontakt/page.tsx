@@ -7,14 +7,15 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ContactForm } from '@/components/sections/ContactForm'
 import type { Metadata } from 'next'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const payload = await getPayload({ config })
-  const siteSettings = await payload.findGlobal({ slug: 'site-settings' })
-
-  return {
-    title: 'Kontakt',
-    description: siteSettings.seo?.defaultDescription || 'Skontaktuj się z nami',
-  }
+export const metadata: Metadata = {
+  title: 'Kontakt',
+  description:
+    'Skontaktuj się z Kalabi. Bezpłatna wycena mebli na wymiar. Pajęczno i okolice. Zadzwoń: 661 244 385 lub napisz do nas.',
+  alternates: { canonical: '/kontakt' },
+  openGraph: {
+    title: 'Kontakt | Kalabi - Meble na wymiar',
+    description: 'Bezpłatna wycena mebli na wymiar. Zadzwoń lub napisz — odpowiemy w 24h.',
+  },
 }
 
 export default async function KontaktPage() {

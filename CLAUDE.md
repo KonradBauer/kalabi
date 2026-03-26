@@ -9,7 +9,8 @@ Modern furniture company website built with **Next.js 16** + **Payload CMS 3.80*
 - **Database**: MongoDB with Mongoose adapter
 - **Styling**: Tailwind CSS v4 (CSS-first config, no tailwind.config.js)
 - **Animations**: Framer Motion
-- **Fonts**: Inter (body) + Playfair Display (headings) via next/font/google
+- **Fonts**: Inter (body) + Poppins (headings) via next/font/google
+- **Icons**: Lucide React
 - **Language**: Polish (pl)
 
 ## Architecture
@@ -28,7 +29,7 @@ Header, Footer, SiteSettings, HomePage
 ```
 src/components/
 ├── layout/    # Header, NavBar, Footer, PageTransition
-├── sections/  # Hero, AboutPreview, ServicesGrid, FeaturedProjects, CtaBanner, TestimonialsSlider, ContactForm
+├── sections/  # Hero, HeroSlideshow, HeroAnimation, AboutPreview, ServicesGrid, FeaturedProjects, CtaBanner, TestimonialsSlider, ContactForm
 ├── ui/        # Button, SectionHeading, ProjectCard, ServiceCard, TestimonialCard, ScrollReveal, Container
 └── media/     # PayloadImage (next/image wrapper)
 ```
@@ -63,7 +64,7 @@ Colors defined in `src/app/(frontend)/styles.css` via `@theme`.
 - `docker compose -f docker-compose.dev.yml up` - Dev Docker
 
 ## Docker
-- Production: `docker-compose.yml` (builds from Dockerfile, standalone output)
+- Production: `docker-compose.yml` (builds from Dockerfile, standalone output, **port 9000**)
 - Development: `docker-compose.dev.yml` (mounts volume, runs pnpm dev)
 - MongoDB: mongo:7
 
@@ -78,3 +79,11 @@ Colors defined in `src/app/(frontend)/styles.css` via `@theme`.
 - **Build**: Successful production build with all pages static-rendered. OG image route uses edge runtime (expected warning)
 - **Navbar**: Single client component `NavBar.tsx` handles everything (scroll state, logo inversion, desktop nav, full-screen mobile menu). Server component `Header.tsx` fetches data and passes props. No separate MobileMenu/HeaderScroll. Logo uses Tailwind `invert` class toggle, not CSS filters on `data-*` attributes. Mobile menu is full-screen overlay, not a slide-out panel.
 - **Social icons**: Footer uses `SocialIcon` component (`src/components/ui/SocialIcon.tsx`) with SVG icons for facebook, instagram, pinterest, linkedin, youtube
+
+### Session 2 (2026-03-26)
+- **Hero slideshow**: `HeroSlideshow` client component cycles through `/images/hero-1.jpg`, `hero-2.jpg`, `hero-3.jpg` with crossfade + Ken Burns zoom (`scale: 1→1.08` over 6s)
+- **Fonts changed**: Playfair Display → Poppins for headings. Poppins requires explicit `weight` array (not variable font)
+- **Mobile menu**: Uses Lucide `Menu`/`X` icons. Circular reveal animation (`clipPath: circle(...)`). Dark bg (`bg-primary`) with light text. Header goes transparent when menu open, logo un-inverts
+- **z-index layers**: header `z-[60]` > mobile overlay `z-[55]` > page content `z-50`. Child z-index cannot escape parent stacking context
+- **Buttons unified**: All buttons use `rounded-full`. Global `Button.tsx` is source of truth. Inline buttons in NavBar, ContactForm, ScrollToTop match same style. Simple color transitions only, no fancy animations
+- **Docker port**: Production mapped to port 9000 (`9000:3000`)

@@ -2,7 +2,7 @@ services:
   app:
     build: .
     ports:
-      - '3000:3000'
+      - '9000:3000'
     environment:
       - DATABASE_URL=mongodb://mongo:27017/kalabi
       - PAYLOAD_SECRET=${PAYLOAD_SECRET}

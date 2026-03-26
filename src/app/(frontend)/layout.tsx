@@ -21,43 +21,151 @@ const poppins = Poppins({
 })
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const siteName = 'Kalabi'
+const siteDescription =
+  'Kalabi - producent mebli na wymiar z Pajęczna. Kuchnie, szafy, garderoby, meble łazienkowe i biurowe. Indywidualne projekty, najwyższa jakość wykonania, bezpłatna wycena.'
 
 function JsonLd({ siteUrl }: { siteUrl: string }) {
-  const jsonLd = {
+  // All data below is hardcoded — no user input, safe from XSS
+  const businessData = {
     '@context': 'https://schema.org',
-    '@type': 'FurnitureStore',
-    name: 'Kalabi',
-    description: 'Producent mebli na wymiar. Kuchnie, szafy, garderoby, meble łazienkowe i biurowe.',
-    url: siteUrl,
-    logo: `${siteUrl}/logo.png`,
+    '@graph': [
+      {
+        '@type': 'FurnitureStore',
+        '@id': `${siteUrl}/#organization`,
+        name: 'Kalabi - Meble na wymiar',
+        alternateName: 'Kalabi',
+        description: siteDescription,
+        url: siteUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/logo.png`,
+        },
+        image: `${siteUrl}/images/hero-1.jpg`,
+        telephone: '+48661244385',
+        email: 'kalabimeblenawymiar@gmail.com',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Pajęczno',
+          addressCountry: 'PL',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: 51.1464,
+          longitude: 19.2264,
+        },
+        areaServed: {
+          '@type': 'GeoCircle',
+          geoMidpoint: { '@type': 'GeoCoordinates', latitude: 51.1464, longitude: 19.2264 },
+          geoRadius: '100000',
+        },
+        sameAs: [
+          'https://www.facebook.com/profile.php?id=61572478532744',
+          'https://www.instagram.com/kalabi_meble',
+        ],
+        priceRange: '$$',
+        makesOffer: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Kuchnie na wymiar' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Szafy i garderoby na wymiar' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meble łazienkowe na wymiar' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meble biurowe na wymiar' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meble do salonu na wymiar' } },
+        ],
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        url: siteUrl,
+        name: siteName,
+        description: siteDescription,
+        publisher: { '@id': `${siteUrl}/#organization` },
+        inLanguage: 'pl-PL',
+      },
+    ],
   }
 
   return (
     <script
       type="application/ld+json"
-      // Safe: JSON.stringify of hardcoded data, no user input
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(businessData) }}
     />
   )
 }
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kalabi | Meble na wymiar',
-    template: '%s | Kalabi',
+    default: 'Kalabi | Meble na wymiar Pajęczno',
+    template: '%s | Kalabi - Meble na wymiar',
   },
-  description:
-    'Kalabi - producent mebli na wymiar. Kuchnie, szafy, garderoby, meble łazienkowe i biurowe. Najwyższa jakość wykonania.',
+  description: siteDescription,
   metadataBase: new URL(siteUrl),
+  keywords: [
+    'meble na wymiar',
+    'meble na wymiar Pajęczno',
+    'kuchnie na wymiar',
+    'szafy na wymiar',
+    'garderoby na wymiar',
+    'meble łazienkowe',
+    'meble biurowe',
+    'meble kuchenne',
+    'producent mebli',
+    'stolarz Pajęczno',
+    'meble na zamówienie',
+  ],
+  authors: [{ name: 'Kalabi' }],
+  creator: 'Kalabi',
+  publisher: 'Kalabi',
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
+  },
   icons: {
-    icon: '/logo.png',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/logo.png', type: 'image/png' },
+    ],
     apple: '/logo.png',
   },
   openGraph: {
     type: 'website',
     locale: 'pl_PL',
-    siteName: 'Kalabi',
-    images: [{ url: '/logo.png', width: 500, height: 500 }],
+    url: siteUrl,
+    siteName,
+    title: 'Kalabi | Meble na wymiar Pajęczno',
+    description: siteDescription,
+    images: [
+      {
+        url: '/images/hero-1.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Kalabi - Meble na wymiar',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kalabi | Meble na wymiar Pajęczno',
+    description: siteDescription,
+    images: ['/images/hero-1.jpg'],
+  },
+  alternates: {
+    canonical: siteUrl,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    // google: 'TWOJ_KOD_WERYFIKACJI_GOOGLE',
+    // other: { 'msvalidate.01': 'TWOJ_KOD_BING' },
   },
 }
 

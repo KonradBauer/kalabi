@@ -29,9 +29,18 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
   if (!project) return { title: 'Nie znaleziono' }
 
+  const mainImage = project.mainImage as Media | undefined
+  const ogImage = mainImage?.url ? { url: mainImage.url, alt: project.title } : undefined
+
   return {
     title: project.meta?.title || project.title,
     description: project.meta?.description || project.description,
+    alternates: { canonical: `/realizacje/${slug}` },
+    openGraph: {
+      title: `${project.title} | Kalabi - Realizacje`,
+      description: project.meta?.description || project.description || '',
+      ...(ogImage && { images: [ogImage] }),
+    },
   }
 }
 

@@ -7,14 +7,15 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import type { Media } from '@/payload-types'
 import type { Metadata } from 'next'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const payload = await getPayload({ config })
-  const siteSettings = await payload.findGlobal({ slug: 'site-settings' })
-
-  return {
-    title: 'Usługi',
-    description: siteSettings.seo?.defaultDescription || 'Nasze usługi meblarskie',
-  }
+export const metadata: Metadata = {
+  title: 'Usługi',
+  description:
+    'Usługi meblarskie Kalabi — kuchnie, szafy, garderoby, meble łazienkowe i biurowe na wymiar. Indywidualny projekt, pomiar i montaż.',
+  alternates: { canonical: '/uslugi' },
+  openGraph: {
+    title: 'Usługi | Kalabi - Meble na wymiar',
+    description: 'Kuchnie, szafy, garderoby, meble łazienkowe i biurowe — wszystko na wymiar.',
+  },
 }
 
 export default async function UslugiPage() {

@@ -8,20 +8,15 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import type { Media } from '@/payload-types'
 import type { Metadata } from 'next'
 
-export async function generateMetadata(): Promise<Metadata> {
-  const payload = await getPayload({ config })
-  const page = await payload.find({
-    collection: 'pages',
-    where: { slug: { equals: 'o-nas' } },
-    limit: 1,
-  })
-  const doc = page.docs[0]
-  const siteSettings = await payload.findGlobal({ slug: 'site-settings' })
-
-  return {
-    title: doc?.meta?.title || 'O nas',
-    description: doc?.meta?.description || siteSettings.seo?.defaultDescription || '',
-  }
+export const metadata: Metadata = {
+  title: 'O nas',
+  description:
+    'Poznaj Kalabi — producenta mebli na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia w tworzeniu mebli.',
+  alternates: { canonical: '/o-nas' },
+  openGraph: {
+    title: 'O nas | Kalabi - Meble na wymiar',
+    description: 'Poznaj naszą historię, pasję i podejście do tworzenia mebli na wymiar.',
+  },
 }
 
 export default async function AboutPage() {
