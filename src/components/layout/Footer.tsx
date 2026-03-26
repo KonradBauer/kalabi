@@ -1,3 +1,4 @@
+import { Temporal } from '@js-temporal/polyfill'
 import Link from 'next/link'
 import Image from 'next/image'
 import React from 'react'
@@ -120,9 +121,9 @@ export async function Footer() {
 
       {/* Copyright */}
       <div className="border-t border-surface/10">
-        <Container className="flex flex-col items-center justify-between gap-4 py-6 sm:flex-row">
+        <Container className="py-6 text-center">
           <p className="text-xs text-surface/40">
-            {footer.copyrightText || `© ${new Date().getFullYear()} Kalabi. Wszelkie prawa zastrzeżone.`}
+            {footer.copyrightText || `© ${Temporal.Now.plainDateISO().year} Kalabi. Wszelkie prawa zastrzeżone.`}
           </p>
         </Container>
       </div>
