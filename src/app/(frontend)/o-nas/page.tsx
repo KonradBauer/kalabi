@@ -23,26 +23,16 @@ export const metadata: Metadata = {
 
 export default async function AboutPage() {
   const payload = await getPayload({ config })
-
-  const [pageData, siteSettings] = await Promise.all([
-    payload.find({
-      collection: 'pages',
-      where: { slug: { equals: 'o-nas' } },
-      limit: 1,
-    }),
-    payload.findGlobal({ slug: 'site-settings' }),
-  ])
-
-  const page = pageData.docs[0]
+  const aboutPage = await payload.findGlobal({ slug: 'about-page' })
 
   return (
     <>
       {/* Hero */}
       <section className="relative flex min-h-[40vh] items-center bg-primary">
-        {page?.hero?.image && (
+        {aboutPage.hero?.image && (
           <div className="absolute inset-0">
             <PayloadImage
-              media={page.hero.image as Media}
+              media={aboutPage.hero.image as Media}
               fill
               priority
               className="object-cover opacity-30"
@@ -51,72 +41,102 @@ export default async function AboutPage() {
         )}
         <Container className="relative z-10 py-20 text-center">
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
-            {page?.hero?.heading || 'O nas'}
+            {aboutPage.hero?.heading || 'O nas'}
           </h1>
-          {page?.hero?.subheading && (
+          {aboutPage.hero?.subheading && (
             <p className="mx-auto mt-4 max-w-2xl text-lg text-surface/70">
-              {page.hero.subheading}
+              {aboutPage.hero.subheading}
             </p>
           )}
         </Container>
       </section>
 
-      {/* Content */}
-      <section className="py-20">
-        <Container>
-          <ScrollReveal>
-            <div className="mx-auto max-w-4xl">
-              {page?.content && (
-                <div className="prose prose-lg mx-auto max-w-none text-muted">
-                  {/* Rich text content rendered by Payload */}
-                </div>
-              )}
-
-              {/* Company Info */}
-              {siteSettings.companyInfo && (
-                <div className="mt-16 grid gap-8 border-t border-border pt-16 md:grid-cols-2">
-                  <div>
-                    <SectionHeading
-                      label="Kontakt"
-                      heading="Nasze dane"
-                      align="left"
+      {/* Intro - O firmie */}
+      {(aboutPage.intro?.heading || aboutPage.intro?.description) && (
+        <section className="py-20">
+          <Container>
+            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+              {aboutPage.intro.image && (
+                <ScrollReveal direction="left">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <PayloadImage
+                      media={aboutPage.intro.image as Media}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
                     />
                   </div>
-                  <div className="space-y-4 text-muted">
-                    {siteSettings.companyInfo.name && (
-                      <p className="text-lg font-semibold text-primary">
-                        {siteSettings.companyInfo.name}
-                      </p>
-                    )}
-                    {siteSettings.companyInfo.address && (
-                      <p className="whitespace-pre-line">{siteSettings.companyInfo.address}</p>
-                    )}
-                    {siteSettings.companyInfo.phone && (
-                      <p>
-                        Tel:{' '}
-                        <a href={`tel:${siteSettings.companyInfo.phone}`} className="text-accent hover:text-secondary">
-                          {siteSettings.companyInfo.phone}
-                        </a>
-                      </p>
-                    )}
-                    {siteSettings.companyInfo.email && (
-                      <p>
-                        Email:{' '}
-                        <a href={`mailto:${siteSettings.companyInfo.email}`} className="text-accent hover:text-secondary">
-                          {siteSettings.companyInfo.email}
-                        </a>
-                      </p>
-                    )}
-                    {siteSettings.companyInfo.nip && (
-                      <p>NIP: {siteSettings.companyInfo.nip}</p>
-                    )}
-                  </div>
-                </div>
+                </ScrollReveal>
               )}
+              <ScrollReveal direction="right">
+                <div>
+                  <SectionHeading
+                    label={aboutPage.intro.label}
+                    heading={aboutPage.intro.heading}
+                    align="left"
+                  />
+                  {aboutPage.intro.description && (
+                    <p className="whitespace-pre-line text-lg leading-relaxed text-muted">
+                      {aboutPage.intro.description}
+                    </p>
+                  )}
+                </div>
+              </ScrollReveal>
             </div>
-          </ScrollReveal>
-        </Container>
-      </section>
+          </Container>
+        </section>
+      )}
+
+      {/* Zespół */}
+      {aboutPage.team && aboutPage.team.length > 0 && (
+        <section className="bg-background py-20">
+          <Container>
+            <SectionHeading
+              label={aboutPage.teamLabel}
+              heading={aboutPage.teamHeading}
+              description={aboutPage.teamDescription}
+            />
+
+            <div
+              className={`grid gap-8 ${
+                aboutPage.team.length === 1
+                  ? 'mx-auto max-w-lg'
+                  : aboutPage.team.length === 2
+                    ? 'mx-auto max-w-4xl md:grid-cols-2'
+                    : 'md:grid-cols-2 lg:grid-cols-3'
+              }`}
+            >
+              {aboutPage.team.map((member, index) => (
+                <ScrollReveal key={member.id || index} delay={index * 0.15}>
+                  <div className="group overflow-hidden border border-border bg-surface">
+                    {member.image && (
+                      <div className="relative aspect-[3/4] overflow-hidden">
+                        <PayloadImage
+                          media={member.image as Media}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    )}
+                    <div className="p-6 sm:p-8">
+                      <h3 className="font-heading text-xl font-bold text-primary sm:text-2xl">
+                        {member.name}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium uppercase tracking-wider text-accent">
+                        {member.role}
+                      </p>
+                      <p className="mt-4 whitespace-pre-line leading-relaxed text-muted">
+                        {member.description}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
     </>
   )
 }
