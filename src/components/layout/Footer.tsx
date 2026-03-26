@@ -4,6 +4,8 @@ import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Container } from '@/components/ui/Container'
+import { SocialIcon } from '@/components/ui/SocialIcon'
+import { defaultFooter } from '@/lib/defaults'
 import type { Media } from '@/payload-types'
 
 export async function Footer() {
@@ -11,9 +13,11 @@ export async function Footer() {
   const footer = await payload.findGlobal({ slug: 'footer' })
 
   const logo = footer.logo as Media | undefined
-  const columns = footer.columns || []
-  const contact = footer.contactInfo
-  const socials = footer.socialLinks || []
+  const hasColumns = footer.columns && footer.columns.length > 0
+  const columns = hasColumns ? footer.columns! : defaultFooter.columns
+  const contact = footer.contactInfo?.phone ? footer.contactInfo : defaultFooter.contactInfo
+  const socials = footer.socialLinks && footer.socialLinks.length > 0 ? footer.socialLinks : defaultFooter.socialLinks
+  const description = footer.description || defaultFooter.description
 
   return (
     <footer className="border-t border-border bg-primary text-surface/80">
@@ -35,12 +39,12 @@ export async function Footer() {
                 alt="Kalabi"
                 width={140}
                 height={40}
-                className="mb-4 h-10 w-auto brightness-0 invert"
+                className="mb-4 h-20 w-auto brightness-0 invert"
               />
             )}
-            {footer.description && (
+            {description && (
               <p className="text-sm leading-relaxed text-surface/60">
-                {footer.description}
+                {description}
               </p>
             )}
             {/* Social links */}
@@ -52,9 +56,10 @@ export async function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm uppercase tracking-wider text-surface/50 transition-colors hover:text-accent"
+                    className="text-surface/50 transition-colors hover:text-accent"
+                    aria-label={typeof social.platform === 'string' ? social.platform : ''}
                   >
-                    {social.platform}
+                    <SocialIcon platform={typeof social.platform === 'string' ? social.platform : ''} />
                   </a>
                 ))}
               </div>
@@ -72,7 +77,7 @@ export async function Footer() {
                   <li key={j}>
                     <Link
                       href={link.link}
-                      target={link.newTab ? '_blank' : undefined}
+                      target={'newTab' in link && link.newTab ? '_blank' : undefined}
                       className="text-sm text-surface/60 transition-colors hover:text-accent"
                     >
                       {link.label}

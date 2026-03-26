@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PageTransition } from '@/components/layout/PageTransition'
+import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import './styles.css'
 
 const inter = Inter({
@@ -68,6 +69,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <main className="pt-[72px]">{children}</main>
         </PageTransition>
         <Footer />
+        <ScrollToTop />
       </body>
     </html>
   )

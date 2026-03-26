@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.meblebrewczak.pl)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm generate:types)",
+      "Bash(pnpm generate:importmap)",
+      "Bash(pnpm build:*)",
+      "WebFetch(domain:www.facebook.com)",
+      "Bash(find /dev/kalabi/src/globals -type f -name *.ts -o -name *.tsx)",
+      "Bash(find /dev/kalabi -name *global* -type f)",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(curl -sL -o /c/dev/kalabi/public/images/kitchen.jpg \"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --version)",
+      "Bash(curl -v -sL -o /dev/null \"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/kitchen.jpg \"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/wardrobe.jpg \"https://images.unsplash.com/photo-1558997519-83ea9252edf8?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/bathroom.jpg \"https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/living.jpg \"https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/office.jpg \"https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/hero-1.jpg \"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=85\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/hero-2.jpg \"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=85\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/hero-3.jpg \"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1920&q=85\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/hero-1.jpg \"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1920&q=85\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/kitchen.jpg \"https://images.unsplash.com/photo-1556185781-a36457dced2a?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/bathroom.jpg \"https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80\")",
+      "Bash(curl --ssl-no-revoke -sL -o /c/dev/kalabi/public/images/living.jpg \"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80\")"
+    ]
+  }
+}

@@ -11,7 +11,7 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    'bg-accent text-primary hover:bg-secondary hover:text-surface transition-colors',
+    'bg-accent text-primary hover:bg-primary hover:text-surface transition-all duration-200',
   secondary:
     'bg-primary text-surface hover:bg-secondary transition-colors',
   outline:

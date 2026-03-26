@@ -308,22 +308,22 @@ export const defaultFooter = {
     },
   ],
   contactInfo: {
-    address: 'ul. Stolarzy 15\n00-001 Warszawa',
-    phone: '+48 123 456 789',
-    email: 'kontakt@kalabi.pl',
+    address: 'Pajęczno',
+    phone: '+48 661 244 385',
+    email: 'kalabimeblenawymiar@gmail.com',
   },
   socialLinks: [
-    { platform: 'facebook', url: '#' },
-    { platform: 'instagram', url: '#' },
+    { platform: 'facebook', url: 'https://www.facebook.com/profile.php?id=61572478532744' },
+    { platform: 'instagram', url: 'https://www.instagram.com/kalabi_meble' },
   ],
   copyrightText: `© ${new Date().getFullYear()} Kalabi. Wszelkie prawa zastrzeżone.`,
 }
 
 export const defaultCompanyInfo = {
-  name: 'Kalabi Meble na Wymiar',
+  name: 'Kalabi Producent Mebli na Wymiar',
   nip: '000-000-00-00',
-  address: 'ul. Stolarzy 15\n00-001 Warszawa',
-  phone: '+48 123 456 789',
-  email: 'kontakt@kalabi.pl',
+  address: 'Pajęczno',
+  phone: '+48 661 244 385',
+  email: 'kalabimeblenawymiar@gmail.com',
   googleMapsUrl: '',
 }
