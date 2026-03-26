@@ -11,11 +11,11 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    'bg-accent text-primary hover:bg-primary hover:text-surface transition-all duration-200',
+    'cursor-pointer bg-accent text-primary hover:bg-primary hover:text-surface transition-all duration-200',
   secondary:
-    'bg-primary text-surface hover:bg-secondary transition-colors',
+    'cursor-pointer bg-primary text-surface hover:bg-secondary transition-colors',
   outline:
-    'border-2 border-primary text-primary hover:bg-primary hover:text-surface transition-colors',
+    'cursor-pointer border-2 border-primary text-primary hover:bg-primary hover:text-surface transition-colors',
 }
 
 const sizes = {

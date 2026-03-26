@@ -157,7 +157,7 @@ export function ContactForm() {
             <button
               type="submit"
               disabled={state === 'submitting'}
-              className="inline-flex w-full items-center justify-center bg-accent px-8 py-4 text-base font-medium uppercase tracking-wide text-primary transition-colors hover:bg-secondary hover:text-surface disabled:opacity-50 sm:w-auto"
+              className="cursor-pointer inline-flex w-full items-center justify-center bg-accent px-8 py-4 text-base font-medium uppercase tracking-wide text-primary transition-colors hover:bg-secondary hover:text-surface disabled:opacity-50 sm:w-auto"
             >
               {state === 'submitting' ? 'Wysyłanie...' : 'Wyślij wiadomość'}
             </button>

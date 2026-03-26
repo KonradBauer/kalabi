@@ -42,8 +42,7 @@ export default async function HomePage() {
       <Hero
         heading={homePage.hero?.heading || defaultHero.heading}
         subheading={homePage.hero?.subheading || defaultHero.subheading}
-        backgroundImage={homePage.hero?.backgroundImage as Media | null}
-        placeholderImage="/images/placeholder-hero.svg"
+        images={['/images/hero-1.jpg', '/images/hero-2.jpg', '/images/hero-3.jpg']}
         ctaText={homePage.hero?.ctaText || defaultHero.ctaText}
         ctaLink={homePage.hero?.ctaLink || defaultHero.ctaLink}
         secondaryCtaText={homePage.hero?.secondaryCtaText || defaultHero.secondaryCtaText}

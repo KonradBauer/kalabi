@@ -1,16 +1,13 @@
-import Image from 'next/image'
 import React from 'react'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
-import { PayloadImage } from '@/components/media/PayloadImage'
 import { HeroAnimation } from './HeroAnimation'
-import type { Media } from '@/payload-types'
+import { HeroSlideshow } from './HeroSlideshow'
 
 type HeroProps = {
   heading?: string | null
   subheading?: string | null
-  backgroundImage?: Media | null
-  placeholderImage?: string
+  images?: string[]
   ctaText?: string | null
   ctaLink?: string | null
   secondaryCtaText?: string | null
@@ -20,8 +17,7 @@ type HeroProps = {
 export function Hero({
   heading,
   subheading,
-  backgroundImage,
-  placeholderImage,
+  images = [],
   ctaText,
   ctaLink,
   secondaryCtaText,
@@ -29,27 +25,8 @@ export function Hero({
 }: HeroProps) {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden bg-primary">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        {backgroundImage ? (
-          <PayloadImage
-            media={backgroundImage}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover opacity-40"
-          />
-        ) : placeholderImage ? (
-          <Image
-            src={placeholderImage}
-            alt=""
-            fill
-            priority
-            className="object-cover opacity-60"
-          />
-        ) : null}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40" />
-      </div>
+      {/* Background slideshow */}
+      {images.length > 0 && <HeroSlideshow images={images} />}
 
       <Container className="relative z-10 py-20">
         <HeroAnimation>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PageTransition } from '@/components/layout/PageTransition'
@@ -12,8 +12,9 @@ const inter = Inter({
   display: 'swap',
 })
 
-const playfair = Playfair_Display({
+const poppins = Poppins({
   subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-heading',
   display: 'swap',
 })
@@ -61,7 +62,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pl" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="pl" className={`${inter.variable} ${poppins.variable}`}>
       <body className="min-h-screen bg-background font-body text-primary antialiased">
         <JsonLd siteUrl={siteUrl} />
         <Header />
