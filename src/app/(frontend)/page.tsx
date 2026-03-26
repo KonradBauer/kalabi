@@ -23,7 +23,7 @@ import {
   defaultTestimonials,
 } from '@/lib/defaults'
 
-import type { Media } from '@/payload-types'
+import type { Media, HomePage as HomePageType } from '@/payload-types'
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
@@ -44,7 +44,16 @@ export default async function HomePage() {
       <Hero
         heading={homePage.hero?.heading || defaultHero.heading}
         subheading={homePage.hero?.subheading || defaultHero.subheading}
-        images={['/images/hero-1.jpg', '/images/hero-2.jpg', '/images/hero-3.jpg']}
+        images={
+          homePage.hero?.slides && homePage.hero.slides.length > 0
+            ? homePage.hero.slides
+                .map((slide: { image: Media | string }) => {
+                  const img = slide.image as Media
+                  return img?.url
+                })
+                .filter(Boolean) as string[]
+            : ['/images/hero-1.jpg', '/images/hero-2.jpg', '/images/hero-3.jpg']
+        }
         ctaText={homePage.hero?.ctaText || defaultHero.ctaText}
         ctaLink={homePage.hero?.ctaLink || defaultHero.ctaLink}
         secondaryCtaText={homePage.hero?.secondaryCtaText || defaultHero.secondaryCtaText}

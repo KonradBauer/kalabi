@@ -2,98 +2,439 @@ import type { GlobalConfig } from 'payload'
 
 export const HomePage: GlobalConfig = {
   slug: 'home-page',
+  label: 'Strona główna',
   access: {
     read: () => true,
   },
   fields: [
-    // HERO
     {
-      name: 'hero',
-      type: 'group',
-      fields: [
-        { name: 'heading', type: 'text', required: true },
-        { name: 'subheading', type: 'textarea' },
-        { name: 'backgroundImage', type: 'upload', relationTo: 'media' },
-        { name: 'ctaText', type: 'text' },
-        { name: 'ctaLink', type: 'text' },
-        { name: 'secondaryCtaText', type: 'text' },
-        { name: 'secondaryCtaLink', type: 'text' },
-      ],
-    },
-    // ABOUT PREVIEW
-    {
-      name: 'aboutPreview',
-      type: 'group',
-      fields: [
-        { name: 'label', type: 'text' },
-        { name: 'heading', type: 'text' },
-        { name: 'description', type: 'textarea' },
-        { name: 'image', type: 'upload', relationTo: 'media' },
+      type: 'tabs',
+      tabs: [
+        // ─── HERO ───
         {
-          name: 'stats',
-          type: 'array',
-          maxRows: 4,
+          label: 'Hero (Baner główny)',
+          description: 'Duży baner na samej górze strony głównej — pierwsze co widzi odwiedzający',
           fields: [
-            { name: 'number', type: 'text', required: true },
-            { name: 'label', type: 'text', required: true },
+            {
+              name: 'hero',
+              label: ' ',
+              type: 'group',
+              admin: {
+                hideGutter: true,
+              },
+              fields: [
+                {
+                  name: 'heading',
+                  label: 'Nagłówek',
+                  type: 'text',
+                  required: true,
+                  admin: {
+                    description: 'Duży, biały tekst na środku banera na górze strony głównej',
+                  },
+                },
+                {
+                  name: 'subheading',
+                  label: 'Podtytuł',
+                  type: 'textarea',
+                  admin: {
+                    description: 'Mniejszy tekst pod nagłówkiem na banerze',
+                  },
+                },
+                {
+                  name: 'slides',
+                  label: 'Zdjęcia w tle (slideshow)',
+                  type: 'array',
+                  labels: {
+                    singular: 'Zdjęcie',
+                    plural: 'Zdjęcia',
+                  },
+                  admin: {
+                    description: 'Zdjęcia przewijające się w tle banera na górze strony głównej. Dodaj 2-3 zdjęcia dla efektu slideshow',
+                  },
+                  fields: [
+                    {
+                      name: 'image',
+                      label: 'Zdjęcie',
+                      type: 'upload',
+                      relationTo: 'media',
+                      required: true,
+                    },
+                  ],
+                },
+                {
+                  name: 'ctaText',
+                  label: 'Tekst przycisku głównego',
+                  type: 'text',
+                  admin: {
+                    description: 'Złoty przycisk na banerze, np. "Bezpłatna wycena"',
+                  },
+                },
+                {
+                  name: 'ctaLink',
+                  label: 'Link przycisku głównego',
+                  type: 'text',
+                  admin: {
+                    description: 'Dokąd prowadzi złoty przycisk, np. "/kontakt"',
+                  },
+                },
+                {
+                  name: 'secondaryCtaText',
+                  label: 'Tekst drugiego przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'Przezroczysty przycisk obok głównego na banerze, np. "Zobacz realizacje"',
+                  },
+                },
+                {
+                  name: 'secondaryCtaLink',
+                  label: 'Link drugiego przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'Dokąd prowadzi drugi przycisk, np. "/realizacje"',
+                  },
+                },
+              ],
+            },
           ],
         },
-        { name: 'ctaText', type: 'text' },
-        { name: 'ctaLink', type: 'text' },
-      ],
-    },
-    // SERVICES SECTION
-    {
-      name: 'servicesSection',
-      type: 'group',
-      fields: [
-        { name: 'label', type: 'text' },
-        { name: 'heading', type: 'text' },
-        { name: 'description', type: 'textarea' },
-      ],
-    },
-    // PROJECTS SECTION
-    {
-      name: 'projectsSection',
-      type: 'group',
-      fields: [
-        { name: 'label', type: 'text' },
-        { name: 'heading', type: 'text' },
-        { name: 'description', type: 'textarea' },
-        { name: 'ctaText', type: 'text' },
-        { name: 'ctaLink', type: 'text' },
-      ],
-    },
-    // CTA BANNER
-    {
-      name: 'ctaBanner',
-      type: 'group',
-      fields: [
-        { name: 'heading', type: 'text' },
-        { name: 'description', type: 'textarea' },
-        { name: 'backgroundImage', type: 'upload', relationTo: 'media' },
-        { name: 'ctaText', type: 'text' },
-        { name: 'ctaLink', type: 'text' },
-      ],
-    },
-    // TESTIMONIALS
-    {
-      name: 'testimonialsSection',
-      type: 'group',
-      fields: [
-        { name: 'label', type: 'text' },
-        { name: 'heading', type: 'text' },
-        { name: 'description', type: 'textarea' },
-      ],
-    },
-    // SEO
-    {
-      name: 'meta',
-      type: 'group',
-      fields: [
-        { name: 'title', type: 'text' },
-        { name: 'description', type: 'textarea' },
-        { name: 'image', type: 'upload', relationTo: 'media' },
+        // ─── O NAS ───
+        {
+          label: 'O nas',
+          description: 'Sekcja "O nas" pod banerem na stronie głównej — zdjęcie po lewej, tekst po prawej',
+          fields: [
+            {
+              name: 'aboutPreview',
+              label: ' ',
+              type: 'group',
+              admin: {
+                hideGutter: true,
+              },
+              fields: [
+                {
+                  name: 'label',
+                  label: 'Etykieta sekcji',
+                  type: 'text',
+                  admin: {
+                    description: 'Mały złoty tekst nad nagłówkiem sekcji, np. "O nas"',
+                  },
+                },
+                {
+                  name: 'heading',
+                  label: 'Nagłówek',
+                  type: 'text',
+                  admin: {
+                    description: 'Nagłówek sekcji "O nas" na stronie głównej',
+                  },
+                },
+                {
+                  name: 'description',
+                  label: 'Opis',
+                  type: 'textarea',
+                  admin: {
+                    description: 'Tekst o firmie po prawej stronie obok zdjęcia w sekcji "O nas"',
+                  },
+                },
+                {
+                  name: 'image',
+                  label: 'Zdjęcie',
+                  type: 'upload',
+                  relationTo: 'media',
+                  admin: {
+                    description: 'Duże zdjęcie po lewej stronie w sekcji "O nas" na stronie głównej',
+                  },
+                },
+                {
+                  name: 'stats',
+                  label: 'Statystyki',
+                  type: 'array',
+                  maxRows: 4,
+                  labels: {
+                    singular: 'Statystyka',
+                    plural: 'Statystyki',
+                  },
+                  admin: {
+                    description: 'Liczby pod opisem w sekcji "O nas", np. "15+ lat doświadczenia"',
+                  },
+                  fields: [
+                    {
+                      name: 'number',
+                      label: 'Liczba',
+                      type: 'text',
+                      required: true,
+                      admin: {
+                        description: 'np. "15+", "500+", "100%"',
+                      },
+                    },
+                    {
+                      name: 'label',
+                      label: 'Opis',
+                      type: 'text',
+                      required: true,
+                      admin: {
+                        description: 'np. "Lat doświadczenia", "Zrealizowanych projektów"',
+                      },
+                    },
+                  ],
+                },
+                {
+                  name: 'ctaText',
+                  label: 'Tekst przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'Przycisk pod statystykami w sekcji "O nas", np. "Poznaj nas bliżej"',
+                  },
+                },
+                {
+                  name: 'ctaLink',
+                  label: 'Link przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'np. "/o-nas"',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        // ─── USŁUGI ───
+        {
+          label: 'Usługi',
+          description: 'Nagłówek sekcji usług na stronie głównej. Same usługi (karty) edytujesz w menu bocznym → Usługi',
+          fields: [
+            {
+              name: 'servicesSection',
+              label: ' ',
+              type: 'group',
+              admin: {
+                hideGutter: true,
+              },
+              fields: [
+                {
+                  name: 'label',
+                  label: 'Etykieta sekcji',
+                  type: 'text',
+                  admin: {
+                    description: 'Mały złoty tekst nad nagłówkiem, np. "Nasze usługi"',
+                  },
+                },
+                {
+                  name: 'heading',
+                  label: 'Nagłówek',
+                  type: 'text',
+                  admin: {
+                    description: 'Nagłówek sekcji usług na stronie głównej',
+                  },
+                },
+                {
+                  name: 'description',
+                  label: 'Opis',
+                  type: 'textarea',
+                  admin: {
+                    description: 'Tekst pod nagłówkiem sekcji usług na stronie głównej',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        // ─── REALIZACJE ───
+        {
+          label: 'Realizacje',
+          description: 'Nagłówek sekcji realizacji na stronie głównej. Same realizacje edytujesz w menu bocznym → Realizacje',
+          fields: [
+            {
+              name: 'projectsSection',
+              label: ' ',
+              type: 'group',
+              admin: {
+                hideGutter: true,
+              },
+              fields: [
+                {
+                  name: 'label',
+                  label: 'Etykieta sekcji',
+                  type: 'text',
+                  admin: {
+                    description: 'Mały złoty tekst nad nagłówkiem, np. "Nasze realizacje"',
+                  },
+                },
+                {
+                  name: 'heading',
+                  label: 'Nagłówek',
+                  type: 'text',
+                  admin: {
+                    description: 'Nagłówek sekcji realizacji na stronie głównej',
+                  },
+                },
+                {
+                  name: 'description',
+                  label: 'Opis',
+                  type: 'textarea',
+                  admin: {
+                    description: 'Tekst pod nagłówkiem sekcji realizacji na stronie głównej',
+                  },
+                },
+                {
+                  name: 'ctaText',
+                  label: 'Tekst przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'Przycisk pod realizacjami na stronie głównej, np. "Zobacz wszystkie realizacje"',
+                  },
+                },
+                {
+                  name: 'ctaLink',
+                  label: 'Link przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'np. "/realizacje"',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        // ─── CTA BANNER ───
+        {
+          label: 'Baner CTA',
+          description: 'Ciemny baner ze zdjęciem w tle między realizacjami a opiniami na stronie głównej',
+          fields: [
+            {
+              name: 'ctaBanner',
+              label: ' ',
+              type: 'group',
+              admin: {
+                hideGutter: true,
+              },
+              fields: [
+                {
+                  name: 'heading',
+                  label: 'Nagłówek',
+                  type: 'text',
+                  admin: {
+                    description: 'Duży biały tekst na banerze CTA, np. "Masz pomysł na meble? Porozmawiajmy!"',
+                  },
+                },
+                {
+                  name: 'description',
+                  label: 'Opis',
+                  type: 'textarea',
+                  admin: {
+                    description: 'Tekst pod nagłówkiem na banerze CTA',
+                  },
+                },
+                {
+                  name: 'backgroundImage',
+                  label: 'Zdjęcie w tle',
+                  type: 'upload',
+                  relationTo: 'media',
+                  admin: {
+                    description: 'Zdjęcie w tle ciemnego banera CTA na stronie głównej',
+                  },
+                },
+                {
+                  name: 'ctaText',
+                  label: 'Tekst przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'Przycisk na banerze CTA, np. "Skontaktuj się"',
+                  },
+                },
+                {
+                  name: 'ctaLink',
+                  label: 'Link przycisku',
+                  type: 'text',
+                  admin: {
+                    description: 'np. "/kontakt"',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        // ─── OPINIE ───
+        {
+          label: 'Opinie',
+          description: 'Nagłówek sekcji opinii na stronie głównej. Same opinie edytujesz w menu bocznym → Opinie',
+          fields: [
+            {
+              name: 'testimonialsSection',
+              label: ' ',
+              type: 'group',
+              admin: {
+                hideGutter: true,
+              },
+              fields: [
+                {
+                  name: 'label',
+                  label: 'Etykieta sekcji',
+                  type: 'text',
+                  admin: {
+                    description: 'Mały złoty tekst nad nagłówkiem, np. "Opinie klientów"',
+                  },
+                },
+                {
+                  name: 'heading',
+                  label: 'Nagłówek',
+                  type: 'text',
+                  admin: {
+                    description: 'Nagłówek sekcji opinii na stronie głównej',
+                  },
+                },
+                {
+                  name: 'description',
+                  label: 'Opis',
+                  type: 'textarea',
+                  admin: {
+                    description: 'Tekst pod nagłówkiem sekcji opinii na stronie głównej',
+                  },
+                },
+              ],
+            },
+          ],
+        },
+        // ─── SEO ───
+        {
+          label: 'SEO',
+          description: 'Jak strona główna wygląda w wynikach Google i przy udostępnianiu linków',
+          fields: [
+            {
+              name: 'meta',
+              label: ' ',
+              type: 'group',
+              admin: {
+                hideGutter: true,
+              },
+              fields: [
+                {
+                  name: 'title',
+                  label: 'Tytuł SEO',
+                  type: 'text',
+                  admin: {
+                    description: 'Tytuł strony głównej w wynikach Google i na karcie przeglądarki',
+                  },
+                },
+                {
+                  name: 'description',
+                  label: 'Opis SEO',
+                  type: 'textarea',
+                  admin: {
+                    description: 'Opis pod tytułem w wynikach Google dla strony głównej',
+                  },
+                },
+                {
+                  name: 'image',
+                  label: 'Obrazek udostępniania',
+                  type: 'upload',
+                  relationTo: 'media',
+                  admin: {
+                    description: 'Wyświetlany przy udostępnianiu linku do strony głównej na Facebook/Messenger',
+                  },
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ],

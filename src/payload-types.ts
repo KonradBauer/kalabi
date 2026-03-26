@@ -104,12 +104,14 @@ export interface Config {
     footer: Footer;
     'site-settings': SiteSetting;
     'home-page': HomePage;
+    'about-page': AboutPage;
   };
   globalsSelect: {
     header: HeaderSelect<false> | HeaderSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'home-page': HomePageSelect<false> | HomePageSelect<true>;
+    'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -140,6 +142,8 @@ export interface UserAuthOperations {
   };
 }
 /**
+ * Konta administratorów panelu CMS
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -165,11 +169,16 @@ export interface User {
   collection: 'users';
 }
 /**
+ * Biblioteka zdjęć — przesyłaj zdjęcia realizacji, usług i inne
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
  */
 export interface Media {
   id: string;
+  /**
+   * Opis zdjęcia dla osób niewidomych i SEO
+   */
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -210,13 +219,21 @@ export interface Media {
   };
 }
 /**
+ * Podstrony serwisu (O nas, itp.)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "pages".
  */
 export interface Page {
   id: string;
   title: string;
+  /**
+   * np. "o-nas" → strona będzie pod adresem /o-nas
+   */
   slug: string;
+  /**
+   * Nagłówek widoczny na górze strony
+   */
   hero?: {
     heading?: string | null;
     subheading?: string | null;
@@ -237,24 +254,47 @@ export interface Page {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Ustawienia widoczności w Google
+   */
   meta?: {
+    /**
+     * Tytuł wyświetlany w wynikach Google
+     */
     title?: string | null;
+    /**
+     * Krótki opis wyświetlany w wynikach Google
+     */
     description?: string | null;
+    /**
+     * Wyświetlany przy udostępnianiu linku na FB/Messenger
+     */
     image?: (string | null) | Media;
   };
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Wyróżnione realizacje pojawiają się na stronie głównej. Wszystkie widoczne na /realizacje
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "projects".
  */
 export interface Project {
   id: string;
   title: string;
+  /**
+   * np. "kuchnia-nowoczesna" → /realizacje/kuchnia-nowoczesna
+   */
   slug: string;
   category: string | ProjectCategory;
+  /**
+   * Pokaż na stronie głównej
+   */
   featured?: boolean | null;
+  /**
+   * Widoczny na karcie realizacji i na górze podstrony
+   */
   description: string;
   content?: {
     root: {
@@ -271,7 +311,13 @@ export interface Project {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Wyświetlane na karcie realizacji i jako hero
+   */
   mainImage: string | Media;
+  /**
+   * Dodatkowe zdjęcia realizacji
+   */
   gallery?:
     | {
         image: string | Media;
@@ -279,6 +325,9 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Informacje wyświetlane w bocznym panelu realizacji
+   */
   details?: {
     client?: string | null;
     location?: string | null;
@@ -291,32 +340,54 @@ export interface Project {
     description?: string | null;
     image?: (string | null) | Media;
   };
+  /**
+   * Mniejsza liczba = wyżej na liście
+   */
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Kategorie do grupowania realizacji (np. Kuchnie, Szafy, Łazienki)
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "project-categories".
  */
 export interface ProjectCategory {
   id: string;
   name: string;
+  /**
+   * np. "kuchnie" — używany w adresie URL
+   */
   slug: string;
   description?: string | null;
+  /**
+   * Mniejsza liczba = wyżej na liście
+   */
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Karty usług widoczne na stronie głównej (sekcja "Usługi") i na podstronie /uslugi
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "services".
  */
 export interface Service {
   id: string;
   title: string;
+  /**
+   * np. "kuchnie-na-wymiar" → /uslugi/kuchnie-na-wymiar
+   */
   slug: string;
+  /**
+   * Wyświetlany na karcie usługi na stronie głównej
+   */
   shortDescription: string;
+  /**
+   * Szczegółowy opis na podstronie usługi
+   */
   content?: {
     root: {
       type: string;
@@ -333,10 +404,13 @@ export interface Service {
     [k: string]: unknown;
   } | null;
   /**
-   * Nazwa ikony (np. "ruler", "hammer", "paintbrush")
+   * Nazwa ikony Lucide (np. "ruler", "hammer", "paintbrush")
    */
   icon?: string | null;
   image?: (string | null) | Media;
+  /**
+   * Lista zalet wyświetlana przy usłudze
+   */
   features?:
     | {
         feature: string;
@@ -347,27 +421,49 @@ export interface Service {
     title?: string | null;
     description?: string | null;
   };
+  /**
+   * Mniejsza liczba = wyżej na liście
+   */
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Wyróżnione opinie pojawiają się w sliderze na stronie głównej (sekcja "Opinie")
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "testimonials".
  */
 export interface Testimonial {
   id: string;
   author: string;
+  /**
+   * np. "Właściciel domu, Pajęczno"
+   */
   role?: string | null;
   content: string;
+  /**
+   * Ocena od 1 do 5 gwiazdek
+   */
   rating?: number | null;
+  /**
+   * Opcjonalnie — która realizacja dotyczy tej opinii
+   */
   project?: (string | null) | Project;
+  /**
+   * Pokaż na stronie głównej
+   */
   featured?: boolean | null;
+  /**
+   * Mniejsza liczba = wyżej na liście
+   */
   order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
+ * Wiadomości wysłane przez formularz kontaktowy na stronie
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "contact-submissions".
  */
@@ -378,6 +474,9 @@ export interface ContactSubmission {
   phone?: string | null;
   subject: string;
   message: string;
+  /**
+   * Zaznacz po przeczytaniu wiadomości
+   */
   read?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -732,17 +831,38 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
+  /**
+   * Widoczne w lewym górnym rogu na każdej stronie. Zmienia się na białe przy scrollowaniu
+   */
   logo?: (string | null) | Media;
+  /**
+   * Linki widoczne w górnym pasku na każdej stronie + w menu mobilnym
+   */
   navItems?:
     | {
+        /**
+         * Tekst wyświetlany w menu, np. "O nas", "Realizacje"
+         */
         label: string;
+        /**
+         * Adres docelowy, np. "/o-nas", "/realizacje", "#kontakt"
+         */
         link: string;
         newTab?: boolean | null;
         id?: string | null;
       }[]
     | null;
+  /**
+   * Wyróżniony przycisk po prawej stronie menu na każdej stronie
+   */
   ctaButton?: {
+    /**
+     * np. "Bezpłatna wycena"
+     */
     label?: string | null;
+    /**
+     * np. "/kontakt"
+     */
     link?: string | null;
   };
   updatedAt?: string | null;
@@ -754,10 +874,22 @@ export interface Header {
  */
 export interface Footer {
   id: string;
+  /**
+   * Logo widoczne w stopce na dole każdej strony
+   */
   logo?: (string | null) | Media;
+  /**
+   * Tekst pod logo w stopce na dole każdej strony
+   */
   description?: string | null;
+  /**
+   * Kolumny linków w środkowej części stopki (np. "Usługi", "Firma")
+   */
   columns?:
     | {
+        /**
+         * Nagłówek nad linkami w stopce, np. "Usługi", "Firma"
+         */
         title: string;
         links?:
           | {
@@ -770,11 +902,17 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Adres, telefon i email widoczne w prawej części stopki na dole każdej strony
+   */
   contactInfo?: {
     address?: string | null;
     phone?: string | null;
     email?: string | null;
   };
+  /**
+   * Ikony social media widoczne w stopce na dole każdej strony
+   */
   socialLinks?:
     | {
         platform?: ('facebook' | 'instagram' | 'pinterest' | 'linkedin' | 'youtube') | null;
@@ -782,6 +920,9 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Tekst na samym dole strony, np. "© 2026 Kalabi. Wszelkie prawa zastrzeżone."
+   */
   copyrightText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -793,22 +934,61 @@ export interface Footer {
 export interface SiteSetting {
   id: string;
   siteName: string;
+  /**
+   * Ogólny opis firmy — używany w metadanych i udostępnianiu
+   */
   siteDescription?: string | null;
+  /**
+   * Pełny adres, np. https://kalabi.pl — potrzebny do linków i SEO
+   */
   siteUrl: string;
+  /**
+   * Główne logo firmy — używane jako domyślne w nagłówku i stopce
+   */
   logo?: (string | null) | Media;
+  /**
+   * Mała ikona widoczna na karcie przeglądarki obok nazwy strony
+   */
   favicon?: (string | null) | Media;
-  ogImage?: (string | null) | Media;
   companyInfo?: {
+    /**
+     * Oficjalna nazwa firmy
+     */
     name?: string | null;
     nip?: string | null;
+    /**
+     * Wyświetlany na stronie /kontakt w sekcji "Dane kontaktowe"
+     */
     address?: string | null;
+    /**
+     * Wyświetlany na stronie /kontakt — kliknięcie uruchamia połączenie
+     */
     phone?: string | null;
+    /**
+     * Wyświetlany na stronie /kontakt — kliknięcie otwiera program pocztowy
+     */
     email?: string | null;
+    /**
+     * Mapa wyświetlana na stronie /kontakt pod danymi kontaktowymi. Wklej link "embed" z Google Maps
+     */
     googleMapsUrl?: string | null;
   };
+  /**
+   * Wyświetlany przy udostępnianiu linku do strony na Facebook/Messenger/WhatsApp
+   */
+  ogImage?: (string | null) | Media;
   seo?: {
+    /**
+     * Wyświetlany w karcie przeglądarki i w wynikach Google gdy podstrona nie ma własnego tytułu
+     */
     defaultTitle?: string | null;
+    /**
+     * %s zostanie zastąpione tytułem podstrony, np. "O nas | Kalabi"
+     */
     titleTemplate?: string | null;
+    /**
+     * Opis pod tytułem w wynikach Google gdy podstrona nie ma własnego opisu
+     */
     defaultDescription?: string | null;
   };
   updatedAt?: string | null;
@@ -821,57 +1001,254 @@ export interface SiteSetting {
 export interface HomePage {
   id: string;
   hero: {
+    /**
+     * Duży, biały tekst na środku banera na górze strony głównej
+     */
     heading: string;
+    /**
+     * Mniejszy tekst pod nagłówkiem na banerze
+     */
     subheading?: string | null;
-    backgroundImage?: (string | null) | Media;
+    /**
+     * Zdjęcia przewijające się w tle banera na górze strony głównej. Dodaj 2-3 zdjęcia dla efektu slideshow
+     */
+    slides?:
+      | {
+          image: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+    /**
+     * Złoty przycisk na banerze, np. "Bezpłatna wycena"
+     */
     ctaText?: string | null;
+    /**
+     * Dokąd prowadzi złoty przycisk, np. "/kontakt"
+     */
     ctaLink?: string | null;
+    /**
+     * Przezroczysty przycisk obok głównego na banerze, np. "Zobacz realizacje"
+     */
     secondaryCtaText?: string | null;
+    /**
+     * Dokąd prowadzi drugi przycisk, np. "/realizacje"
+     */
     secondaryCtaLink?: string | null;
   };
   aboutPreview?: {
+    /**
+     * Mały złoty tekst nad nagłówkiem sekcji, np. "O nas"
+     */
     label?: string | null;
+    /**
+     * Nagłówek sekcji "O nas" na stronie głównej
+     */
     heading?: string | null;
+    /**
+     * Tekst o firmie po prawej stronie obok zdjęcia w sekcji "O nas"
+     */
     description?: string | null;
+    /**
+     * Duże zdjęcie po lewej stronie w sekcji "O nas" na stronie głównej
+     */
     image?: (string | null) | Media;
+    /**
+     * Liczby pod opisem w sekcji "O nas", np. "15+ lat doświadczenia"
+     */
     stats?:
       | {
+          /**
+           * np. "15+", "500+", "100%"
+           */
           number: string;
+          /**
+           * np. "Lat doświadczenia", "Zrealizowanych projektów"
+           */
           label: string;
           id?: string | null;
         }[]
       | null;
+    /**
+     * Przycisk pod statystykami w sekcji "O nas", np. "Poznaj nas bliżej"
+     */
     ctaText?: string | null;
+    /**
+     * np. "/o-nas"
+     */
     ctaLink?: string | null;
   };
   servicesSection?: {
+    /**
+     * Mały złoty tekst nad nagłówkiem, np. "Nasze usługi"
+     */
     label?: string | null;
+    /**
+     * Nagłówek sekcji usług na stronie głównej
+     */
     heading?: string | null;
+    /**
+     * Tekst pod nagłówkiem sekcji usług na stronie głównej
+     */
     description?: string | null;
   };
   projectsSection?: {
+    /**
+     * Mały złoty tekst nad nagłówkiem, np. "Nasze realizacje"
+     */
     label?: string | null;
+    /**
+     * Nagłówek sekcji realizacji na stronie głównej
+     */
     heading?: string | null;
+    /**
+     * Tekst pod nagłówkiem sekcji realizacji na stronie głównej
+     */
     description?: string | null;
+    /**
+     * Przycisk pod realizacjami na stronie głównej, np. "Zobacz wszystkie realizacje"
+     */
     ctaText?: string | null;
+    /**
+     * np. "/realizacje"
+     */
     ctaLink?: string | null;
   };
   ctaBanner?: {
+    /**
+     * Duży biały tekst na banerze CTA, np. "Masz pomysł na meble? Porozmawiajmy!"
+     */
     heading?: string | null;
+    /**
+     * Tekst pod nagłówkiem na banerze CTA
+     */
     description?: string | null;
+    /**
+     * Zdjęcie w tle ciemnego banera CTA na stronie głównej
+     */
     backgroundImage?: (string | null) | Media;
+    /**
+     * Przycisk na banerze CTA, np. "Skontaktuj się"
+     */
     ctaText?: string | null;
+    /**
+     * np. "/kontakt"
+     */
     ctaLink?: string | null;
   };
   testimonialsSection?: {
+    /**
+     * Mały złoty tekst nad nagłówkiem, np. "Opinie klientów"
+     */
     label?: string | null;
+    /**
+     * Nagłówek sekcji opinii na stronie głównej
+     */
     heading?: string | null;
+    /**
+     * Tekst pod nagłówkiem sekcji opinii na stronie głównej
+     */
     description?: string | null;
   };
   meta?: {
+    /**
+     * Tytuł strony głównej w wynikach Google i na karcie przeglądarki
+     */
     title?: string | null;
+    /**
+     * Opis pod tytułem w wynikach Google dla strony głównej
+     */
     description?: string | null;
+    /**
+     * Wyświetlany przy udostępnianiu linku do strony głównej na Facebook/Messenger
+     */
     image?: (string | null) | Media;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page".
+ */
+export interface AboutPage {
+  id: string;
+  hero?: {
+    /**
+     * Duży biały tekst na ciemnym banerze na górze strony /o-nas
+     */
+    heading?: string | null;
+    /**
+     * Tekst pod nagłówkiem na banerze strony /o-nas
+     */
+    subheading?: string | null;
+    /**
+     * Zdjęcie w tle ciemnego banera na górze strony /o-nas
+     */
+    image?: (string | null) | Media;
+  };
+  intro?: {
+    /**
+     * Mały złoty tekst nad nagłówkiem, np. "Nasza historia"
+     */
+    label?: string | null;
+    /**
+     * Nagłówek sekcji o firmie na stronie /o-nas
+     */
+    heading?: string | null;
+    /**
+     * Główny tekst o firmie na stronie /o-nas — historia, wartości, podejście
+     */
+    description?: string | null;
+    /**
+     * Zdjęcie obok opisu firmy na stronie /o-nas (np. warsztat, meble)
+     */
+    image?: (string | null) | Media;
+  };
+  /**
+   * Mały złoty tekst nad nagłówkiem, np. "Nasz zespół"
+   */
+  teamLabel?: string | null;
+  /**
+   * Nagłówek nad kartami zespołu na stronie /o-nas
+   */
+  teamHeading?: string | null;
+  /**
+   * Tekst pod nagłówkiem sekcji zespołu na stronie /o-nas
+   */
+  teamDescription?: string | null;
+  /**
+   * Osoby wyświetlane jako karty na stronie /o-nas
+   */
+  team?:
+    | {
+        /**
+         * np. "Kamil Kujawski"
+         */
+        name: string;
+        /**
+         * Tekst pod imieniem, np. "Stolarz", "Projektant wnętrz"
+         */
+        role: string;
+        /**
+         * Opis osoby — doświadczenie, specjalizacja, pasja
+         */
+        description: string;
+        /**
+         * Zdjęcie osoby na karcie na stronie /o-nas
+         */
+        image?: (string | null) | Media;
+        id?: string | null;
+      }[]
+    | null;
+  meta?: {
+    /**
+     * Tytuł strony /o-nas w wynikach Google i na karcie przeglądarki
+     */
+    title?: string | null;
+    /**
+     * Opis pod tytułem w wynikach Google dla strony /o-nas
+     */
+    description?: string | null;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -950,7 +1327,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteUrl?: T;
   logo?: T;
   favicon?: T;
-  ogImage?: T;
   companyInfo?:
     | T
     | {
@@ -961,6 +1337,7 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         email?: T;
         googleMapsUrl?: T;
       };
+  ogImage?: T;
   seo?:
     | T
     | {
@@ -982,7 +1359,12 @@ export interface HomePageSelect<T extends boolean = true> {
     | {
         heading?: T;
         subheading?: T;
-        backgroundImage?: T;
+        slides?:
+          | T
+          | {
+              image?: T;
+              id?: T;
+            };
         ctaText?: T;
         ctaLink?: T;
         secondaryCtaText?: T;
@@ -1043,6 +1425,48 @@ export interface HomePageSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         image?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        heading?: T;
+        subheading?: T;
+        image?: T;
+      };
+  intro?:
+    | T
+    | {
+        label?: T;
+        heading?: T;
+        description?: T;
+        image?: T;
+      };
+  teamLabel?: T;
+  teamHeading?: T;
+  teamDescription?: T;
+  team?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        description?: T;
+        image?: T;
+        id?: T;
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
       };
   updatedAt?: T;
   createdAt?: T;

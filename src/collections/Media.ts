@@ -2,14 +2,25 @@ import type { CollectionConfig } from 'payload'
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: 'Zdjęcie',
+    plural: 'Zdjęcia',
+  },
+  admin: {
+    description: 'Biblioteka zdjęć — przesyłaj zdjęcia realizacji, usług i inne',
+  },
   access: {
     read: () => true,
   },
   fields: [
     {
       name: 'alt',
+      label: 'Tekst alternatywny',
       type: 'text',
       required: true,
+      admin: {
+        description: 'Opis zdjęcia dla osób niewidomych i SEO',
+      },
     },
   ],
   upload: {
