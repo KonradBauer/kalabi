@@ -12,9 +12,13 @@ import type { Metadata } from 'next'
 type Params = Promise<{ slug: string }>
 
 export async function generateStaticParams() {
-  const payload = await getPayload({ config })
-  const projects = await payload.find({ collection: 'projects', limit: 1000 })
-  return projects.docs.map((project) => ({ slug: project.slug }))
+  try {
+    const payload = await getPayload({ config })
+    const projects = await payload.find({ collection: 'projects', limit: 1000 })
+    return projects.docs.map((project) => ({ slug: project.slug }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
