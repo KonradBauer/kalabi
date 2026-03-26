@@ -45,7 +45,7 @@ export function ContactForm() {
   }
 
   const inputClasses =
-    'w-full border border-border bg-surface px-4 py-3 text-primary placeholder:text-muted/60 focus:border-accent focus:outline-none transition-colors'
+    'w-full rounded-xl border border-border bg-surface px-4 py-3 text-primary placeholder:text-muted/60 focus:border-accent focus:outline-none transition-colors'
 
   return (
     <div>
@@ -157,7 +157,7 @@ export function ContactForm() {
             <button
               type="submit"
               disabled={state === 'submitting'}
-              className="cursor-pointer inline-flex w-full items-center justify-center bg-accent px-8 py-4 text-base font-medium uppercase tracking-wide text-primary transition-colors hover:bg-secondary hover:text-surface disabled:opacity-50 sm:w-auto"
+              className="cursor-pointer inline-flex w-full items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-medium uppercase tracking-wide text-primary transition-colors duration-200 hover:bg-primary hover:text-surface disabled:opacity-50 sm:w-auto"
             >
               {state === 'submitting' ? 'Wysyłanie...' : 'Wyślij wiadomość'}
             </button>

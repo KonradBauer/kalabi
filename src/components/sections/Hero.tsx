@@ -48,7 +48,7 @@ export function Hero({
                 </Button>
               )}
               {secondaryCtaText && secondaryCtaLink && (
-                <Button href={secondaryCtaLink} variant="outline" size="lg" className="border-surface/30 text-surface hover:bg-surface hover:text-primary">
+                <Button href={secondaryCtaLink} variant="outline" size="lg" className="border-surface/30 text-surface hover:text-primary">
                   {secondaryCtaText}
                 </Button>
               )}

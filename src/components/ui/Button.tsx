@@ -11,11 +11,11 @@ type ButtonProps = {
 
 const variants = {
   primary:
-    'cursor-pointer bg-accent text-primary hover:bg-primary hover:text-surface transition-all duration-200',
+    'cursor-pointer bg-accent text-primary hover:bg-primary hover:text-surface transition-colors duration-200',
   secondary:
-    'cursor-pointer bg-primary text-surface hover:bg-secondary transition-colors',
+    'cursor-pointer bg-primary text-surface hover:bg-secondary transition-colors duration-200',
   outline:
-    'cursor-pointer border-2 border-primary text-primary hover:bg-primary hover:text-surface transition-colors',
+    'cursor-pointer border border-primary text-primary hover:bg-primary hover:text-surface transition-colors duration-200',
 }
 
 const sizes = {
@@ -32,7 +32,7 @@ export function Button({
   className = '',
   ...props
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center font-medium tracking-wide uppercase font-body ${variants[variant]} ${sizes[size]} ${className}`
+  const classes = `inline-flex items-center justify-center rounded-full font-medium tracking-wide uppercase font-body ${variants[variant]} ${sizes[size]} ${className}`
 
   if (href) {
     return (

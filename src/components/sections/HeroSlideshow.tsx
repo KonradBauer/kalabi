@@ -27,10 +27,13 @@ export function HeroSlideshow({ images, interval = 6000 }: HeroSlideshowProps) {
       <AnimatePresence mode="popLayout">
         <motion.div
           key={current}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 1 }}
+          animate={{ opacity: 1, scale: 1.08 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: 'easeInOut' }}
+          transition={{
+            opacity: { duration: 1.2, ease: 'easeInOut' },
+            scale: { duration: 6, ease: 'linear' },
+          }}
           className="absolute inset-0"
         >
           <Image
