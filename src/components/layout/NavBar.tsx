@@ -27,14 +27,14 @@ export function NavBar({ logoUrl, logoAlt, navItems, cta }: NavBarProps) {
       <header className={`fixed inset-x-0 top-0 z-[60] border-b backdrop-blur-md transition-colors duration-300 ${menuOpen ? 'border-transparent bg-transparent' : 'border-border/50 bg-surface/95'}`}>
         <Container className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="relative z-[60] flex items-center">
+          <Link href="/" className="relative z-[60] flex items-center py-2">
             <Image
               src={logoUrl}
               alt={logoAlt}
               width={240}
               height={140}
               priority
-              className={`h-32 w-auto transition-all duration-300 ${menuOpen ? '' : 'invert'}`}
+              className={`h-20 w-auto transition-all duration-300 ${menuOpen ? '' : 'invert'}`}
             />
           </Link>
 
