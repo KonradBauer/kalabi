@@ -969,7 +969,7 @@ export interface SiteSetting {
      */
     email?: string | null;
     /**
-     * Mapa wyświetlana na stronie /kontakt pod danymi kontaktowymi. Wklej link "embed" z Google Maps
+     * Link "Otwórz w Mapach Google" pod mapą na stronie /kontakt. Wklej zwykły link z Google Maps. Mapa generuje się automatycznie z adresu powyżej
      */
     googleMapsUrl?: string | null;
   };

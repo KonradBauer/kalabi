@@ -111,7 +111,7 @@ export const SiteSettings: GlobalConfig = {
                   label: 'Link do Google Maps',
                   type: 'text',
                   admin: {
-                    description: 'Mapa wyświetlana na stronie /kontakt pod danymi kontaktowymi. Wklej link "embed" z Google Maps',
+                    description: 'Link "Otwórz w Mapach Google" pod mapą na stronie /kontakt. Wklej zwykły link z Google Maps. Mapa generuje się automatycznie z adresu powyżej',
                   },
                 },
               ],

@@ -101,19 +101,34 @@ export default async function KontaktPage() {
                   )}
                 </div>
 
-                {/* Google Maps Embed */}
-                {company?.googleMapsUrl && (
-                  <div className="mt-10 aspect-video overflow-hidden border border-border">
-                    <iframe
-                      src={company.googleMapsUrl}
-                      width="100%"
-                      height="100%"
-                      style={{ border: 0 }}
-                      allowFullScreen
-                      loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Lokalizacja firmy"
-                    />
+                {/* Google Maps */}
+                {company?.address && (
+                  <div className="mt-10">
+                    <div className="aspect-video overflow-hidden border border-border">
+                      <iframe
+                        src={`https://maps.google.com/maps?q=${encodeURIComponent(company.address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Lokalizacja firmy"
+                      />
+                    </div>
+                    {company.googleMapsUrl && (
+                      <a
+                        href={company.googleMapsUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-3 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-accent"
+                      >
+                        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        Otwórz w Mapach Google
+                      </a>
+                    )}
                   </div>
                 )}
               </div>
