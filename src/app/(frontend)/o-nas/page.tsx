@@ -53,7 +53,7 @@ export default async function AboutPage() {
 
       {/* Intro - O firmie */}
       {(aboutPage.intro?.heading || aboutPage.intro?.description) && (
-        <section className="py-20">
+        <section className="overflow-hidden py-20">
           <Container>
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               {aboutPage.intro.image && (

@@ -30,7 +30,9 @@
       "Bash(find node_modules/payload -name pl* -path */i18n/*)",
       "Bash(find node_modules/@payloadcms -path */translations/* -name *.js)",
       "Bash(npm list:*)",
-      "Bash(ls node_modules/.pnpm/@payloadcms+translations*)"
+      "Bash(ls node_modules/.pnpm/@payloadcms+translations*)",
+      "Bash(git checkout:*)",
+      "Bash(git restore:*)"
     ]
   }
 }

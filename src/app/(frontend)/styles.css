@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 @theme {
   /* Colors */
   --color-primary: #1a1a1a;

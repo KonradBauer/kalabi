@@ -37,7 +37,7 @@ export function TestimonialsSlider({
   )
 
   return (
-    <section className="bg-surface py-24 lg:py-32">
+    <section className="overflow-hidden bg-surface py-24 lg:py-32">
       <Container>
         <SectionHeading label={label} heading={heading} description={description} />
 
