@@ -25,7 +25,7 @@ export const SiteSettings: GlobalConfig = {
               label: 'Opis strony',
               type: 'textarea',
               admin: {
-                description: 'Ogólny opis firmy — używany w metadanych i udostępnianiu',
+                description: 'Ogólny opis firmy - używany w metadanych i udostępnianiu',
               },
             },
             {
@@ -34,7 +34,7 @@ export const SiteSettings: GlobalConfig = {
               type: 'text',
               required: true,
               admin: {
-                description: 'Pełny adres, np. https://kalabi.pl — potrzebny do linków i SEO',
+                description: 'Pełny adres, np. https://kalabi.pl - potrzebny do linków i SEO',
               },
             },
             {
@@ -43,7 +43,7 @@ export const SiteSettings: GlobalConfig = {
               type: 'upload',
               relationTo: 'media',
               admin: {
-                description: 'Główne logo firmy — używane jako domyślne w nagłówku i stopce',
+                description: 'Główne logo firmy - używane jako domyślne w nagłówku i stopce',
               },
             },
             {
@@ -95,7 +95,7 @@ export const SiteSettings: GlobalConfig = {
                   label: 'Telefon',
                   type: 'text',
                   admin: {
-                    description: 'Wyświetlany na stronie /kontakt — kliknięcie uruchamia połączenie',
+                    description: 'Wyświetlany na stronie /kontakt - kliknięcie uruchamia połączenie',
                   },
                 },
                 {
@@ -103,7 +103,7 @@ export const SiteSettings: GlobalConfig = {
                   label: 'E-mail',
                   type: 'email',
                   admin: {
-                    description: 'Wyświetlany na stronie /kontakt — kliknięcie otwiera program pocztowy',
+                    description: 'Wyświetlany na stronie /kontakt - kliknięcie otwiera program pocztowy',
                   },
                 },
                 {

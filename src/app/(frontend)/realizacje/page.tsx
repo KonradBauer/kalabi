@@ -11,11 +11,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Realizacje',
   description:
-    'Galeria realizacji Kalabi — zobacz nasze kuchnie, szafy, garderoby i meble na wymiar. Inspiracje i portfolio naszych projektów.',
+    'Galeria realizacji Kalabi - zobacz nasze kuchnie, szafy, garderoby i meble na wymiar. Inspiracje i portfolio naszych projektów.',
   alternates: { canonical: '/realizacje' },
   openGraph: {
     title: 'Realizacje | Kalabi - Meble na wymiar',
-    description: 'Zobacz nasze realizacje mebli na wymiar — kuchnie, szafy, garderoby i więcej.',
+    description: 'Zobacz nasze realizacje mebli na wymiar - kuchnie, szafy, garderoby i więcej.',
   },
 }
 

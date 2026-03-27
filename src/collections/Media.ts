@@ -8,7 +8,7 @@ export const Media: CollectionConfig = {
     plural: 'Zdjęcia',
   },
   admin: {
-    description: 'Biblioteka zdjęć — przesyłaj zdjęcia realizacji, usług i inne',
+    description: 'Biblioteka zdjęć - przesyłaj zdjęcia realizacji, usług i inne',
   },
   access: {
     read: () => true,

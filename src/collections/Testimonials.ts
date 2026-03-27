@@ -51,7 +51,7 @@ export const Testimonials: CollectionConfig = {
       type: 'relationship',
       relationTo: 'projects',
       admin: {
-        description: 'Opcjonalnie — która realizacja dotyczy tej opinii',
+        description: 'Opcjonalnie - która realizacja dotyczy tej opinii',
       },
     },
     {

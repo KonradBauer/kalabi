@@ -28,7 +28,7 @@ export const ProjectCategories: CollectionConfig = {
       unique: true,
       index: true,
       admin: {
-        description: 'np. "kuchnie" — używany w adresie URL',
+        description: 'np. "kuchnie" - używany w adresie URL',
       },
     },
     {

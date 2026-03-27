@@ -12,11 +12,11 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Usługi',
   description:
-    'Usługi meblarskie Kalabi — kuchnie, szafy, garderoby, meble łazienkowe i biurowe na wymiar. Indywidualny projekt, pomiar i montaż.',
+    'Usługi meblarskie Kalabi - kuchnie, szafy, garderoby, meble łazienkowe i biurowe na wymiar. Indywidualny projekt, pomiar i montaż.',
   alternates: { canonical: '/uslugi' },
   openGraph: {
     title: 'Usługi | Kalabi - Meble na wymiar',
-    description: 'Kuchnie, szafy, garderoby, meble łazienkowe i biurowe — wszystko na wymiar.',
+    description: 'Kuchnie, szafy, garderoby, meble łazienkowe i biurowe - wszystko na wymiar.',
   },
 }
 

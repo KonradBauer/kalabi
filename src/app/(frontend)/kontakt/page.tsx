@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/kontakt' },
   openGraph: {
     title: 'Kontakt | Kalabi - Meble na wymiar',
-    description: 'Bezpłatna wycena mebli na wymiar. Zadzwoń lub napisz — odpowiemy w 24h.',
+    description: 'Bezpłatna wycena mebli na wymiar. Zadzwoń lub napisz - odpowiemy w 24h.',
   },
 }
 

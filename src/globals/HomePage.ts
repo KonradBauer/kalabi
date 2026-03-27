@@ -13,7 +13,7 @@ export const HomePage: GlobalConfig = {
         // ─── HERO ───
         {
           label: 'Hero (Baner główny)',
-          description: 'Duży baner na samej górze strony głównej — pierwsze co widzi odwiedzający',
+          description: 'Duży baner na samej górze strony głównej - pierwsze co widzi odwiedzający',
           fields: [
             {
               name: 'hero',
@@ -100,7 +100,7 @@ export const HomePage: GlobalConfig = {
         // ─── O NAS ───
         {
           label: 'O nas',
-          description: 'Sekcja "O nas" pod banerem na stronie głównej — zdjęcie po lewej, tekst po prawej',
+          description: 'Sekcja "O nas" pod banerem na stronie głównej - zdjęcie po lewej, tekst po prawej',
           fields: [
             {
               name: 'aboutPreview',

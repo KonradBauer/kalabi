@@ -6,7 +6,7 @@
 export const defaultHero = {
   heading: 'Meble na wymiar z pasją do detalu',
   subheading:
-    'Projektujemy i tworzymy meble idealnie dopasowane do Twojej przestrzeni. Kuchnie, szafy, garderoby i meble łazienkowe — wszystko szyte na miarę.',
+    'Projektujemy i tworzymy meble idealnie dopasowane do Twojej przestrzeni. Kuchnie, szafy, garderoby i meble łazienkowe - wszystko szyte na miarę.',
   ctaText: 'Zobacz realizacje',
   ctaLink: '/realizacje',
   secondaryCtaText: 'Bezpłatna wycena',
@@ -17,7 +17,7 @@ export const defaultAboutPreview = {
   label: 'O nas',
   heading: 'Tworzymy meble, które opowiadają historię',
   description:
-    'Od ponad 15 lat łączymy tradycyjne rzemiosło z nowoczesnym designem. Każdy mebel powstaje w naszej pracowni z najwyższej jakości materiałów, z dbałością o każdy detal. Współpracujemy z klientami na każdym etapie — od projektu po montaż.',
+    'Od ponad 15 lat łączymy tradycyjne rzemiosło z nowoczesnym designem. Każdy mebel powstaje w naszej pracowni z najwyższej jakości materiałów, z dbałością o każdy detal. Współpracujemy z klientami na każdym etapie - od projektu po montaż.',
   stats: [
     { number: '15+', label: 'Lat doświadczenia' },
     { number: '500+', label: 'Zrealizowanych projektów' },
@@ -32,7 +32,7 @@ export const defaultServicesSection = {
   label: 'Usługi',
   heading: 'Kompleksowa obsługa od projektu do montażu',
   description:
-    'Oferujemy pełen zakres usług meblarskich — od bezpłatnego pomiaru i wizualizacji 3D, przez produkcję, po profesjonalny montaż.',
+    'Oferujemy pełen zakres usług meblarskich - od bezpłatnego pomiaru i wizualizacji 3D, przez produkcję, po profesjonalny montaż.',
 }
 
 export const defaultServices = [
@@ -41,7 +41,7 @@ export const defaultServices = [
     title: 'Kuchnie na wymiar',
     slug: 'kuchnie',
     shortDescription:
-      'Funkcjonalne i piękne kuchnie dopasowane do każdej przestrzeni. Nowoczesne lub klasyczne — zawsze z najwyższą dbałością o ergonomię.',
+      'Funkcjonalne i piękne kuchnie dopasowane do każdej przestrzeni. Nowoczesne lub klasyczne - zawsze z najwyższą dbałością o ergonomię.',
     icon: 'Kuchnia',
     image: null,
     features: [
@@ -195,7 +195,7 @@ export const defaultProjects = [
     id: 'proj-5',
     title: 'Biuro domowe na poddaszu',
     slug: 'biuro-domowe-poddasze',
-    description: 'Funkcjonalne biuro domowe wbudowane pod skosem dachu. Biurko, regały i szafki — wszystko idealnie dopasowane.',
+    description: 'Funkcjonalne biuro domowe wbudowane pod skosem dachu. Biurko, regały i szafki - wszystko idealnie dopasowane.',
     category: { id: 'cat-5', name: 'Biura', slug: 'biura' },
     featured: true,
     mainImage: null,
@@ -220,7 +220,7 @@ export const defaultProjects = [
 export const defaultCtaBanner = {
   heading: 'Masz pomysł na meble? Porozmawiajmy!',
   description:
-    'Bezpłatny pomiar i wycena. Zadzwoń lub wypełnij formularz — odezwiemy się w ciągu 24 godzin.',
+    'Bezpłatny pomiar i wycena. Zadzwoń lub wypełnij formularz - odezwiemy się w ciągu 24 godzin.',
   ctaText: 'Umów się na pomiar',
   ctaLink: '/kontakt',
 }
@@ -237,7 +237,7 @@ export const defaultTestimonials = [
     author: 'Anna Kowalska',
     role: 'Klientka',
     content:
-      'Kuchnia marzeń! Od pierwszego spotkania przez projekt 3D aż po montaż — wszystko na najwyższym poziomie. Meble są piękne i super funkcjonalne. Polecam z czystym sumieniem.',
+      'Kuchnia marzeń! Od pierwszego spotkania przez projekt 3D aż po montaż - wszystko na najwyższym poziomie. Meble są piękne i super funkcjonalne. Polecam z czystym sumieniem.',
     rating: 5,
     featured: true,
     order: 1,
@@ -247,7 +247,7 @@ export const defaultTestimonials = [
     author: 'Marek Wiśniewski',
     role: 'Klient',
     content:
-      'Zabudowa garderoby pod skosem — myślałem, że to niemożliwe. Ekipa z Kalabi znalazła idealne rozwiązanie. Jakość wykonania perfekcyjna, materiały premium. Na pewno wrócę po meble do salonu.',
+      'Zabudowa garderoby pod skosem - myślałem, że to niemożliwe. Ekipa z Kalabi znalazła idealne rozwiązanie. Jakość wykonania perfekcyjna, materiały premium. Na pewno wrócę po meble do salonu.',
     rating: 5,
     featured: true,
     order: 2,
@@ -257,7 +257,7 @@ export const defaultTestimonials = [
     author: 'Katarzyna Nowak',
     role: 'Klientka',
     content:
-      'Trzecie zlecenie w Kalabi i jak zawsze jestem zachwycona. Tym razem meble łazienkowe — idealnie dopasowane, materiały wodoodporne, a design na miarę salonu łazienek.',
+      'Trzecie zlecenie w Kalabi i jak zawsze jestem zachwycona. Tym razem meble łazienkowe - idealnie dopasowane, materiały wodoodporne, a design na miarę salonu łazienek.',
     rating: 5,
     featured: true,
     order: 3,
@@ -284,7 +284,7 @@ export const defaultNavItems = [
 
 export const defaultFooter = {
   description:
-    'Kalabi — producent mebli na wymiar. Kuchnie, szafy, garderoby, meble łazienkowe i biurowe. Łączymy tradycyjne rzemiosło z nowoczesnym designem.',
+    'Kalabi - producent mebli na wymiar. Kuchnie, szafy, garderoby, meble łazienkowe i biurowe. Łączymy tradycyjne rzemiosło z nowoczesnym designem.',
   columns: [
     {
       title: 'Menu',

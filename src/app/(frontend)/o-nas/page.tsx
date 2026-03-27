@@ -13,7 +13,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'O nas',
   description:
-    'Poznaj Kalabi — producenta mebli na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia w tworzeniu mebli.',
+    'Poznaj Kalabi - producenta mebli na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia w tworzeniu mebli.',
   alternates: { canonical: '/o-nas' },
   openGraph: {
     title: 'O nas | Kalabi - Meble na wymiar',

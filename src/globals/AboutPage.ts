@@ -80,7 +80,7 @@ export const AboutPage: GlobalConfig = {
                   label: 'Opis firmy',
                   type: 'textarea',
                   admin: {
-                    description: 'Główny tekst o firmie na stronie /o-nas — historia, wartości, podejście',
+                    description: 'Główny tekst o firmie na stronie /o-nas - historia, wartości, podejście',
                   },
                 },
                 {
@@ -98,7 +98,7 @@ export const AboutPage: GlobalConfig = {
         },
         {
           label: 'Zespół',
-          description: 'Karty członków zespołu na stronie /o-nas — zdjęcie, imię, stanowisko i opis każdej osoby',
+          description: 'Karty członków zespołu na stronie /o-nas - zdjęcie, imię, stanowisko i opis każdej osoby',
           fields: [
             {
               name: 'teamLabel',
@@ -160,7 +160,7 @@ export const AboutPage: GlobalConfig = {
                   type: 'textarea',
                   required: true,
                   admin: {
-                    description: 'Opis osoby — doświadczenie, specjalizacja, pasja',
+                    description: 'Opis osoby - doświadczenie, specjalizacja, pasja',
                   },
                 },
                 {
