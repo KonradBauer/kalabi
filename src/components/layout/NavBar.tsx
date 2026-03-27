@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -21,10 +21,26 @@ type NavBarProps = {
 
 export function NavBar({ logoUrl, logoAlt, navItems, cta }: NavBarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const headerClass = menuOpen
+    ? 'border-transparent bg-transparent'
+    : scrolled
+      ? 'border-border/50 bg-surface/95 backdrop-blur-md'
+      : 'border-transparent bg-transparent'
+
+  const logoInvert = scrolled && !menuOpen
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-[60] border-b backdrop-blur-md transition-colors duration-300 ${menuOpen ? 'border-transparent bg-transparent' : 'border-border/50 bg-surface/95'}`}>
+      <header className={`fixed inset-x-0 top-0 z-[60] border-b transition-colors duration-300 ${headerClass}`}>
         <Container className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="relative z-[60] flex items-center py-2">
@@ -34,7 +50,7 @@ export function NavBar({ logoUrl, logoAlt, navItems, cta }: NavBarProps) {
               width={240}
               height={140}
               priority
-              className={`h-20 w-auto transition-all duration-300 ${menuOpen ? '' : 'invert'}`}
+              className={`h-20 w-auto transition-all duration-300 ${logoInvert ? 'invert' : ''}`}
             />
           </Link>
 
@@ -44,7 +60,7 @@ export function NavBar({ logoUrl, logoAlt, navItems, cta }: NavBarProps) {
               <Link
                 key={i}
                 href={item.link}
-                className="text-sm font-medium uppercase tracking-wider text-primary/80 transition-colors hover:text-accent"
+                className={`text-sm font-medium uppercase tracking-wider transition-colors hover:text-accent ${scrolled ? 'text-primary/80' : 'text-surface/90'}`}
               >
                 {item.label}
               </Link>
@@ -62,7 +78,7 @@ export function NavBar({ logoUrl, logoAlt, navItems, cta }: NavBarProps) {
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`relative z-[60] flex h-10 w-10 items-center justify-center transition-colors hover:text-accent lg:hidden ${menuOpen ? 'text-surface' : 'text-primary'}`}
+            className={`relative z-[60] flex h-10 w-10 items-center justify-center transition-colors hover:text-accent lg:hidden ${menuOpen || !scrolled ? 'text-surface' : 'text-primary'}`}
             aria-label={menuOpen ? 'Zamknij menu' : 'Otwórz menu'}
           >
             {menuOpen ? <X size={28} strokeWidth={2} /> : <Menu size={28} strokeWidth={2} />}
