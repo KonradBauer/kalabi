@@ -172,7 +172,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pl" className={`${inter.variable} ${poppins.variable}`}>
-      <body className="min-h-screen bg-background font-body text-primary antialiased">
+      <body className="min-h-screen overflow-x-hidden bg-background font-body text-primary antialiased">
         <JsonLd siteUrl={siteUrl} />
         <Header />
         <PageTransition>
