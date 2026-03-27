@@ -14,9 +14,10 @@ services:
       - PAYLOAD_SECRET=${PAYLOAD_SECRET}
       - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:9000}
     volumes:
-      - media_data:/app/public/media
+      - ./uploads:/app/public/media
     depends_on:
-      - mongo
+      mongo:
+        condition: service_healthy
     restart: unless-stopped
 
   mongo:
@@ -25,8 +26,12 @@ services:
       - '27017:27017'
     volumes:
       - mongo_data:/data/db
+    healthcheck:
+      test: ['CMD', 'mongosh', '--eval', 'db.adminCommand("ping")']
+      interval: 10s
+      timeout: 5s
+      retries: 5
     restart: unless-stopped
 
 volumes:
   mongo_data:
-  media_data:
