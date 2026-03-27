@@ -26,7 +26,6 @@ export const Media: CollectionConfig = {
   ],
   upload: {
     staticDir: path.join(process.cwd(), 'public', 'media'),
-    staticURL: '/media',
     imageSizes: [
       {
         name: 'thumbnail',
