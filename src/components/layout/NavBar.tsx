@@ -6,10 +6,16 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Menu, X } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
+import { SocialIcon } from '@/components/ui/SocialIcon'
 
 type NavItem = {
   label: string
   link: string
+}
+
+type SocialLink = {
+  platform: string
+  url: string
 }
 
 type NavBarProps = {
@@ -17,9 +23,10 @@ type NavBarProps = {
   logoAlt: string
   navItems: NavItem[]
   cta: { label: string; link: string } | null
+  socials: SocialLink[]
 }
 
-export function NavBar({ logoUrl, logoAlt, navItems, cta }: NavBarProps) {
+export function NavBar({ logoUrl, logoAlt, navItems, cta, socials }: NavBarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -134,6 +141,29 @@ export function NavBar({ logoUrl, logoAlt, navItems, cta }: NavBarProps) {
                   >
                     {cta.label}
                   </Link>
+                </motion.div>
+              )}
+
+              {/* Social links */}
+              {socials.length > 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.15 + navItems.length * 0.07 + 0.3, duration: 0.5 }}
+                  className="mt-8 flex gap-5"
+                >
+                  {socials.map((social, i) => (
+                    <a
+                      key={i}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-surface/50 transition-colors hover:text-accent"
+                      aria-label={social.platform}
+                    >
+                      <SocialIcon platform={social.platform} />
+                    </a>
+                  ))}
                 </motion.div>
               )}
             </nav>

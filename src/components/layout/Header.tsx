@@ -2,16 +2,22 @@ import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { NavBar } from './NavBar'
-import { defaultNavItems } from '@/lib/defaults'
+import { defaultNavItems, defaultFooter } from '@/lib/defaults'
 import type { Media } from '@/payload-types'
 
 export async function Header() {
   const payload = await getPayload({ config: await config })
-  const header = await payload.findGlobal({ slug: 'header' })
+  const [header, footer] = await Promise.all([
+    payload.findGlobal({ slug: 'header' }),
+    payload.findGlobal({ slug: 'footer' }),
+  ])
 
   const logo = header.logo as Media | undefined
   const navItems = header.navItems && header.navItems.length > 0 ? header.navItems : defaultNavItems
   const cta = header.ctaButton?.label ? header.ctaButton : { label: 'Bezpłatna wycena', link: '/kontakt' }
+  const socials = footer.socialLinks && footer.socialLinks.length > 0
+    ? footer.socialLinks.map((s) => ({ platform: typeof s.platform === 'string' ? s.platform : '', url: s.url }))
+    : defaultFooter.socialLinks
 
   return (
     <NavBar
@@ -22,6 +28,7 @@ export async function Header() {
         link: item.link,
       }))}
       cta={cta.label && cta.link ? { label: cta.label, link: cta.link } : null}
+      socials={socials}
     />
   )
 }
