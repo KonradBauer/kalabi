@@ -24,6 +24,7 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
   const [active, setActive] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false)
+  const [thumbnails, setThumbnails] = useState<Record<string, string>>({})
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -76,12 +77,39 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
 
   // Scroll thumbnail strip to keep active visible
   useEffect(() => {
-    if (!scrollRef.current) return
-    const el = scrollRef.current.children[active] as HTMLElement | undefined
+    const container = scrollRef.current
+    if (!container) return
+    const el = container.children[active] as HTMLElement | undefined
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' })
+      const scrollLeft = el.offsetLeft - container.offsetWidth / 2 + el.offsetWidth / 2
+      container.scrollTo({ left: scrollLeft, behavior: 'smooth' })
     }
   }, [active])
+
+  // Generate thumbnails from video frames for videos without thumbnailUrl
+  useEffect(() => {
+    videos.forEach((video) => {
+      if (video.thumbnailUrl) return
+      const vid = document.createElement('video')
+      vid.crossOrigin = 'anonymous'
+      vid.muted = true
+      vid.preload = 'metadata'
+      vid.src = video.url
+      vid.currentTime = 1 // capture frame at 1 second
+
+      vid.addEventListener('seeked', () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = vid.videoWidth
+        canvas.height = vid.videoHeight
+        const ctx = canvas.getContext('2d')
+        if (ctx) {
+          ctx.drawImage(vid, 0, 0)
+          setThumbnails((prev) => ({ ...prev, [video.id]: canvas.toDataURL('image/jpeg', 0.7) }))
+        }
+        vid.remove()
+      }, { once: true })
+    })
+  }, [videos])
 
   const current = videos[active]
 
@@ -156,7 +184,7 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
 
           {/* Thumbnail strip */}
           {videos.length > 1 && (
-            <div className="mt-6">
+            <div className="mt-10">
               <div
                 ref={scrollRef}
                 className="flex gap-3 overflow-x-auto pb-2 sm:justify-center"
@@ -177,13 +205,14 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
                       aria-label={`Odtwórz: ${video.description}`}
                     >
                       <div className="relative h-16 w-28 bg-surface/10 sm:h-20 sm:w-36">
-                        {video.thumbnailUrl ? (
+                        {(video.thumbnailUrl || thumbnails[video.id]) ? (
                           <Image
-                            src={video.thumbnailUrl}
+                            src={video.thumbnailUrl || thumbnails[video.id]}
                             alt={video.description}
                             fill
                             sizes="144px"
                             className="object-cover"
+                            unoptimized={!video.thumbnailUrl}
                           />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center bg-surface/10">
