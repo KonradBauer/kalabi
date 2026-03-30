@@ -104,7 +104,7 @@ export function ContactForm() {
               transition={{ delay: 0.6 }}
               className="mx-auto mt-3 max-w-md text-muted"
             >
-              Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe — zwykle w ciągu 24 godzin.
+              Dziękujemy za kontakt. Odpowiemy najszybciej jak to możliwe - zwykle w ciągu 24 godzin.
             </motion.p>
 
             <motion.button
