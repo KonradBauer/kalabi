@@ -13,6 +13,8 @@ services:
       - DATABASE_URL=mongodb://mongo:27017/kalabi
       - PAYLOAD_SECRET=${PAYLOAD_SECRET}
       - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://kalabimeble.pl}
+      - SMTP_USER=${SMTP_USER}
+      - SMTP_PASS=${SMTP_PASS}
     volumes:
       - ./uploads:/app/public/media
     depends_on:
