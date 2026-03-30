@@ -6,13 +6,13 @@ services:
       args:
         DATABASE_URL: mongodb://127.0.0.1:27017/kalabi
         PAYLOAD_SECRET: ${PAYLOAD_SECRET}
-        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:9000}
-    ports:
-      - '9000:3000'
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-https://kalabimeble.pl}
+    expose:
+      - '3000'
     environment:
       - DATABASE_URL=mongodb://mongo:27017/kalabi
       - PAYLOAD_SECRET=${PAYLOAD_SECRET}
-      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:9000}
+      - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-https://kalabimeble.pl}
     volumes:
       - ./uploads:/app/public/media
     depends_on:
@@ -20,10 +20,31 @@ services:
         condition: service_healthy
     restart: unless-stopped
 
+  nginx:
+    image: nginx:alpine
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    depends_on:
+      - app
+    restart: unless-stopped
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    restart: unless-stopped
+
   mongo:
     image: mongo:7
-    ports:
-      - '27017:27017'
+    expose:
+      - '27017'
     volumes:
       - mongo_data:/data/db
     healthcheck:
