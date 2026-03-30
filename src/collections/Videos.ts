@@ -9,13 +9,14 @@ export const Videos: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'description',
-    defaultColumns: ['filename', 'description', 'order'],
+    defaultColumns: ['description', 'order', 'createdAt'],
     description:
       'Filmy wyswietlane w karuzeli na stronie glownej. Przeslij plik wideo i dodaj opis.',
   },
   access: {
     read: () => true,
   },
+  defaultSort: 'order',
   fields: [
     {
       name: 'description',
@@ -33,6 +34,16 @@ export const Videos: CollectionConfig = {
       defaultValue: 0,
       admin: {
         description: 'Mniejsza liczba = wyzej w karuzeli',
+      },
+    },
+    {
+      name: 'thumbnail',
+      label: 'Miniaturka',
+      type: 'upload',
+      relationTo: 'media',
+      admin: {
+        description:
+          'Zdjecie wyswietlane jako podglad filmu w karuzeli. Jesli puste, pokaze ikone play.',
       },
     },
   ],

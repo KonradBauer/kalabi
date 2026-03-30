@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
@@ -10,6 +11,7 @@ type Video = {
   id: string
   url: string
   description: string
+  thumbnailUrl?: string | null
 }
 
 type VideoCarouselProps = {
@@ -175,12 +177,19 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
                       aria-label={`Odtwórz: ${video.description}`}
                     >
                       <div className="relative h-16 w-28 bg-surface/10 sm:h-20 sm:w-36">
-                        <video
-                          src={video.url}
-                          className="h-full w-full object-cover"
-                          muted
-                          preload="metadata"
-                        />
+                        {video.thumbnailUrl ? (
+                          <Image
+                            src={video.thumbnailUrl}
+                            alt={video.description}
+                            fill
+                            sizes="144px"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center bg-surface/10">
+                            <Play className="h-6 w-6 text-surface/40" />
+                          </div>
+                        )}
                         {!isActive && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                             <Play className="h-5 w-5 fill-white text-white" />

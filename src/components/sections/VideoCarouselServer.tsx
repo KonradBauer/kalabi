@@ -1,5 +1,5 @@
 import { VideoCarousel } from './VideoCarousel'
-import type { Video as VideoType } from '@/payload-types'
+import type { Video as VideoType, Media } from '@/payload-types'
 
 type VideoCarouselServerProps = {
   label?: string | null
@@ -12,11 +12,15 @@ export function VideoCarouselServer({ label, heading, videos }: VideoCarouselSer
 
   const parsed = videos
     .filter((v) => v.url)
-    .map((v) => ({
-      id: v.id,
-      url: v.url!,
-      description: v.description,
-    }))
+    .map((v) => {
+      const thumb = v.thumbnail as Media | undefined
+      return {
+        id: v.id,
+        url: v.url!,
+        description: v.description,
+        thumbnailUrl: thumb?.url || null,
+      }
+    })
 
   if (parsed.length === 0) return null
 

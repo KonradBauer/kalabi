@@ -499,6 +499,10 @@ export interface Video {
    * Mniejsza liczba = wyzej w karuzeli
    */
   order?: number | null;
+  /**
+   * Zdjecie wyswietlane jako podglad filmu w karuzeli. Jesli puste, pokaze ikone play.
+   */
+  thumbnail?: (string | null) | Media;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -826,6 +830,7 @@ export interface ContactSubmissionsSelect<T extends boolean = true> {
 export interface VideosSelect<T extends boolean = true> {
   description?: T;
   order?: T;
+  thumbnail?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -977,14 +982,6 @@ export interface SiteSetting {
    * Pełny adres, np. https://kalabi.pl - potrzebny do linków i SEO
    */
   siteUrl: string;
-  /**
-   * Główne logo firmy - używane jako domyślne w nagłówku i stopce
-   */
-  logo?: (string | null) | Media;
-  /**
-   * Mała ikona widoczna na karcie przeglądarki obok nazwy strony
-   */
-  favicon?: (string | null) | Media;
   companyInfo?: {
     /**
      * Oficjalna nazwa firmy
@@ -1327,8 +1324,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
   siteDescription?: T;
   siteUrl?: T;
-  logo?: T;
-  favicon?: T;
   companyInfo?:
     | T
     | {

@@ -37,24 +37,6 @@ export const SiteSettings: GlobalConfig = {
                 description: 'Pełny adres, np. https://kalabi.pl - potrzebny do linków i SEO',
               },
             },
-            {
-              name: 'logo',
-              label: 'Logo',
-              type: 'upload',
-              relationTo: 'media',
-              admin: {
-                description: 'Główne logo firmy - używane jako domyślne w nagłówku i stopce',
-              },
-            },
-            {
-              name: 'favicon',
-              label: 'Favicon',
-              type: 'upload',
-              relationTo: 'media',
-              admin: {
-                description: 'Mała ikona widoczna na karcie przeglądarki obok nazwy strony',
-              },
-            },
           ],
         },
         {
