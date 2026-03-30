@@ -124,6 +124,17 @@ export async function Footer() {
           <p className="text-xs text-surface/40">
             {footer.copyrightText || `© ${new Date().getFullYear()} Kalabi. Wszelkie prawa zastrzeżone.`}
           </p>
+          <p className="mt-2 text-xs text-surface/30">
+            Powered by{' '}
+            <a
+              href="https://kbauer.pl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-surface/40 transition-colors hover:text-accent"
+            >
+              kbauer.pl
+            </a>
+          </p>
         </Container>
       </div>
     </footer>

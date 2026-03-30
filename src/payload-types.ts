@@ -169,7 +169,7 @@ export interface User {
   collection: 'users';
 }
 /**
- * Biblioteka zdjęć — przesyłaj zdjęcia realizacji, usług i inne
+ * Biblioteka zdjęć - przesyłaj zdjęcia realizacji, usług i inne
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "media".
@@ -357,7 +357,7 @@ export interface ProjectCategory {
   id: string;
   name: string;
   /**
-   * np. "kuchnie" — używany w adresie URL
+   * np. "kuchnie" - używany w adresie URL
    */
   slug: string;
   description?: string | null;
@@ -447,7 +447,7 @@ export interface Testimonial {
    */
   rating?: number | null;
   /**
-   * Opcjonalnie — która realizacja dotyczy tej opinii
+   * Opcjonalnie - która realizacja dotyczy tej opinii
    */
   project?: (string | null) | Project;
   /**
@@ -935,15 +935,15 @@ export interface SiteSetting {
   id: string;
   siteName: string;
   /**
-   * Ogólny opis firmy — używany w metadanych i udostępnianiu
+   * Ogólny opis firmy - używany w metadanych i udostępnianiu
    */
   siteDescription?: string | null;
   /**
-   * Pełny adres, np. https://kalabi.pl — potrzebny do linków i SEO
+   * Pełny adres, np. https://kalabi.pl - potrzebny do linków i SEO
    */
   siteUrl: string;
   /**
-   * Główne logo firmy — używane jako domyślne w nagłówku i stopce
+   * Główne logo firmy - używane jako domyślne w nagłówku i stopce
    */
   logo?: (string | null) | Media;
   /**
@@ -961,11 +961,11 @@ export interface SiteSetting {
      */
     address?: string | null;
     /**
-     * Wyświetlany na stronie /kontakt — kliknięcie uruchamia połączenie
+     * Wyświetlany na stronie /kontakt - kliknięcie uruchamia połączenie
      */
     phone?: string | null;
     /**
-     * Wyświetlany na stronie /kontakt — kliknięcie otwiera program pocztowy
+     * Wyświetlany na stronie /kontakt - kliknięcie otwiera program pocztowy
      */
     email?: string | null;
     /**
@@ -1196,7 +1196,7 @@ export interface AboutPage {
      */
     heading?: string | null;
     /**
-     * Główny tekst o firmie na stronie /o-nas — historia, wartości, podejście
+     * Główny tekst o firmie na stronie /o-nas - historia, wartości, podejście
      */
     description?: string | null;
     /**
@@ -1230,7 +1230,7 @@ export interface AboutPage {
          */
         role: string;
         /**
-         * Opis osoby — doświadczenie, specjalizacja, pasja
+         * Opis osoby - doświadczenie, specjalizacja, pasja
          */
         description: string;
         /**
