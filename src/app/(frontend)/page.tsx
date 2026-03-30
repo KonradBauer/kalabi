@@ -5,7 +5,7 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 
 import { Hero } from '@/components/sections/Hero'
-import { AboutPreview } from '@/components/sections/AboutPreview'
+import { VideoCarouselServer } from '@/components/sections/VideoCarouselServer'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
 import { FeaturedProjects } from '@/components/sections/FeaturedProjects'
 import { CtaBanner } from '@/components/sections/CtaBanner'
@@ -13,7 +13,7 @@ import { TestimonialsSlider } from '@/components/sections/TestimonialsSlider'
 
 import {
   defaultHero,
-  defaultAboutPreview,
+  defaultVideoSection,
   defaultServicesSection,
   defaultServices,
   defaultProjectsSection,
@@ -29,7 +29,7 @@ export default async function HomePage() {
   const payload = await getPayload({ config })
 
   const [homePage, servicesData, projectsData, testimonialsData] = await Promise.all([
-    payload.findGlobal({ slug: 'home-page' }),
+    payload.findGlobal({ slug: 'home-page', depth: 2 }),
     payload.find({ collection: 'services', sort: 'order', limit: 6 }),
     payload.find({ collection: 'projects', where: { featured: { equals: true } }, sort: 'order', limit: 6 }),
     payload.find({ collection: 'testimonials', where: { featured: { equals: true } }, sort: 'order', limit: 10 }),
@@ -60,15 +60,14 @@ export default async function HomePage() {
         secondaryCtaLink={homePage.hero?.secondaryCtaLink || defaultHero.secondaryCtaLink}
       />
 
-      <AboutPreview
-        label={homePage.aboutPreview?.label || defaultAboutPreview.label}
-        heading={homePage.aboutPreview?.heading || defaultAboutPreview.heading}
-        description={homePage.aboutPreview?.description || defaultAboutPreview.description}
-        image={homePage.aboutPreview?.image as Media | null}
-        placeholderImage="/images/placeholder-about.svg"
-        stats={(homePage.aboutPreview?.stats as { number: string; label: string }[]) || defaultAboutPreview.stats}
-        ctaText={homePage.aboutPreview?.ctaText || defaultAboutPreview.ctaText}
-        ctaLink={homePage.aboutPreview?.ctaLink || defaultAboutPreview.ctaLink}
+      <VideoCarouselServer
+        label={homePage.videoSection?.label || defaultVideoSection.label}
+        heading={homePage.videoSection?.heading || defaultVideoSection.heading}
+        videos={
+          homePage.videoSection?.videos && homePage.videoSection.videos.length > 0
+            ? homePage.videoSection.videos
+            : defaultVideoSection.videos
+        }
       />
 
       <ServicesGrid

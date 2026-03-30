@@ -59,7 +59,8 @@ export const SiteSettings: GlobalConfig = {
         },
         {
           label: 'Dane kontaktowe',
-          description: 'Te dane wyświetlają się na stronie /kontakt oraz mogą być używane w stopce',
+          description:
+            'Jedno źródło prawdy — te dane wyświetlają się w pasku nad menu, w stopce, na stronie /kontakt i w kodzie SEO',
           fields: [
             {
               name: 'companyInfo',
@@ -87,7 +88,8 @@ export const SiteSettings: GlobalConfig = {
                   label: 'Adres',
                   type: 'textarea',
                   admin: {
-                    description: 'Wyświetlany na stronie /kontakt w sekcji "Dane kontaktowe"',
+                    description:
+                      'Wyświetlany na stronie /kontakt i w stopce',
                   },
                 },
                 {
@@ -95,7 +97,8 @@ export const SiteSettings: GlobalConfig = {
                   label: 'Telefon',
                   type: 'text',
                   admin: {
-                    description: 'Wyświetlany na stronie /kontakt - kliknięcie uruchamia połączenie',
+                    description:
+                      'Wyświetlany w pasku nad menu, w stopce i na stronie /kontakt. Kliknięcie uruchamia połączenie',
                   },
                 },
                 {
@@ -103,7 +106,8 @@ export const SiteSettings: GlobalConfig = {
                   label: 'E-mail',
                   type: 'email',
                   admin: {
-                    description: 'Wyświetlany na stronie /kontakt - kliknięcie otwiera program pocztowy',
+                    description:
+                      'Wyświetlany w pasku nad menu, w stopce i na stronie /kontakt. Kliknięcie otwiera program pocztowy',
                   },
                 },
                 {
@@ -111,8 +115,46 @@ export const SiteSettings: GlobalConfig = {
                   label: 'Link do Google Maps',
                   type: 'text',
                   admin: {
-                    description: 'Link "Otwórz w Mapach Google" pod mapą na stronie /kontakt. Wklej zwykły link z Google Maps. Mapa generuje się automatycznie z adresu powyżej',
+                    description:
+                      'Link "Otwórz w Mapach Google" pod mapą na stronie /kontakt',
                   },
+                },
+                {
+                  name: 'socialLinks',
+                  label: 'Media społecznościowe',
+                  type: 'array',
+                  labels: {
+                    singular: 'Link',
+                    plural: 'Linki',
+                  },
+                  admin: {
+                    description:
+                      'Ikony wyświetlane w pasku nad menu, w stopce i w menu mobilnym',
+                  },
+                  fields: [
+                    {
+                      name: 'platform',
+                      label: 'Platforma',
+                      type: 'select',
+                      required: true,
+                      options: [
+                        { label: 'Facebook', value: 'facebook' },
+                        { label: 'Instagram', value: 'instagram' },
+                        { label: 'YouTube', value: 'youtube' },
+                        { label: 'Pinterest', value: 'pinterest' },
+                        { label: 'LinkedIn', value: 'linkedin' },
+                      ],
+                    },
+                    {
+                      name: 'url',
+                      label: 'Adres URL',
+                      type: 'text',
+                      required: true,
+                      admin: {
+                        description: 'Pełny link, np. https://www.facebook.com/...',
+                      },
+                    },
+                  ],
                 },
               ],
             },

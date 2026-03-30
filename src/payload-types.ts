@@ -1035,47 +1035,35 @@ export interface HomePage {
      */
     secondaryCtaLink?: string | null;
   };
-  aboutPreview?: {
+  videoSection?: {
     /**
-     * Mały złoty tekst nad nagłówkiem sekcji, np. "O nas"
+     * Mały złoty tekst nad nagłówkiem sekcji filmów na stronie głównej, np. "Nasze realizacje"
      */
     label?: string | null;
     /**
-     * Nagłówek sekcji "O nas" na stronie głównej
+     * Nagłówek sekcji filmów na stronie głównej
      */
     heading?: string | null;
     /**
-     * Tekst o firmie po prawej stronie obok zdjęcia w sekcji "O nas"
+     * Filmy wyświetlane w karuzeli na stronie głównej. Pierwszy film odtwarza się automatycznie.
      */
-    description?: string | null;
-    /**
-     * Duże zdjęcie po lewej stronie w sekcji "O nas" na stronie głównej
-     */
-    image?: (string | null) | Media;
-    /**
-     * Liczby pod opisem w sekcji "O nas", np. "15+ lat doświadczenia"
-     */
-    stats?:
+    videos?:
       | {
           /**
-           * np. "15+", "500+", "100%"
+           * Wyświetlany pod filmem, np. "Kuchnia nowoczesna w bieli"
            */
-          number: string;
+          title: string;
           /**
-           * np. "Lat doświadczenia", "Zrealizowanych projektów"
+           * Wklej link z YouTube lub Vimeo, np. https://www.youtube.com/watch?v=ABC123 lub https://vimeo.com/123456
            */
-          label: string;
+          url: string;
+          /**
+           * Własna miniaturka filmu. Jeśli puste, użyty zostanie kadr z YouTube/Vimeo.
+           */
+          thumbnail?: (string | null) | Media;
           id?: string | null;
         }[]
       | null;
-    /**
-     * Przycisk pod statystykami w sekcji "O nas", np. "Poznaj nas bliżej"
-     */
-    ctaText?: string | null;
-    /**
-     * np. "/o-nas"
-     */
-    ctaLink?: string | null;
   };
   servicesSection?: {
     /**
@@ -1370,22 +1358,19 @@ export interface HomePageSelect<T extends boolean = true> {
         secondaryCtaText?: T;
         secondaryCtaLink?: T;
       };
-  aboutPreview?:
+  videoSection?:
     | T
     | {
         label?: T;
         heading?: T;
-        description?: T;
-        image?: T;
-        stats?:
+        videos?:
           | T
           | {
-              number?: T;
-              label?: T;
+              title?: T;
+              url?: T;
+              thumbnail?: T;
               id?: T;
             };
-        ctaText?: T;
-        ctaLink?: T;
       };
   servicesSection?:
     | T

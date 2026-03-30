@@ -97,25 +97,25 @@ export const HomePage: GlobalConfig = {
             },
           ],
         },
-        // ─── O NAS ───
+        // ─── FILMY ───
         {
-          label: 'O nas',
-          description: 'Sekcja "O nas" pod banerem na stronie głównej - zdjęcie po lewej, tekst po prawej',
+          label: 'Filmy',
+          description:
+            'Karuzela filmów pod banerem na stronie głównej. Pierwszy film odtwarza się automatycznie. Jeśli lista jest pusta, sekcja się nie wyświetla.',
           fields: [
             {
-              name: 'aboutPreview',
+              name: 'videoSection',
               label: ' ',
               type: 'group',
-              admin: {
-                hideGutter: true,
-              },
+              admin: { hideGutter: true },
               fields: [
                 {
                   name: 'label',
                   label: 'Etykieta sekcji',
                   type: 'text',
                   admin: {
-                    description: 'Mały złoty tekst nad nagłówkiem sekcji, np. "O nas"',
+                    description:
+                      'Mały złoty tekst nad nagłówkiem sekcji filmów na stronie głównej, np. "Nasze realizacje"',
                   },
                 },
                 {
@@ -123,74 +123,52 @@ export const HomePage: GlobalConfig = {
                   label: 'Nagłówek',
                   type: 'text',
                   admin: {
-                    description: 'Nagłówek sekcji "O nas" na stronie głównej',
+                    description: 'Nagłówek sekcji filmów na stronie głównej',
                   },
                 },
                 {
-                  name: 'description',
-                  label: 'Opis',
-                  type: 'textarea',
-                  admin: {
-                    description: 'Tekst o firmie po prawej stronie obok zdjęcia w sekcji "O nas"',
-                  },
-                },
-                {
-                  name: 'image',
-                  label: 'Zdjęcie',
-                  type: 'upload',
-                  relationTo: 'media',
-                  admin: {
-                    description: 'Duże zdjęcie po lewej stronie w sekcji "O nas" na stronie głównej',
-                  },
-                },
-                {
-                  name: 'stats',
-                  label: 'Statystyki',
+                  name: 'videos',
+                  label: 'Filmy',
                   type: 'array',
-                  maxRows: 4,
                   labels: {
-                    singular: 'Statystyka',
-                    plural: 'Statystyki',
+                    singular: 'Film',
+                    plural: 'Filmy',
                   },
                   admin: {
-                    description: 'Liczby pod opisem w sekcji "O nas", np. "15+ lat doświadczenia"',
+                    description:
+                      'Filmy wyświetlane w karuzeli na stronie głównej. Pierwszy film odtwarza się automatycznie.',
                   },
                   fields: [
                     {
-                      name: 'number',
-                      label: 'Liczba',
+                      name: 'title',
+                      label: 'Tytuł filmu',
                       type: 'text',
                       required: true,
                       admin: {
-                        description: 'np. "15+", "500+", "100%"',
+                        description: 'Wyświetlany pod filmem, np. "Kuchnia nowoczesna w bieli"',
                       },
                     },
                     {
-                      name: 'label',
-                      label: 'Opis',
+                      name: 'url',
+                      label: 'Link do filmu (YouTube / Vimeo)',
                       type: 'text',
                       required: true,
                       admin: {
-                        description: 'np. "Lat doświadczenia", "Zrealizowanych projektów"',
+                        description:
+                          'Wklej link z YouTube lub Vimeo, np. https://www.youtube.com/watch?v=ABC123 lub https://vimeo.com/123456',
+                      },
+                    },
+                    {
+                      name: 'thumbnail',
+                      label: 'Miniaturka',
+                      type: 'upload',
+                      relationTo: 'media',
+                      admin: {
+                        description:
+                          'Własna miniaturka filmu. Jeśli puste, użyty zostanie kadr z YouTube/Vimeo.',
                       },
                     },
                   ],
-                },
-                {
-                  name: 'ctaText',
-                  label: 'Tekst przycisku',
-                  type: 'text',
-                  admin: {
-                    description: 'Przycisk pod statystykami w sekcji "O nas", np. "Poznaj nas bliżej"',
-                  },
-                },
-                {
-                  name: 'ctaLink',
-                  label: 'Link przycisku',
-                  type: 'text',
-                  admin: {
-                    description: 'np. "/o-nas"',
-                  },
                 },
               ],
             },

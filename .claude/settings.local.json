@@ -34,10 +34,10 @@
       "Bash(git checkout:*)",
       "Bash(git restore:*)",
       "Bash(xargs grep:*)",
-      "Bash(find /c/dev/kalabi -maxdepth 2 -name next.config.* -o -name tsconfig.json -o -name .env*)"
+      "Bash(find /c/dev/kalabi -maxdepth 2 -name next.config.* -o -name tsconfig.json -o -name .env*)",
+      "Bash(pnpm dev:*)",
+      "Bash(taskkill:*)",
+      "Bash(curl:*)"
     ]
   }
 }
-
-
-
