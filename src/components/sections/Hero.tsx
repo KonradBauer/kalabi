@@ -24,7 +24,7 @@ export function Hero({
   secondaryCtaLink,
 }: HeroProps) {
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-primary">
+    <section className="relative -mt-[104px] flex min-h-screen items-center overflow-hidden bg-primary">
       {/* Background slideshow */}
       {images.length > 0 && <HeroSlideshow images={images} />}
 

@@ -1,4 +1,5 @@
-import { VideoCarousel, parseVideoUrl } from './VideoCarousel'
+import { VideoCarousel } from './VideoCarousel'
+import { parseVideoUrl } from '@/lib/video'
 import type { Media } from '@/payload-types'
 
 type RawVideo = {

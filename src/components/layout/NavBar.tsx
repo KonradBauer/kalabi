@@ -31,7 +31,7 @@ export function NavBar({ logoUrl, logoAlt, navItems, cta, socials }: NavBarProps
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-0 z-[60] border-b backdrop-blur-md transition-colors duration-300 ${menuOpen ? 'border-transparent bg-transparent' : 'border-border/50 bg-surface/95'}`}>
+      <header className={`fixed inset-x-0 top-8 z-[60] border-b backdrop-blur-md transition-colors duration-300 ${menuOpen ? 'border-transparent bg-transparent' : 'border-border/50 bg-surface/95'}`}>
         <Container className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="relative z-[60] flex items-center py-2">
@@ -81,11 +81,11 @@ export function NavBar({ logoUrl, logoAlt, navItems, cta, socials }: NavBarProps
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ clipPath: 'circle(0% at calc(100% - 44px) 36px)' }}
-            animate={{ clipPath: 'circle(150% at calc(100% - 44px) 36px)' }}
-            exit={{ clipPath: 'circle(0% at calc(100% - 44px) 36px)' }}
+            initial={{ clipPath: 'circle(0% at calc(100% - 44px) 68px)' }}
+            animate={{ clipPath: 'circle(150% at calc(100% - 44px) 68px)' }}
+            exit={{ clipPath: 'circle(0% at calc(100% - 44px) 68px)' }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-[55] flex flex-col bg-primary"
+            className="fixed inset-0 top-8 z-[55] flex flex-col bg-primary"
           >
             {/* Decorative accent line */}
             <motion.div

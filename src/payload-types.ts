@@ -957,21 +957,34 @@ export interface SiteSetting {
     name?: string | null;
     nip?: string | null;
     /**
-     * Wyświetlany na stronie /kontakt w sekcji "Dane kontaktowe"
+     * Wyświetlany na stronie /kontakt i w stopce
      */
     address?: string | null;
     /**
-     * Wyświetlany na stronie /kontakt - kliknięcie uruchamia połączenie
+     * Wyświetlany w pasku nad menu, w stopce i na stronie /kontakt. Kliknięcie uruchamia połączenie
      */
     phone?: string | null;
     /**
-     * Wyświetlany na stronie /kontakt - kliknięcie otwiera program pocztowy
+     * Wyświetlany w pasku nad menu, w stopce i na stronie /kontakt. Kliknięcie otwiera program pocztowy
      */
     email?: string | null;
     /**
-     * Link "Otwórz w Mapach Google" pod mapą na stronie /kontakt. Wklej zwykły link z Google Maps. Mapa generuje się automatycznie z adresu powyżej
+     * Link "Otwórz w Mapach Google" pod mapą na stronie /kontakt
      */
     googleMapsUrl?: string | null;
+    /**
+     * Ikony wyświetlane w pasku nad menu, w stopce i w menu mobilnym
+     */
+    socialLinks?:
+      | {
+          platform: 'facebook' | 'instagram' | 'youtube' | 'pinterest' | 'linkedin';
+          /**
+           * Pełny link, np. https://www.facebook.com/...
+           */
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
   };
   /**
    * Wyświetlany przy udostępnianiu linku do strony na Facebook/Messenger/WhatsApp
@@ -1324,6 +1337,13 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         phone?: T;
         email?: T;
         googleMapsUrl?: T;
+        socialLinks?:
+          | T
+          | {
+              platform?: T;
+              url?: T;
+              id?: T;
+            };
       };
   ogImage?: T;
   seo?:
