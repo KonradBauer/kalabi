@@ -274,6 +274,36 @@ export const defaultTestimonials = [
   },
 ]
 
+export const defaultAboutPage = {
+  hero: {
+    heading: 'O nas',
+    subheading:
+      'Poznaj Kalabi - producenta mebli na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia.',
+    image: null as null,
+  },
+  intro: {
+    label: 'Nasza historia',
+    heading: 'Tworzymy meble z pasją od lat',
+    image: null as null,
+    description:
+      'Kalabi to rodzinna firma meblarska z Pajęczna. Łączymy tradycyjne rzemiosło stolarskie z nowoczesnym designem. Każdy mebel powstaje w naszej pracowni z najwyższej jakości materiałów, z dbałością o każdy detal.\n\nWspółpracujemy z klientami na każdym etapie — od pomysłu przez projekt 3D, aż po produkcję i montaż. Wierzymy, że meble powinny być nie tylko piękne, ale przede wszystkim funkcjonalne i dopasowane do stylu życia.',
+  },
+  teamLabel: 'Nasz zespół',
+  teamHeading: 'Ludzie, którzy tworzą Kalabi',
+  teamDescription:
+    'Poznaj osoby, które stoją za każdym projektem i każdym meblem.',
+  team: [
+    {
+      id: 'default-1',
+      name: 'Kamil Kujawski',
+      role: 'Założyciel / Stolarz',
+      description:
+        'Pasjonat drewna i założyciel Kalabi. Od lat tworzy meble łączące funkcjonalność z estetyką.',
+      image: null,
+    },
+  ],
+}
+
 export const defaultNavItems = [
   { label: 'Strona główna', link: '/' },
   { label: 'O nas', link: '/o-nas' },

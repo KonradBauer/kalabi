@@ -7,6 +7,7 @@ import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { PayloadImage } from '@/components/media/PayloadImage'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { defaultAboutPage } from '@/lib/defaults'
 import type { Media } from '@/payload-types'
 import type { Metadata } from 'next'
 
@@ -25,14 +26,22 @@ export default async function AboutPage() {
   const payload = await getPayload({ config })
   const aboutPage = await payload.findGlobal({ slug: 'about-page', depth: 2 })
 
+  const hero = aboutPage.hero || defaultAboutPage.hero
+  const intro = aboutPage.intro || defaultAboutPage.intro
+  const teamLabel = aboutPage.teamLabel || defaultAboutPage.teamLabel
+  const teamHeading = aboutPage.teamHeading || defaultAboutPage.teamHeading
+  const teamDescription = aboutPage.teamDescription || defaultAboutPage.teamDescription
+  const team =
+    aboutPage.team && aboutPage.team.length > 0 ? aboutPage.team : defaultAboutPage.team
+
   return (
     <>
       {/* Hero */}
       <section className="relative flex min-h-[40vh] items-center bg-primary">
-        {aboutPage.hero?.image && (
+        {hero.image && (
           <div className="absolute inset-0">
             <PayloadImage
-              media={aboutPage.hero.image as Media}
+              media={hero.image as Media}
               fill
               priority
               className="object-cover opacity-30"
@@ -41,102 +50,111 @@ export default async function AboutPage() {
         )}
         <Container className="relative z-10 py-20 text-center">
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
-            {aboutPage.hero?.heading || 'O nas'}
+            {hero.heading || 'O nas'}
           </h1>
-          {aboutPage.hero?.subheading && (
+          {hero.subheading && (
             <p className="mx-auto mt-4 max-w-2xl text-lg text-surface/70">
-              {aboutPage.hero.subheading}
+              {hero.subheading}
             </p>
           )}
         </Container>
       </section>
 
       {/* Intro - O firmie */}
-      {(aboutPage.intro?.heading || aboutPage.intro?.description) && (
-        <section className="overflow-hidden py-20">
-          <Container>
-            <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-              {aboutPage.intro.image && (
-                <ScrollReveal direction="left">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <PayloadImage
-                      media={aboutPage.intro.image as Media}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </ScrollReveal>
-              )}
-              <ScrollReveal direction="right">
-                <div>
-                  <SectionHeading
-                    label={aboutPage.intro.label}
-                    heading={aboutPage.intro.heading}
-                    align="left"
+      <section className="overflow-hidden py-20">
+        <Container>
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            {intro.image ? (
+              <ScrollReveal direction="left">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <PayloadImage
+                    media={intro.image as Media}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover"
                   />
-                  {aboutPage.intro.description && (
-                    <p className="whitespace-pre-line text-lg leading-relaxed text-muted">
-                      {aboutPage.intro.description}
-                    </p>
-                  )}
                 </div>
               </ScrollReveal>
-            </div>
-          </Container>
-        </section>
-      )}
+            ) : (
+              <ScrollReveal direction="left">
+                <div className="relative aspect-[4/3] overflow-hidden bg-border/30" />
+              </ScrollReveal>
+            )}
+            <ScrollReveal direction="right">
+              <div>
+                <SectionHeading
+                  label={intro.label}
+                  heading={intro.heading}
+                  align="left"
+                />
+                {intro.description && (
+                  <p className="whitespace-pre-line text-lg leading-relaxed text-muted">
+                    {intro.description}
+                  </p>
+                )}
+              </div>
+            </ScrollReveal>
+          </div>
+        </Container>
+      </section>
 
       {/* Zespół */}
-      {aboutPage.team && aboutPage.team.length > 0 && (
-        <section className="bg-background py-20">
-          <Container>
-            <SectionHeading
-              label={aboutPage.teamLabel}
-              heading={aboutPage.teamHeading}
-              description={aboutPage.teamDescription}
-            />
+      <section className="bg-background py-20">
+        <Container>
+          <SectionHeading
+            label={teamLabel}
+            heading={teamHeading}
+            description={teamDescription}
+          />
 
-            <div
-              className={`grid gap-8 ${
-                aboutPage.team.length === 1
-                  ? 'mx-auto max-w-lg'
-                  : aboutPage.team.length === 2
-                    ? 'mx-auto max-w-4xl md:grid-cols-2'
-                    : 'md:grid-cols-2 lg:grid-cols-3'
-              }`}
-            >
-              {aboutPage.team.map((member, index) => (
-                <ScrollReveal key={member.id || index} delay={index * 0.15}>
-                  <div className="group overflow-hidden border border-border bg-surface">
-                    {member.image && (
-                      <div className="relative aspect-[3/4] overflow-hidden">
-                        <PayloadImage
-                          media={member.image as Media}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-                    )}
-                    <div className="p-6 sm:p-8">
-                      <h3 className="font-heading text-xl font-bold text-primary sm:text-2xl">
-                        {member.name}
-                      </h3>
-                      <p className="mt-1 text-sm font-medium uppercase tracking-wider text-accent">
-                        {member.role}
-                      </p>
-                      <p className="mt-4 whitespace-pre-line leading-relaxed text-muted">
-                        {member.description}
-                      </p>
+          <div
+            className={`grid gap-8 ${
+              team.length === 1
+                ? 'mx-auto max-w-lg'
+                : team.length === 2
+                  ? 'mx-auto max-w-4xl md:grid-cols-2'
+                  : 'md:grid-cols-2 lg:grid-cols-3'
+            }`}
+          >
+            {team.map((member, index) => (
+              <ScrollReveal key={member.id || index} delay={index * 0.15}>
+                <div className="group overflow-hidden border border-border bg-surface">
+                  {member.image ? (
+                    <div className="relative aspect-[3/4] overflow-hidden">
+                      <PayloadImage
+                        media={member.image as Media}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
                     </div>
+                  ) : (
+                    <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden bg-border/20">
+                      <span className="font-heading text-6xl font-bold text-border">
+                        {member.name
+                          .split(' ')
+                          .map((n) => n[0])
+                          .join('')}
+                      </span>
+                    </div>
+                  )}
+                  <div className="p-6 sm:p-8">
+                    <h3 className="font-heading text-xl font-bold text-primary sm:text-2xl">
+                      {member.name}
+                    </h3>
+                    <p className="mt-1 text-sm font-medium uppercase tracking-wider text-accent">
+                      {member.role}
+                    </p>
+                    <p className="mt-4 whitespace-pre-line leading-relaxed text-muted">
+                      {member.description}
+                    </p>
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
-          </Container>
-        </section>
-      )}
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </Container>
+      </section>
     </>
   )
 }
