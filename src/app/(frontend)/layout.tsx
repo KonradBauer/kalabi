@@ -1,10 +1,13 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
+import { getPayload } from 'payload'
+import config from '@/payload.config'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PageTransition } from '@/components/layout/PageTransition'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
+import { defaultCompanyInfo } from '@/lib/defaults'
 import './styles.css'
 
 const inter = Inter({
@@ -25,8 +28,16 @@ const siteName = 'Kalabi'
 const siteDescription =
   'Kalabi - producent mebli na wymiar z Pajęczna. Kuchnie, szafy, garderoby, meble łazienkowe i biurowe. Indywidualne projekty, najwyższa jakość wykonania, bezpłatna wycena.'
 
-function JsonLd({ siteUrl }: { siteUrl: string }) {
-  // All data below is hardcoded — no user input, safe from XSS
+type JsonLdProps = {
+  siteUrl: string
+  phone: string
+  email: string
+  address: string
+  socialLinks: { platform: string; url: string }[]
+}
+
+function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
+  // Contact data comes from CMS SiteSettings — single source of truth
   const businessData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -42,11 +53,11 @@ function JsonLd({ siteUrl }: { siteUrl: string }) {
           url: `${siteUrl}/logo.png`,
         },
         image: `${siteUrl}/images/hero-1.jpg`,
-        telephone: '+48661244385',
-        email: 'kalabimeblenawymiar@gmail.com',
+        telephone: phone.replace(/\s/g, ''),
+        email,
         address: {
           '@type': 'PostalAddress',
-          addressLocality: 'Pajęczno',
+          addressLocality: address,
           addressCountry: 'PL',
         },
         geo: {
@@ -59,10 +70,7 @@ function JsonLd({ siteUrl }: { siteUrl: string }) {
           geoMidpoint: { '@type': 'GeoCoordinates', latitude: 51.1464, longitude: 19.2264 },
           geoRadius: '100000',
         },
-        sameAs: [
-          'https://www.facebook.com/profile.php?id=61572478532744',
-          'https://www.instagram.com/kalabi_meble',
-        ],
+        sameAs: socialLinks.map((s) => s.url),
         priceRange: '$$',
         makesOffer: [
           { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Kuchnie na wymiar' } },
@@ -170,10 +178,21 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const payload = await getPayload({ config })
+  const siteSettings = await payload.findGlobal({ slug: 'site-settings' })
+  const companyInfo = siteSettings.companyInfo
+
+  const contactPhone = companyInfo?.phone || defaultCompanyInfo.phone
+  const contactEmail = companyInfo?.email || defaultCompanyInfo.email
+  const contactAddress = companyInfo?.address || defaultCompanyInfo.address
+  const socialLinks = companyInfo?.socialLinks && companyInfo.socialLinks.length > 0
+    ? companyInfo.socialLinks.map((s) => ({ platform: typeof s.platform === 'string' ? s.platform : '', url: s.url }))
+    : defaultCompanyInfo.socialLinks
+
   return (
     <html lang="pl" className={`${inter.variable} ${poppins.variable}`}>
       <body className="min-h-screen overflow-x-hidden bg-background font-body text-primary antialiased">
-        <JsonLd siteUrl={siteUrl} />
+        <JsonLd siteUrl={siteUrl} phone={contactPhone} email={contactEmail} address={contactAddress} socialLinks={socialLinks} />
         <Header />
         <PageTransition>
           <main className="pt-[104px]">{children}</main>

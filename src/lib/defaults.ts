@@ -307,23 +307,6 @@ export const defaultAboutPage = {
 export const defaultVideoSection = {
   label: 'Nasze realizacje',
   heading: 'Zobacz nas w akcji',
-  videos: [
-    {
-      id: 'vid-1',
-      title: 'Kuchnia nowoczesna — realizacja od projektu do montażu',
-      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    },
-    {
-      id: 'vid-2',
-      title: 'Garderoba walk-in — metamorfoza sypialni',
-      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    },
-    {
-      id: 'vid-3',
-      title: 'Meble łazienkowe na wymiar',
-      url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-    },
-  ],
 }
 
 export const defaultNavItems = [
@@ -378,4 +361,8 @@ export const defaultCompanyInfo = {
   phone: '+48 661 244 385',
   email: 'kalabimeblenawymiar@gmail.com',
   googleMapsUrl: '',
+  socialLinks: [
+    { platform: 'facebook', url: 'https://www.facebook.com/profile.php?id=61572478532744' },
+    { platform: 'instagram', url: 'https://www.instagram.com/kalabi_meble' },
+  ],
 }

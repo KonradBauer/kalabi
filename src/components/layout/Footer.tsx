@@ -5,18 +5,28 @@ import { getPayload } from 'payload'
 import config from '@/payload.config'
 import { Container } from '@/components/ui/Container'
 import { SocialIcon } from '@/components/ui/SocialIcon'
-import { defaultFooter } from '@/lib/defaults'
+import { defaultFooter, defaultCompanyInfo } from '@/lib/defaults'
 import type { Media } from '@/payload-types'
 
 export async function Footer() {
   const payload = await getPayload({ config: await config })
-  const footer = await payload.findGlobal({ slug: 'footer' })
+  const [footer, siteSettings] = await Promise.all([
+    payload.findGlobal({ slug: 'footer' }),
+    payload.findGlobal({ slug: 'site-settings' }),
+  ])
 
+  const companyInfo = siteSettings.companyInfo
   const logo = footer.logo as Media | undefined
   const hasColumns = footer.columns && footer.columns.length > 0
   const columns = hasColumns ? footer.columns! : defaultFooter.columns
-  const contact = footer.contactInfo?.phone ? footer.contactInfo : defaultFooter.contactInfo
-  const socials = footer.socialLinks && footer.socialLinks.length > 0 ? footer.socialLinks : defaultFooter.socialLinks
+  const contact = {
+    address: companyInfo?.address || defaultCompanyInfo.address,
+    phone: companyInfo?.phone || defaultCompanyInfo.phone,
+    email: companyInfo?.email || defaultCompanyInfo.email,
+  }
+  const socials = companyInfo?.socialLinks && companyInfo.socialLinks.length > 0
+    ? companyInfo.socialLinks.map((s) => ({ platform: typeof s.platform === 'string' ? s.platform : '', url: s.url }))
+    : defaultFooter.socialLinks
   const description = footer.description || defaultFooter.description
 
   return (

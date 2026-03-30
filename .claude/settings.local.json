@@ -37,7 +37,8 @@
       "Bash(find /c/dev/kalabi -maxdepth 2 -name next.config.* -o -name tsconfig.json -o -name .env*)",
       "Bash(pnpm dev:*)",
       "Bash(taskkill:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(ls:*)"
     ]
   }
 }

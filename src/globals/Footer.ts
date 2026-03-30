@@ -78,63 +78,6 @@ export const Footer: GlobalConfig = {
       ],
     },
     {
-      name: 'contactInfo',
-      label: 'Dane kontaktowe w stopce',
-      type: 'group',
-      admin: {
-        description: 'Adres, telefon i email widoczne w prawej części stopki na dole każdej strony',
-      },
-      fields: [
-        {
-          name: 'address',
-          label: 'Adres',
-          type: 'textarea',
-        },
-        {
-          name: 'phone',
-          label: 'Telefon',
-          type: 'text',
-        },
-        {
-          name: 'email',
-          label: 'E-mail',
-          type: 'email',
-        },
-      ],
-    },
-    {
-      name: 'socialLinks',
-      label: 'Media społecznościowe',
-      type: 'array',
-      labels: {
-        singular: 'Profil',
-        plural: 'Profile społecznościowe',
-      },
-      admin: {
-        description: 'Ikony social media widoczne w stopce na dole każdej strony',
-      },
-      fields: [
-        {
-          name: 'platform',
-          label: 'Platforma',
-          type: 'select',
-          options: [
-            { label: 'Facebook', value: 'facebook' },
-            { label: 'Instagram', value: 'instagram' },
-            { label: 'Pinterest', value: 'pinterest' },
-            { label: 'LinkedIn', value: 'linkedin' },
-            { label: 'YouTube', value: 'youtube' },
-          ],
-        },
-        {
-          name: 'url',
-          label: 'Adres URL profilu',
-          type: 'text',
-          required: true,
-        },
-      ],
-    },
-    {
       name: 'copyrightText',
       label: 'Tekst praw autorskich',
       type: 'text',

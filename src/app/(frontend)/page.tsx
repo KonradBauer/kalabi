@@ -13,7 +13,6 @@ import { TestimonialsSlider } from '@/components/sections/TestimonialsSlider'
 
 import {
   defaultHero,
-  defaultVideoSection,
   defaultServicesSection,
   defaultServices,
   defaultProjectsSection,
@@ -60,15 +59,13 @@ export default async function HomePage() {
         secondaryCtaLink={homePage.hero?.secondaryCtaLink || defaultHero.secondaryCtaLink}
       />
 
-      <VideoCarouselServer
-        label={homePage.videoSection?.label || defaultVideoSection.label}
-        heading={homePage.videoSection?.heading || defaultVideoSection.heading}
-        videos={
-          homePage.videoSection?.videos && homePage.videoSection.videos.length > 0
-            ? homePage.videoSection.videos
-            : defaultVideoSection.videos
-        }
-      />
+      {homePage.videoSection?.videos && homePage.videoSection.videos.length > 0 && (
+        <VideoCarouselServer
+          label={homePage.videoSection.label}
+          heading={homePage.videoSection.heading}
+          videos={homePage.videoSection.videos}
+        />
+      )}
 
       <ServicesGrid
         label={homePage.servicesSection?.label || defaultServicesSection.label}

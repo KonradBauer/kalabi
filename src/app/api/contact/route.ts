@@ -38,10 +38,14 @@ export async function POST(request: Request) {
       },
     })
 
+    // Get recipient email from CMS (single source of truth)
+    const siteSettings = await payload.findGlobal({ slug: 'site-settings' })
+    const recipientEmail = siteSettings.companyInfo?.email || 'kalabimeblenawymiar@gmail.com'
+
     // Send email notification
     await transporter.sendMail({
       from: `"Kalabi - Formularz" <${process.env.SMTP_USER}>`,
-      to: 'kalabimeblenawymiar@gmail.com',
+      to: recipientEmail,
       replyTo: email,
       subject: `Nowa wiadomość: ${subject}`,
       html: `
