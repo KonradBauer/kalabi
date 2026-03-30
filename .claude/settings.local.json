@@ -38,7 +38,8 @@
       "Bash(pnpm dev:*)",
       "Bash(taskkill:*)",
       "Bash(curl:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(grep -r \"dialog\\\\|Dialog\\\\|Modal\\\\|modal\" /c/dev/kalabi/src --include=*.tsx --include=*.ts)"
     ]
   }
 }

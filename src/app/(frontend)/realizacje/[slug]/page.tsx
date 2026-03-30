@@ -7,6 +7,7 @@ import config from '@/payload.config'
 import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 import { PayloadImage } from '@/components/media/PayloadImage'
+import { GalleryLightbox } from '@/components/media/GalleryLightbox'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import type { Media, ProjectCategory } from '@/payload-types'
 import type { Metadata } from 'next'
@@ -143,25 +144,15 @@ export default async function ProjectPage({ params }: { params: Params }) {
                 Galeria
               </h2>
             </ScrollReveal>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {gallery.map((item, index) => (
-                <ScrollReveal key={index} delay={index * 0.1}>
-                  <div className="group relative aspect-[4/3] overflow-hidden bg-primary">
-                    <PayloadImage
-                      media={item.image}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {item.caption && (
-                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/80 to-transparent p-4 opacity-0 transition-opacity group-hover:opacity-100">
-                        <p className="text-sm text-surface">{item.caption}</p>
-                      </div>
-                    )}
-                  </div>
-                </ScrollReveal>
-              ))}
-            </div>
+            <GalleryLightbox
+              images={gallery.map((item) => ({
+                url: item.image.url || '',
+                alt: item.image.alt || '',
+                width: item.image.width || 1200,
+                height: item.image.height || 900,
+                caption: item.caption,
+              }))}
+            />
           </Container>
         </section>
       )}

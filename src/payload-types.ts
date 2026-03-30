@@ -890,10 +890,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Header {
   id: string;
   /**
-   * Widoczne w lewym górnym rogu na każdej stronie. Zmienia się na białe przy scrollowaniu
-   */
-  logo?: (string | null) | Media;
-  /**
    * Linki widoczne w górnym pasku na każdej stronie + w menu mobilnym
    */
   navItems?:
@@ -932,10 +928,6 @@ export interface Header {
  */
 export interface Footer {
   id: string;
-  /**
-   * Logo widoczne w stopce na dole każdej strony
-   */
-  logo?: (string | null) | Media;
   /**
    * Tekst pod logo w stopce na dole każdej strony
    */
@@ -1271,7 +1263,6 @@ export interface AboutPage {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
   navItems?:
     | T
     | {
@@ -1295,7 +1286,6 @@ export interface HeaderSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  logo?: T;
   description?: T;
   columns?:
     | T
