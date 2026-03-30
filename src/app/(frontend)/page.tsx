@@ -13,6 +13,7 @@ import { TestimonialsSlider } from '@/components/sections/TestimonialsSlider'
 
 import {
   defaultHero,
+  defaultVideoSection,
   defaultServicesSection,
   defaultServices,
   defaultProjectsSection,
@@ -27,16 +28,18 @@ import type { Media, HomePage as HomePageType } from '@/payload-types'
 export default async function HomePage() {
   const payload = await getPayload({ config })
 
-  const [homePage, servicesData, projectsData, testimonialsData] = await Promise.all([
+  const [homePage, servicesData, projectsData, testimonialsData, videosData] = await Promise.all([
     payload.findGlobal({ slug: 'home-page', depth: 2 }),
     payload.find({ collection: 'services', sort: 'order', limit: 6 }),
     payload.find({ collection: 'projects', where: { featured: { equals: true } }, sort: 'order', limit: 6 }),
     payload.find({ collection: 'testimonials', where: { featured: { equals: true } }, sort: 'order', limit: 10 }),
+    payload.find({ collection: 'videos', sort: 'order', limit: 20, depth: 1 }),
   ])
 
   const hasServices = servicesData.docs.length > 0
   const hasProjects = projectsData.docs.length > 0
   const hasTestimonials = testimonialsData.docs.length > 0
+  const hasVideos = videosData.docs.length > 0
 
   return (
     <>
@@ -59,11 +62,11 @@ export default async function HomePage() {
         secondaryCtaLink={homePage.hero?.secondaryCtaLink || defaultHero.secondaryCtaLink}
       />
 
-      {homePage.videoSection?.videos && homePage.videoSection.videos.length > 0 && (
+      {hasVideos && (
         <VideoCarouselServer
-          label={homePage.videoSection.label}
-          heading={homePage.videoSection.heading}
-          videos={homePage.videoSection.videos}
+          label={homePage.videoSection?.label || defaultVideoSection.label}
+          heading={homePage.videoSection?.heading || defaultVideoSection.heading}
+          videos={videosData.docs}
         />
       )}
 

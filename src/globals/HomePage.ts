@@ -101,7 +101,7 @@ export const HomePage: GlobalConfig = {
         {
           label: 'Filmy',
           description:
-            'Karuzela filmów pod banerem na stronie głównej. Pierwszy film odtwarza się automatycznie. Jeśli lista jest pusta, sekcja się nie wyświetla.',
+            'Nagłówek sekcji filmów na stronie głównej. Same filmy dodajesz w menu bocznym → Filmy. Jeśli nie ma żadnych filmów, sekcja się nie wyświetla.',
           fields: [
             {
               name: 'videoSection',
@@ -125,50 +125,6 @@ export const HomePage: GlobalConfig = {
                   admin: {
                     description: 'Nagłówek sekcji filmów na stronie głównej',
                   },
-                },
-                {
-                  name: 'videos',
-                  label: 'Filmy',
-                  type: 'array',
-                  labels: {
-                    singular: 'Film',
-                    plural: 'Filmy',
-                  },
-                  admin: {
-                    description:
-                      'Filmy wyświetlane w karuzeli na stronie głównej. Pierwszy film odtwarza się automatycznie.',
-                  },
-                  fields: [
-                    {
-                      name: 'title',
-                      label: 'Tytuł filmu',
-                      type: 'text',
-                      required: true,
-                      admin: {
-                        description: 'Wyświetlany pod filmem, np. "Kuchnia nowoczesna w bieli"',
-                      },
-                    },
-                    {
-                      name: 'url',
-                      label: 'Link do filmu (YouTube / Vimeo)',
-                      type: 'text',
-                      required: true,
-                      admin: {
-                        description:
-                          'Wklej link z YouTube lub Vimeo, np. https://www.youtube.com/watch?v=ABC123 lub https://vimeo.com/123456',
-                      },
-                    },
-                    {
-                      name: 'thumbnail',
-                      label: 'Miniaturka',
-                      type: 'upload',
-                      relationTo: 'media',
-                      admin: {
-                        description:
-                          'Własna miniaturka filmu. Jeśli puste, użyty zostanie kadr z YouTube/Vimeo.',
-                      },
-                    },
-                  ],
                 },
               ],
             },

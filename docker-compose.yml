@@ -17,6 +17,7 @@ services:
       - SMTP_PASS=${SMTP_PASS}
     volumes:
       - ./uploads:/app/public/media
+      - ./uploads-videos:/app/public/videos
     depends_on:
       mongo:
         condition: service_healthy

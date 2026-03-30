@@ -17,8 +17,8 @@ export function TopBar({ phone, email, socials }: TopBarProps) {
   if (!phone && !email && socials.length === 0) return null
 
   return (
-    <div className="fixed inset-x-0 top-0 z-[70] bg-primary">
-      <Container className="flex items-center justify-between py-1.5 text-xs text-surface/70">
+    <div className="fixed inset-x-0 top-0 z-[70] h-[36px] bg-primary">
+      <Container className="flex h-full items-center justify-between text-xs text-surface/70">
         {/* Contact info — left */}
         <div className="flex items-center gap-4 sm:gap-5">
           {phone && (

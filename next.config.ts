@@ -9,12 +9,7 @@ const dirname = path.dirname(__filename)
 const nextConfig: NextConfig = {
   output: 'standalone',
   serverExternalPackages: ['nodemailer'],
-  images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: 'img.youtube.com' },
-      { protocol: 'https', hostname: 'i.vimeocdn.com' },
-    ],
-  },
+  images: {},
   webpack: (webpackConfig) => {
     webpackConfig.resolve.extensionAlias = {
       '.cjs': ['.cts', '.cjs'],

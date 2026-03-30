@@ -14,6 +14,7 @@ import { ProjectCategories } from './collections/ProjectCategories'
 import { Services } from './collections/Services'
 import { Testimonials } from './collections/Testimonials'
 import { ContactSubmissions } from './collections/ContactSubmissions'
+import { Videos } from './collections/Videos'
 
 import { Header } from './globals/Header'
 import { Footer } from './globals/Footer'
@@ -44,6 +45,7 @@ export default buildConfig({
     Services,
     Testimonials,
     ContactSubmissions,
+    Videos,
   ],
   globals: [Header, Footer, SiteSettings, HomePage, AboutPage],
   editor: lexicalEditor(),

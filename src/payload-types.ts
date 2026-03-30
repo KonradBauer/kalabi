@@ -75,6 +75,7 @@ export interface Config {
     services: Service;
     testimonials: Testimonial;
     'contact-submissions': ContactSubmission;
+    videos: Video;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -90,6 +91,7 @@ export interface Config {
     services: ServicesSelect<false> | ServicesSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
+    videos: VideosSelect<false> | VideosSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -482,6 +484,34 @@ export interface ContactSubmission {
   createdAt: string;
 }
 /**
+ * Filmy wyswietlane w karuzeli na stronie glownej. Przeslij plik wideo i dodaj opis.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos".
+ */
+export interface Video {
+  id: string;
+  /**
+   * Wyswietlany pod filmem w karuzeli na stronie glownej
+   */
+  description: string;
+  /**
+   * Mniejsza liczba = wyzej w karuzeli
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -536,6 +566,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contact-submissions';
         value: string | ContactSubmission;
+      } | null)
+    | ({
+        relationTo: 'videos';
+        value: string | Video;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -787,6 +821,25 @@ export interface ContactSubmissionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videos_select".
+ */
+export interface VideosSelect<T extends boolean = true> {
+  description?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -899,24 +952,6 @@ export interface Footer {
               id?: string | null;
             }[]
           | null;
-        id?: string | null;
-      }[]
-    | null;
-  /**
-   * Adres, telefon i email widoczne w prawej części stopki na dole każdej strony
-   */
-  contactInfo?: {
-    address?: string | null;
-    phone?: string | null;
-    email?: string | null;
-  };
-  /**
-   * Ikony social media widoczne w stopce na dole każdej strony
-   */
-  socialLinks?:
-    | {
-        platform?: ('facebook' | 'instagram' | 'pinterest' | 'linkedin' | 'youtube') | null;
-        url: string;
         id?: string | null;
       }[]
     | null;
@@ -1057,26 +1092,6 @@ export interface HomePage {
      * Nagłówek sekcji filmów na stronie głównej
      */
     heading?: string | null;
-    /**
-     * Filmy wyświetlane w karuzeli na stronie głównej. Pierwszy film odtwarza się automatycznie.
-     */
-    videos?:
-      | {
-          /**
-           * Wyświetlany pod filmem, np. "Kuchnia nowoczesna w bieli"
-           */
-          title: string;
-          /**
-           * Wklej link z YouTube lub Vimeo, np. https://www.youtube.com/watch?v=ABC123 lub https://vimeo.com/123456
-           */
-          url: string;
-          /**
-           * Własna miniaturka filmu. Jeśli puste, użyty zostanie kadr z YouTube/Vimeo.
-           */
-          thumbnail?: (string | null) | Media;
-          id?: string | null;
-        }[]
-      | null;
   };
   servicesSection?: {
     /**
@@ -1299,20 +1314,6 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  contactInfo?:
-    | T
-    | {
-        address?: T;
-        phone?: T;
-        email?: T;
-      };
-  socialLinks?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        id?: T;
-      };
   copyrightText?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1383,14 +1384,6 @@ export interface HomePageSelect<T extends boolean = true> {
     | {
         label?: T;
         heading?: T;
-        videos?:
-          | T
-          | {
-              title?: T;
-              url?: T;
-              thumbnail?: T;
-              id?: T;
-            };
       };
   servicesSection?:
     | T

@@ -1,20 +1,15 @@
 'use client'
 
 import { useState, useRef, useEffect, useCallback } from 'react'
-import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Play, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Container } from '@/components/ui/Container'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import type { Media } from '@/payload-types'
 
 type Video = {
-  id?: string | null
-  title: string
+  id: string
   url: string
-  thumbnail?: Media | string | null
-  embedUrl: string
-  thumbUrl: string
+  description: string
 }
 
 type VideoCarouselProps = {
@@ -25,16 +20,16 @@ type VideoCarouselProps = {
 
 export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
   const [active, setActive] = useState(0)
-  const [isPlaying, setIsPlaying] = useState(true)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [hasAutoPlayed, setHasAutoPlayed] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
 
-  const goTo = useCallback(
-    (index: number) => {
-      setActive(index)
-      setIsPlaying(true)
-    },
-    [],
-  )
+  const goTo = useCallback((index: number) => {
+    setActive(index)
+    setIsPlaying(false)
+  }, [])
 
   const prev = useCallback(() => {
     goTo(active === 0 ? videos.length - 1 : active - 1)
@@ -44,7 +39,40 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
     goTo(active === videos.length - 1 ? 0 : active + 1)
   }, [active, videos.length, goTo])
 
-  // Scroll the thumbnail strip to keep active item visible
+  const togglePlay = useCallback(() => {
+    if (!videoRef.current) return
+    if (videoRef.current.paused) {
+      videoRef.current.play()
+      setIsPlaying(true)
+    } else {
+      videoRef.current.pause()
+      setIsPlaying(false)
+    }
+  }, [])
+
+  // Autoplay first video when section scrolls into view
+  useEffect(() => {
+    if (hasAutoPlayed || active !== 0) return
+    const section = sectionRef.current
+    if (!section) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && videoRef.current) {
+          videoRef.current.play()
+          setIsPlaying(true)
+          setHasAutoPlayed(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.4 },
+    )
+
+    observer.observe(section)
+    return () => observer.disconnect()
+  }, [hasAutoPlayed, active])
+
+  // Scroll thumbnail strip to keep active visible
   useEffect(() => {
     if (!scrollRef.current) return
     const el = scrollRef.current.children[active] as HTMLElement | undefined
@@ -55,15 +83,8 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
 
   const current = videos[active]
 
-  const getThumbnailUrl = (video: Video): string | null => {
-    if (video.thumbnail && typeof video.thumbnail === 'object' && video.thumbnail.url) {
-      return video.thumbnail.url
-    }
-    return video.thumbUrl || null
-  }
-
   return (
-    <section className="bg-primary py-20 lg:py-28">
+    <section ref={sectionRef} className="bg-primary py-20 lg:py-28">
       <Container>
         {(label || heading) && (
           <SectionHeading label={label} heading={heading} light />
@@ -81,34 +102,27 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
                 transition={{ duration: 0.4 }}
                 className="absolute inset-0"
               >
-                {isPlaying ? (
-                  <iframe
-                    src={current.embedUrl}
-                    title={current.title}
-                    allow="autoplay; encrypted-media; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full"
-                  />
-                ) : (
-                  <button
-                    onClick={() => setIsPlaying(true)}
-                    className="group relative flex h-full w-full items-center justify-center"
-                  >
-                    {getThumbnailUrl(current) && (
-                      <Image
-                        src={getThumbnailUrl(current)!}
-                        alt={current.title}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 1024px"
-                        className="object-cover"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-black/40 transition-colors group-hover:bg-black/30" />
-                    <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-accent transition-transform group-hover:scale-110 sm:h-20 sm:w-20">
+                <video
+                  ref={videoRef}
+                  src={current.url}
+                  className="h-full w-full object-contain"
+                  muted
+                  playsInline
+                  onEnded={() => setIsPlaying(false)}
+                  onPlay={() => setIsPlaying(true)}
+                  onPause={() => setIsPlaying(false)}
+                />
+                {/* Play/pause overlay */}
+                <button
+                  onClick={togglePlay}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  {!isPlaying && (
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent transition-transform hover:scale-110 sm:h-20 sm:w-20">
                       <Play className="h-7 w-7 fill-primary text-primary sm:h-8 sm:w-8" />
                     </div>
-                  </button>
-                )}
+                  )}
+                </button>
               </motion.div>
             </AnimatePresence>
 
@@ -133,9 +147,9 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
             )}
           </div>
 
-          {/* Title of current video */}
+          {/* Description */}
           <p className="mt-4 text-center font-heading text-lg font-semibold text-surface sm:text-xl">
-            {current.title}
+            {current.description}
           </p>
 
           {/* Thumbnail strip */}
@@ -147,34 +161,26 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
                 style={{ scrollbarWidth: 'none' }}
               >
                 {videos.map((video, index) => {
-                  const thumb = getThumbnailUrl(video)
                   const isActive = index === active
 
                   return (
                     <button
-                      key={video.id || index}
+                      key={video.id}
                       onClick={() => goTo(index)}
                       className={`group relative flex-shrink-0 overflow-hidden rounded-sm transition-all ${
                         isActive
                           ? 'ring-2 ring-accent ring-offset-2 ring-offset-primary'
                           : 'opacity-50 hover:opacity-80'
                       }`}
-                      aria-label={`Odtwórz: ${video.title}`}
+                      aria-label={`Odtwórz: ${video.description}`}
                     >
-                      <div className="relative h-16 w-28 sm:h-20 sm:w-36">
-                        {thumb ? (
-                          <Image
-                            src={thumb}
-                            alt={video.title}
-                            fill
-                            sizes="144px"
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-surface/10">
-                            <Play className="h-5 w-5 text-surface/50" />
-                          </div>
-                        )}
+                      <div className="relative h-16 w-28 bg-surface/10 sm:h-20 sm:w-36">
+                        <video
+                          src={video.url}
+                          className="h-full w-full object-cover"
+                          muted
+                          preload="metadata"
+                        />
                         {!isActive && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/30">
                             <Play className="h-5 w-5 fill-white text-white" />
@@ -182,7 +188,7 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
                         )}
                       </div>
                       <p className="mt-1 max-w-28 truncate text-left text-xs text-surface/70 sm:max-w-36">
-                        {video.title}
+                        {video.description}
                       </p>
                     </button>
                   )
@@ -195,4 +201,3 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
     </section>
   )
 }
-

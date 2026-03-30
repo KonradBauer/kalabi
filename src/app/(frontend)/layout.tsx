@@ -195,7 +195,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <JsonLd siteUrl={siteUrl} phone={contactPhone} email={contactEmail} address={contactAddress} socialLinks={socialLinks} />
         <Header />
         <PageTransition>
-          <main className="pt-[104px]">{children}</main>
+          <main className="pt-[108px]">{children}</main>
         </PageTransition>
         <Footer />
         <ScrollToTop />
