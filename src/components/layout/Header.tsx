@@ -4,7 +4,6 @@ import config from '@/payload.config'
 import { TopBar } from './TopBar'
 import { NavBar } from './NavBar'
 import { defaultNavItems, defaultCompanyInfo } from '@/lib/defaults'
-import type { Media } from '@/payload-types'
 
 export async function Header() {
   const payload = await getPayload({ config: await config })
@@ -13,7 +12,6 @@ export async function Header() {
     payload.findGlobal({ slug: 'site-settings' }),
   ])
 
-  const logo = header.logo as Media | undefined
   const navItems = header.navItems && header.navItems.length > 0 ? header.navItems : defaultNavItems
   const cta = header.ctaButton?.label ? header.ctaButton : { label: 'Bezpłatna wycena', link: '/kontakt' }
 
@@ -28,8 +26,8 @@ export async function Header() {
     <>
       <TopBar phone={phone} email={email} socials={socials} />
       <NavBar
-        logoUrl={logo?.url || '/logo.png'}
-        logoAlt={logo?.alt || 'Kalabi'}
+        logoUrl="/logo.png"
+        logoAlt="Kalabi"
         navItems={navItems.map((item) => ({
           label: item.label,
           link: item.link,

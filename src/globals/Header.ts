@@ -8,15 +8,6 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
-      name: 'logo',
-      label: 'Logo',
-      type: 'upload',
-      relationTo: 'media',
-      admin: {
-        description: 'Widoczne w lewym górnym rogu na każdej stronie. Zmienia się na białe przy scrollowaniu',
-      },
-    },
-    {
       name: 'navItems',
       label: 'Menu nawigacyjne',
       type: 'array',

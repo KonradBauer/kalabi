@@ -8,15 +8,6 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'logo',
-      label: 'Logo',
-      type: 'upload',
-      relationTo: 'media',
-      admin: {
-        description: 'Logo widoczne w stopce na dole każdej strony',
-      },
-    },
-    {
       name: 'description',
       label: 'Opis firmy',
       type: 'textarea',

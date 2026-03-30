@@ -6,7 +6,6 @@ import config from '@/payload.config'
 import { Container } from '@/components/ui/Container'
 import { SocialIcon } from '@/components/ui/SocialIcon'
 import { defaultFooter, defaultCompanyInfo } from '@/lib/defaults'
-import type { Media } from '@/payload-types'
 
 export async function Footer() {
   const payload = await getPayload({ config: await config })
@@ -16,7 +15,6 @@ export async function Footer() {
   ])
 
   const companyInfo = siteSettings.companyInfo
-  const logo = footer.logo as Media | undefined
   const hasColumns = footer.columns && footer.columns.length > 0
   const columns = hasColumns ? footer.columns! : defaultFooter.columns
   const contact = {
@@ -35,23 +33,13 @@ export async function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            {logo?.url ? (
-              <Image
-                src={logo.url}
-                alt={logo.alt || 'Kalabi'}
-                width={140}
-                height={40}
-                className="mb-4 h-10 w-auto brightness-0 invert"
-              />
-            ) : (
-              <Image
-                src="/logo.png"
-                alt="Kalabi"
-                width={140}
-                height={40}
-                className="mb-4 h-20 w-auto brightness-0 invert"
-              />
-            )}
+            <Image
+              src="/logo.png"
+              alt="Kalabi"
+              width={140}
+              height={40}
+              className="mb-4 h-20 w-auto brightness-0 invert"
+            />
             {description && (
               <p className="text-sm leading-relaxed text-surface/60">
                 {description}
