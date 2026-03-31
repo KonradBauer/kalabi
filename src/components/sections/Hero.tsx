@@ -58,10 +58,23 @@ export function Hero({
       </Container>
 
       {/* Scroll indicator */}
-      <div className="absolute inset-x-0 bottom-8 flex justify-center">
-        <div className="h-14 w-8 rounded-full border-2 border-surface/30 p-1">
-          <div className="mx-auto h-3 w-1 animate-bounce rounded-full bg-accent" />
+      <div className="absolute inset-x-0 bottom-8 flex flex-col items-center gap-3">
+        <span
+          className="font-heading text-[10px] font-medium uppercase tracking-[0.3em] text-surface/50"
+          style={{ animation: 'scroll-fade 2.4s ease-in-out infinite' }}
+        >
+          Przewiń
+        </span>
+        <div className="relative h-12 w-px bg-surface/10">
+          <div
+            className="absolute inset-0 bg-accent"
+            style={{ animation: 'scroll-line 2.4s ease-in-out infinite' }}
+          />
         </div>
+        <div
+          className="h-1.5 w-1.5 rounded-full bg-accent/60"
+          style={{ animation: 'scroll-fade 2.4s ease-in-out infinite' }}
+        />
       </div>
     </section>
   )

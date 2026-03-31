@@ -187,7 +187,7 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
             <div className="mt-10">
               <div
                 ref={scrollRef}
-                className="flex gap-3 overflow-x-auto py-4 sm:justify-center"
+                className="flex gap-3 overflow-x-auto py-4 px-4 sm:justify-center"
                 style={{ scrollbarWidth: 'none' }}
               >
                 {videos.map((video, index) => {
