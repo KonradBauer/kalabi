@@ -80,6 +80,18 @@ Colors defined in `src/app/(frontend)/styles.css` via `@theme`.
 - **Navbar**: Single client component `NavBar.tsx` handles everything (scroll state, logo inversion, desktop nav, full-screen mobile menu). Server component `Header.tsx` fetches data and passes props. No separate MobileMenu/HeaderScroll. Logo uses Tailwind `invert` class toggle, not CSS filters on `data-*` attributes. Mobile menu is full-screen overlay, not a slide-out panel.
 - **Social icons**: Footer uses `SocialIcon` component (`src/components/ui/SocialIcon.tsx`) with SVG icons for facebook, instagram, pinterest, linkedin, youtube
 
+### Session 3 (2026-04-01) — Killer SEO
+- **SEO architecture**: `src/lib/jsonld.ts` contains pure schema builder functions (`breadcrumbSchema`, `serviceListSchema`, `projectSchema`, `itemListSchema`). `src/components/ui/JsonLd.tsx` is the React renderer. Use these on every page — never inline JSON.stringify manually.
+- **JsonLd safety**: `JsonLd` component unicode-escapes `<`, `>`, `&` before injecting JSON-LD (prevents `</script>` injection even though data is app-controlled).
+- **viewport export**: `src/app/(frontend)/layout.tsx` exports `viewport: Viewport` (separate from `metadata`) with `themeColor: '#1a1a1a'`. In Next.js 14+, `themeColor` must be in `viewport`, not `metadata`.
+- **manifest.ts**: `src/app/manifest.ts` generates `/manifest.json` for PWA — Next.js auto-adds `<link rel="manifest">`.
+- **robots.ts blocks 20+ AI bots**: GPTBot, CCBot, ClaudeBot, anthropic-ai, Bytespider, Google-Extended, Amazonbot, cohere-ai, Diffbot, Meta-ExternalAgent, PerplexityBot, YouBot, OAI-SearchBot, etc. Do NOT block Ahrefs/Semrush (used for SEO analysis).
+- **Per-page schemas**: o-nas → BreadcrumbList. uslugi → BreadcrumbList + Service (per CMS service). realizacje → BreadcrumbList + ItemList. kontakt → BreadcrumbList. realizacje/[slug] → BreadcrumbList + CreativeWork.
+- **sitemap.ts + robots.ts fallback URL**: Both use `kalabimeble.pl` as fallback (was `kalabi.pl` — wrong).
+- **Google Search Console**: Verification code placeholder at `layout.tsx:177` (commented out). Owner must register domain, get code, uncomment `verification.google`.
+- **Keywords expanded**: Global layout keywords now include city names (Łódź, Wieluń, Radomsko, Częstochowa) + "kalabi meble" branded terms. Per-page keywords tailored per section.
+- **JSON-LD enhancements**: Organization schema now has `alternateName[]`, `contactPoint`, `knowsAbout[]`, `SearchAction` on WebSite, `logo.width/height`, full phone as `+48...`.
+
 ### Session 2 (2026-03-26)
 - **Hero slideshow**: `HeroSlideshow` client component cycles through `/images/hero-1.jpg`, `hero-2.jpg`, `hero-3.jpg` with crossfade + Ken Burns zoom (`scale: 1→1.08` over 6s)
 - **Fonts changed**: Playfair Display → Poppins for headings. Poppins requires explicit `weight` array (not variable font)

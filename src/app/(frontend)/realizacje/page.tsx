@@ -7,15 +7,26 @@ import { Container } from '@/components/ui/Container'
 import { ProjectCard } from '@/components/ui/ProjectCard'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { breadcrumbSchema, itemListSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Realizacje',
+  title: 'Realizacje – Portfolio Mebli na Wymiar | Kalabi Pajęczno',
   description:
-    'Galeria realizacji Kalabi - zobacz nasze kuchnie, szafy, garderoby i meble na wymiar. Inspiracje i portfolio naszych projektów.',
+    'Portfolio realizacji Kalabi – kuchnie na wymiar, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Każdy projekt to indywidualne podejście i najwyższa jakość.',
+  keywords: [
+    'realizacje meble na wymiar',
+    'portfolio mebli na wymiar Pajęczno',
+    'galeria kuchni na wymiar',
+    'zdjęcia mebli na wymiar',
+    'inspiracje meblarskie',
+    'projekty kuchni zdjęcia',
+    'szafy wnękowe realizacje',
+  ],
   alternates: { canonical: '/realizacje' },
   openGraph: {
-    title: 'Realizacje | Kalabi - Meble na wymiar',
-    description: 'Zobacz nasze realizacje mebli na wymiar - kuchnie, szafy, garderoby i więcej.',
+    title: 'Realizacje – Portfolio Kalabi | Meble na Wymiar',
+    description: 'Zobacz nasze realizacje – kuchnie, szafy, garderoby i meble na wymiar z Pajęczna.',
   },
 }
 
@@ -32,6 +43,15 @@ export default async function RealizacjePage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([
+        { name: 'Strona główna', url: '/' },
+        { name: 'Realizacje', url: '/realizacje' },
+      ])} />
+      {projects.length > 0 && (
+        <JsonLd data={itemListSchema(
+          projects.map((p, i) => ({ name: p.title, slug: p.slug, position: i + 1 }))
+        )} />
+      )}
       {/* Hero */}
       <section className="bg-primary py-20">
         <Container className="text-center">

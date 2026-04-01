@@ -1,5 +1,5 @@
 import React from 'react'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins } from 'next/font/google'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
@@ -38,6 +38,9 @@ type JsonLdProps = {
 
 function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
   // Contact data comes from CMS SiteSettings — single source of truth
+  const phoneFormatted = phone.replace(/\s/g, '')
+  const phoneFull = phoneFormatted.startsWith('+') ? phoneFormatted : `+48${phoneFormatted}`
+
   const businessData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -45,19 +48,22 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
         '@type': 'FurnitureStore',
         '@id': `${siteUrl}/#organization`,
         name: 'Kalabi - Meble na wymiar',
-        alternateName: 'Kalabi',
+        alternateName: ['Kalabi', 'Kalabi Meble', 'Kalabi Meble na Wymiar'],
         description: siteDescription,
         url: siteUrl,
         logo: {
           '@type': 'ImageObject',
           url: `${siteUrl}/logo.png`,
+          width: 200,
+          height: 60,
         },
         image: `${siteUrl}/images/hero-1.jpg`,
-        telephone: phone.replace(/\s/g, ''),
+        telephone: phoneFull,
         email,
         address: {
           '@type': 'PostalAddress',
-          addressLocality: address,
+          addressLocality: 'Pajęczno',
+          addressRegion: 'Łódź',
           addressCountry: 'PL',
         },
         geo: {
@@ -70,14 +76,47 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
           geoMidpoint: { '@type': 'GeoCoordinates', latitude: 51.1464, longitude: 19.2264 },
           geoRadius: '100000',
         },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          telephone: phoneFull,
+          email,
+          contactType: 'customer service',
+          availableLanguage: 'Polish',
+        },
         sameAs: socialLinks.map((s) => s.url),
         priceRange: '$$',
+        knowsAbout: [
+          'Meble na wymiar',
+          'Kuchnie na wymiar',
+          'Szafy wnękowe',
+          'Garderoby na wymiar',
+          'Meble łazienkowe na wymiar',
+          'Meble biurowe na wymiar',
+          'Meble do salonu na wymiar',
+          'Projektowanie wnętrz',
+          'Stolarstwo',
+        ],
         makesOffer: [
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Kuchnie na wymiar' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Szafy i garderoby na wymiar' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meble łazienkowe na wymiar' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meble biurowe na wymiar' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Meble do salonu na wymiar' } },
+          {
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: 'Kuchnie na wymiar', url: `${siteUrl}/uslugi#kuchnie` },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: 'Szafy i garderoby na wymiar', url: `${siteUrl}/uslugi#szafy` },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: 'Meble łazienkowe na wymiar', url: `${siteUrl}/uslugi#lazienka` },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: 'Meble biurowe na wymiar', url: `${siteUrl}/uslugi#biuro` },
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: 'Meble do salonu na wymiar', url: `${siteUrl}/uslugi#salon` },
+          },
         ],
       },
       {
@@ -88,6 +127,14 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
         description: siteDescription,
         publisher: { '@id': `${siteUrl}/#organization` },
         inLanguage: 'pl-PL',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${siteUrl}/realizacje?q={search_term_string}`,
+          },
+          'query-input': 'required name=search_term_string',
+        },
       },
     ],
   }
@@ -100,6 +147,12 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
   )
 }
 
+export const viewport: Viewport = {
+  themeColor: '#1a1a1a',
+  width: 'device-width',
+  initialScale: 1,
+}
+
 export const metadata: Metadata = {
   title: {
     default: 'Kalabi | Meble na wymiar Pajęczno',
@@ -110,15 +163,24 @@ export const metadata: Metadata = {
   keywords: [
     'meble na wymiar',
     'meble na wymiar Pajęczno',
+    'kalabi meble',
+    'kalabi meble na wymiar',
     'kuchnie na wymiar',
+    'kuchnie na wymiar Pajęczno',
     'szafy na wymiar',
+    'szafy wnękowe',
     'garderoby na wymiar',
-    'meble łazienkowe',
-    'meble biurowe',
+    'meble łazienkowe na wymiar',
+    'meble biurowe na wymiar',
     'meble kuchenne',
     'producent mebli',
+    'producent mebli Pajęczno',
     'stolarz Pajęczno',
     'meble na zamówienie',
+    'meble Łódź',
+    'meble Wieluń',
+    'meble Radomsko',
+    'meble Częstochowa',
   ],
   authors: [{ name: 'Kalabi' }],
   creator: 'Kalabi',
@@ -172,8 +234,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // google: 'TWOJ_KOD_WERYFIKACJI_GOOGLE',
-    // other: { 'msvalidate.01': 'TWOJ_KOD_BING' },
+    google: 'mVuCVRPKdpUT_GZurjHKRCQNiyRXMFLXnHVD__-e4kk',
   },
 }
 

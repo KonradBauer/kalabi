@@ -8,15 +8,26 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ContactForm } from '@/components/sections/ContactForm'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { breadcrumbSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Kontakt',
+  title: 'Kontakt – Kalabi Meble na Wymiar | Pajęczno | Tel. 661 244 385',
   description:
-    'Skontaktuj się z Kalabi. Bezpłatna wycena mebli na wymiar. Pajęczno i okolice. Zadzwoń: 661 244 385 lub napisz do nas.',
+    'Skontaktuj się z Kalabi – producent mebli na wymiar. Pajęczno i okolice. Tel: 661 244 385, email: kalabimeblenawymiar@gmail.com. Bezpłatna wycena w 24h.',
+  keywords: [
+    'kontakt kalabi',
+    'meble na wymiar Pajęczno kontakt',
+    'wycena mebli na wymiar',
+    'bezpłatna wycena mebli',
+    '661 244 385',
+    'kalabimeblenawymiar gmail',
+    'stolarz Pajęczno kontakt',
+  ],
   alternates: { canonical: '/kontakt' },
   openGraph: {
-    title: 'Kontakt | Kalabi - Meble na wymiar',
-    description: 'Bezpłatna wycena mebli na wymiar. Zadzwoń lub napisz - odpowiemy w 24h.',
+    title: 'Kontakt – Kalabi Meble na Wymiar | Pajęczno',
+    description: 'Bezpłatna wycena mebli na wymiar. Tel: 661 244 385 – odpowiemy w 24h.',
   },
 }
 
@@ -27,6 +38,10 @@ export default async function KontaktPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([
+        { name: 'Strona główna', url: '/' },
+        { name: 'Kontakt', url: '/kontakt' },
+      ])} />
       {/* Hero */}
       <section className="bg-primary py-20">
         <Container className="text-center">

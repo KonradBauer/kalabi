@@ -11,6 +11,8 @@ import { GalleryLightbox } from '@/components/media/GalleryLightbox'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import type { Media, ProjectCategory } from '@/payload-types'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { breadcrumbSchema, projectSchema } from '@/lib/jsonld'
 
 type Params = Promise<{ slug: string }>
 
@@ -39,12 +41,24 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const mainImage = project.mainImage as Media | undefined
   const ogImage = mainImage?.url ? { url: mainImage.url, alt: project.title } : undefined
 
+  const categoryName = typeof project.category === 'object' && project.category !== null
+    ? (project.category as ProjectCategory).name
+    : undefined
+
   return {
-    title: project.meta?.title || project.title,
-    description: project.meta?.description || project.description,
+    title: project.meta?.title || `${project.title} – Realizacja Kalabi`,
+    description: project.meta?.description || project.description ||
+      `${project.title} – realizacja mebli na wymiar firmy Kalabi z Pajęczna.`,
+    keywords: [
+      project.title,
+      ...(categoryName ? [categoryName, `${categoryName} na wymiar`] : []),
+      'realizacja meble na wymiar',
+      'meble Pajęczno',
+      'kalabi meble realizacja',
+    ],
     alternates: { canonical: `/realizacje/${slug}` },
     openGraph: {
-      title: `${project.title} | Kalabi - Realizacje`,
+      title: `${project.title} – Realizacja | Kalabi Meble na Wymiar`,
       description: project.meta?.description || project.description || '',
       ...(ogImage && { images: [ogImage] }),
     },
@@ -67,6 +81,21 @@ export default async function ProjectPage({ params }: { params: Params }) {
   const category = project.category as ProjectCategory | undefined
   const gallery = project.gallery as { image: Media; caption?: string | null }[] | undefined
 
+  const breadcrumbs = breadcrumbSchema([
+    { name: 'Strona główna', url: '/' },
+    { name: 'Realizacje', url: '/realizacje' },
+    { name: project.title },
+  ])
+
+  const creativeWork = projectSchema({
+    title: project.title,
+    description: project.description,
+    slug: project.slug,
+    mainImageUrl: mainImage?.url ?? null,
+    category: category?.name ?? null,
+    updatedAt: project.updatedAt,
+  })
+
   const details = [
     { label: 'Klient', value: project.details?.client },
     { label: 'Lokalizacja', value: project.details?.location },
@@ -77,6 +106,8 @@ export default async function ProjectPage({ params }: { params: Params }) {
 
   return (
     <>
+      <JsonLd data={breadcrumbs} />
+      <JsonLd data={creativeWork} />
       {/* Hero Image */}
       <section className="relative h-[50vh] min-h-[400px] bg-primary lg:h-[60vh]">
         {mainImage && (

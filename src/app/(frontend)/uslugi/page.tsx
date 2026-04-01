@@ -8,15 +8,28 @@ import { PayloadImage } from '@/components/media/PayloadImage'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import type { Media } from '@/payload-types'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { breadcrumbSchema, serviceListSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Usługi',
+  title: 'Usługi – Meble na Wymiar | Kuchnie, Szafy, Garderoby | Kalabi Pajęczno',
   description:
-    'Usługi meblarskie Kalabi - kuchnie, szafy, garderoby, meble łazienkowe i biurowe na wymiar. Indywidualny projekt, pomiar i montaż.',
+    'Meble na wymiar Pajęczno: kuchnie, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Projekt, produkcja i montaż. Bezpłatna wycena – dzwoń: 661 244 385.',
+  keywords: [
+    'kuchnie na wymiar Pajęczno',
+    'szafy wnękowe na wymiar',
+    'garderoby na wymiar',
+    'meble łazienkowe na wymiar',
+    'meble biurowe na wymiar',
+    'usługi meblarskie Pajęczno',
+    'projekt kuchni na wymiar',
+    'montaż mebli na wymiar',
+    'meble salon na wymiar',
+  ],
   alternates: { canonical: '/uslugi' },
   openGraph: {
-    title: 'Usługi | Kalabi - Meble na wymiar',
-    description: 'Kuchnie, szafy, garderoby, meble łazienkowe i biurowe - wszystko na wymiar.',
+    title: 'Usługi – Kalabi Meble na Wymiar | Pajęczno',
+    description: 'Kuchnie, szafy, garderoby, meble łazienkowe i biurowe – projekt, produkcja i montaż.',
   },
 }
 
@@ -32,6 +45,13 @@ export default async function UslugiPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([
+        { name: 'Strona główna', url: '/' },
+        { name: 'Usługi', url: '/uslugi' },
+      ])} />
+      {services.length > 0 && serviceListSchema(services).map((schema, i) => (
+        <JsonLd key={i} data={schema} />
+      ))}
       {/* Hero */}
       <section className="bg-primary py-20">
         <Container className="text-center">

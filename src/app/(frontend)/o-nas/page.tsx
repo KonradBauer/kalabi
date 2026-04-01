@@ -10,15 +10,25 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { defaultAboutPage } from '@/lib/defaults'
 import type { Media } from '@/payload-types'
 import type { Metadata } from 'next'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { breadcrumbSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'O nas',
+  title: 'O nas - Kalabi Producent Mebli na Wymiar | Pajęczno',
   description:
-    'Poznaj Kalabi - producenta mebli na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia w tworzeniu mebli.',
+    'Poznaj Kalabi – rodzinna firma produkująca meble na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia. Bezpłatna konsultacja.',
+  keywords: [
+    'kalabi meble o nas',
+    'producent mebli Pajęczno',
+    'firma meblarska Pajęczno',
+    'stolarnia Pajęczno',
+    'meble na wymiar firma',
+    'o nas kalabi',
+  ],
   alternates: { canonical: '/o-nas' },
   openGraph: {
-    title: 'O nas | Kalabi - Meble na wymiar',
-    description: 'Poznaj naszą historię, pasję i podejście do tworzenia mebli na wymiar.',
+    title: 'O nas – Kalabi Meble na Wymiar | Pajęczno',
+    description: 'Poznaj naszą historię, pasję i podejście do tworzenia mebli na wymiar w Pajęcznie.',
   },
 }
 
@@ -36,6 +46,10 @@ export default async function AboutPage() {
 
   return (
     <>
+      <JsonLd data={breadcrumbSchema([
+        { name: 'Strona główna', url: '/' },
+        { name: 'O nas', url: '/o-nas' },
+      ])} />
       {/* Hero */}
       <section className="relative flex min-h-[40vh] items-center bg-primary">
         {hero.image && (
