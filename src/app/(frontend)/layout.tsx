@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PageTransition } from '@/components/layout/PageTransition'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
+import { FaviconSwitcher } from '@/components/ui/FaviconSwitcher'
 import { defaultCompanyInfo } from '@/lib/defaults'
 import './styles.css'
 
@@ -192,10 +193,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/fav.png', type: 'image/svg+xml' },
-      { url: '/logo.png', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/fav.png', type: 'image/png' },
     ],
-    apple: '/logo.png',
+    apple: '/fav.png',
   },
   openGraph: {
     type: 'website',
@@ -253,6 +254,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="pl" className={`${inter.variable} ${poppins.variable}`}>
       <body className="min-h-screen overflow-x-hidden bg-background font-body text-primary antialiased">
+        <FaviconSwitcher />
         <JsonLd siteUrl={siteUrl} phone={contactPhone} email={contactEmail} address={contactAddress} socialLinks={socialLinks} />
         <Header />
         <PageTransition>

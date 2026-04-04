@@ -1,7 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <rect width="32" height="32" rx="4" fill="#1a1a1a"/>
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="20" font-weight="700" fill="#c9a96e">
-    K
-  </text>
-  <line x1="6" y1="26" x2="26" y2="26" stroke="#c9a96e" stroke-width="1.5"/>
+  <style>
+    .bg { fill: #ffffff; }
+    .letter { fill: #1a1a1a; }
+    .line { stroke: #c9a96e; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1a1a1a; }
+      .letter { fill: #c9a96e; }
+      .line { stroke: #c9a96e; }
+    }
+  </style>
+  <rect width="32" height="32" rx="4" class="bg"/>
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="700" class="letter">K</text>
+  <line x1="6" y1="26" x2="26" y2="26" stroke-width="1.5" class="line"/>
 </svg>
