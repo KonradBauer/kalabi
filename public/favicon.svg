@@ -1,15 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <style>
-    .bg { fill: #ffffff; }
-    .letter { fill: #1a1a1a; }
-    .line { stroke: #c9a96e; }
+    .stroke { stroke: #1a1a1a; }
     @media (prefers-color-scheme: dark) {
-      .bg { fill: #1a1a1a; }
-      .letter { fill: #c9a96e; }
-      .line { stroke: #c9a96e; }
+      .stroke { stroke: #c9a96e; }
     }
   </style>
-  <rect width="32" height="32" rx="4" class="bg"/>
-  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia, serif" font-size="20" font-weight="700" class="letter">K</text>
-  <line x1="6" y1="26" x2="26" y2="26" stroke-width="1.5" class="line"/>
+  <!-- dach -->
+  <polyline points="2,14 16,3 30,14" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke"/>
+  <!-- ściany -->
+  <rect x="5" y="14" width="22" height="15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke"/>
+  <!-- drzwi -->
+  <rect x="12" y="20" width="8" height="9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="stroke"/>
 </svg>
