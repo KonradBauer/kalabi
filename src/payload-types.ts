@@ -1183,36 +1183,10 @@ export interface AboutPage {
      */
     heading?: string | null;
     /**
-     * Tekst pod nagłówkiem na banerze strony /o-nas
-     */
-    subheading?: string | null;
-    /**
      * Zdjęcie w tle ciemnego banera na górze strony /o-nas
      */
     image?: (string | null) | Media;
   };
-  intro?: {
-    /**
-     * Mały złoty tekst nad nagłówkiem, np. "Nasza historia"
-     */
-    label?: string | null;
-    /**
-     * Nagłówek sekcji o firmie na stronie /o-nas
-     */
-    heading?: string | null;
-    /**
-     * Główny tekst o firmie na stronie /o-nas - historia, wartości, podejście
-     */
-    description?: string | null;
-    /**
-     * Zdjęcie obok opisu firmy na stronie /o-nas (np. warsztat, meble)
-     */
-    image?: (string | null) | Media;
-  };
-  /**
-   * Mały złoty tekst nad nagłówkiem, np. "Nasz zespół"
-   */
-  teamLabel?: string | null;
   /**
    * Nagłówek nad kartami zespołu na stronie /o-nas
    */
@@ -1422,18 +1396,8 @@ export interface AboutPageSelect<T extends boolean = true> {
     | T
     | {
         heading?: T;
-        subheading?: T;
         image?: T;
       };
-  intro?:
-    | T
-    | {
-        label?: T;
-        heading?: T;
-        description?: T;
-        image?: T;
-      };
-  teamLabel?: T;
   teamHeading?: T;
   teamDescription?: T;
   team?:

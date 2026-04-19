@@ -37,8 +37,6 @@ export default async function AboutPage() {
   const aboutPage = await payload.findGlobal({ slug: 'about-page', depth: 2 })
 
   const hero = aboutPage.hero || defaultAboutPage.hero
-  const intro = aboutPage.intro || defaultAboutPage.intro
-  const teamLabel = aboutPage.teamLabel || defaultAboutPage.teamLabel
   const teamHeading = aboutPage.teamHeading || defaultAboutPage.teamHeading
   const teamDescription = aboutPage.teamDescription || defaultAboutPage.teamDescription
   const team =
@@ -50,6 +48,7 @@ export default async function AboutPage() {
         { name: 'Strona główna', url: '/' },
         { name: 'O nas', url: '/o-nas' },
       ])} />
+
       {/* Hero */}
       <section className="relative flex min-h-[40vh] items-center bg-primary">
         {hero.image && (
@@ -66,49 +65,6 @@ export default async function AboutPage() {
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
             {hero.heading || 'O nas'}
           </h1>
-          {hero.subheading && (
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-surface/70">
-              {hero.subheading}
-            </p>
-          )}
-        </Container>
-      </section>
-
-      {/* Intro - O firmie */}
-      <section className="overflow-hidden py-20">
-        <Container>
-          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-            {intro.image ? (
-              <ScrollReveal direction="left">
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <PayloadImage
-                    media={intro.image as Media}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-              </ScrollReveal>
-            ) : (
-              <ScrollReveal direction="left">
-                <div className="relative aspect-[4/3] overflow-hidden bg-border/30" />
-              </ScrollReveal>
-            )}
-            <ScrollReveal direction="right">
-              <div>
-                <SectionHeading
-                  label={intro.label}
-                  heading={intro.heading}
-                  align="left"
-                />
-                {intro.description && (
-                  <p className="whitespace-pre-line text-lg leading-relaxed text-muted">
-                    {intro.description}
-                  </p>
-                )}
-              </div>
-            </ScrollReveal>
-          </div>
         </Container>
       </section>
 
@@ -116,7 +72,6 @@ export default async function AboutPage() {
       <section className="bg-background py-20">
         <Container>
           <SectionHeading
-            label={teamLabel}
             heading={teamHeading}
             description={teamDescription}
           />

@@ -7,7 +7,6 @@ import config from '@/payload.config'
 import { Hero } from '@/components/sections/Hero'
 import { VideoCarouselServer } from '@/components/sections/VideoCarouselServer'
 import { ServicesGrid } from '@/components/sections/ServicesGrid'
-import { FeaturedProjects } from '@/components/sections/FeaturedProjects'
 import { CtaBanner } from '@/components/sections/CtaBanner'
 import { TestimonialsSlider } from '@/components/sections/TestimonialsSlider'
 
@@ -16,8 +15,6 @@ import {
   defaultVideoSection,
   defaultServicesSection,
   defaultServices,
-  defaultProjectsSection,
-  defaultProjects,
   defaultCtaBanner,
   defaultTestimonialsSection,
   defaultTestimonials,
@@ -28,16 +25,14 @@ import type { Media, HomePage as HomePageType } from '@/payload-types'
 export default async function HomePage() {
   const payload = await getPayload({ config })
 
-  const [homePage, servicesData, projectsData, testimonialsData, videosData] = await Promise.all([
+  const [homePage, servicesData, testimonialsData, videosData] = await Promise.all([
     payload.findGlobal({ slug: 'home-page', depth: 2 }),
     payload.find({ collection: 'services', sort: 'order', limit: 6 }),
-    payload.find({ collection: 'projects', where: { featured: { equals: true } }, sort: 'order', limit: 6 }),
     payload.find({ collection: 'testimonials', where: { featured: { equals: true } }, sort: 'order', limit: 10 }),
     payload.find({ collection: 'videos', sort: 'order', limit: 20, depth: 1 }),
   ])
 
   const hasServices = servicesData.docs.length > 0
-  const hasProjects = projectsData.docs.length > 0
   const hasTestimonials = testimonialsData.docs.length > 0
   const hasVideos = videosData.docs.length > 0
 
@@ -75,15 +70,6 @@ export default async function HomePage() {
         heading={homePage.servicesSection?.heading || defaultServicesSection.heading}
         description={homePage.servicesSection?.description || defaultServicesSection.description}
         services={hasServices ? servicesData.docs : (defaultServices as any)}
-      />
-
-      <FeaturedProjects
-        label={homePage.projectsSection?.label || defaultProjectsSection.label}
-        heading={homePage.projectsSection?.heading || defaultProjectsSection.heading}
-        description={homePage.projectsSection?.description || defaultProjectsSection.description}
-        ctaText={homePage.projectsSection?.ctaText || defaultProjectsSection.ctaText}
-        ctaLink={homePage.projectsSection?.ctaLink || defaultProjectsSection.ctaLink}
-        projects={hasProjects ? projectsData.docs : (defaultProjects as any)}
       />
 
       <CtaBanner

@@ -29,14 +29,6 @@ export const AboutPage: GlobalConfig = {
                   },
                 },
                 {
-                  name: 'subheading',
-                  label: 'Podtytuł',
-                  type: 'textarea',
-                  admin: {
-                    description: 'Tekst pod nagłówkiem na banerze strony /o-nas',
-                  },
-                },
-                {
                   name: 'image',
                   label: 'Zdjęcie w tle',
                   type: 'upload',
@@ -50,64 +42,9 @@ export const AboutPage: GlobalConfig = {
           ],
         },
         {
-          label: 'O firmie',
-          description: 'Sekcja z opisem firmy pod banerem na stronie /o-nas',
-          fields: [
-            {
-              name: 'intro',
-              label: ' ',
-              type: 'group',
-              admin: { hideGutter: true },
-              fields: [
-                {
-                  name: 'label',
-                  label: 'Etykieta sekcji',
-                  type: 'text',
-                  admin: {
-                    description: 'Mały złoty tekst nad nagłówkiem, np. "Nasza historia"',
-                  },
-                },
-                {
-                  name: 'heading',
-                  label: 'Nagłówek',
-                  type: 'text',
-                  admin: {
-                    description: 'Nagłówek sekcji o firmie na stronie /o-nas',
-                  },
-                },
-                {
-                  name: 'description',
-                  label: 'Opis firmy',
-                  type: 'textarea',
-                  admin: {
-                    description: 'Główny tekst o firmie na stronie /o-nas - historia, wartości, podejście',
-                  },
-                },
-                {
-                  name: 'image',
-                  label: 'Zdjęcie',
-                  type: 'upload',
-                  relationTo: 'media',
-                  admin: {
-                    description: 'Zdjęcie obok opisu firmy na stronie /o-nas (np. warsztat, meble)',
-                  },
-                },
-              ],
-            },
-          ],
-        },
-        {
           label: 'Zespół',
           description: 'Karty członków zespołu na stronie /o-nas - zdjęcie, imię, stanowisko i opis każdej osoby',
           fields: [
-            {
-              name: 'teamLabel',
-              label: 'Etykieta sekcji',
-              type: 'text',
-              admin: {
-                description: 'Mały złoty tekst nad nagłówkiem, np. "Nasz zespół"',
-              },
-            },
             {
               name: 'teamHeading',
               label: 'Nagłówek sekcji',

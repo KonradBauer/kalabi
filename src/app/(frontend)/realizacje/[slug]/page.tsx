@@ -120,11 +120,6 @@ export default async function ProjectPage({ params }: { params: Params }) {
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
         <Container className="relative z-10 flex h-full flex-col justify-end pb-12">
-          {category && (
-            <span className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-accent">
-              {category.name}
-            </span>
-          )}
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
             {project.title}
           </h1>
