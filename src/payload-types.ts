@@ -1096,28 +1096,6 @@ export interface HomePage {
      */
     description?: string | null;
   };
-  projectsSection?: {
-    /**
-     * Mały złoty tekst nad nagłówkiem, np. "Nasze realizacje"
-     */
-    label?: string | null;
-    /**
-     * Nagłówek sekcji realizacji na stronie głównej
-     */
-    heading?: string | null;
-    /**
-     * Tekst pod nagłówkiem sekcji realizacji na stronie głównej
-     */
-    description?: string | null;
-    /**
-     * Przycisk pod realizacjami na stronie głównej, np. "Zobacz wszystkie realizacje"
-     */
-    ctaText?: string | null;
-    /**
-     * np. "/realizacje"
-     */
-    ctaLink?: string | null;
-  };
   ctaBanner?: {
     /**
      * Duży biały tekst na banerze CTA, np. "Masz pomysł na meble? Porozmawiajmy!"
@@ -1350,15 +1328,6 @@ export interface HomePageSelect<T extends boolean = true> {
         label?: T;
         heading?: T;
         description?: T;
-      };
-  projectsSection?:
-    | T
-    | {
-        label?: T;
-        heading?: T;
-        description?: T;
-        ctaText?: T;
-        ctaLink?: T;
       };
   ctaBanner?:
     | T

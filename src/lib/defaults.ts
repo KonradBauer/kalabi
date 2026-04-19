@@ -219,7 +219,6 @@ export const defaultNavItems = [
   { label: 'Strona główna', link: '/' },
   { label: 'O nas', link: '/o-nas' },
   { label: 'Realizacje', link: '/realizacje' },
-  { label: 'Usługi', link: '/uslugi' },
   { label: 'Kontakt', link: '/kontakt' },
 ]
 
