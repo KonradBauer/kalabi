@@ -32,7 +32,7 @@ export const defaultServicesSection = {
   label: 'Usługi',
   heading: 'Kompleksowa obsługa od projektu do montażu',
   description:
-    'Oferujemy pełen zakres usług meblarskich - od bezpłatnego pomiaru i wizualizacji 3D, przez produkcję, po profesjonalny montaż.',
+    'Oferujemy kompleksowe usługi meblarskie – od bezpłatnego pomiaru, przez produkcję, aż po profesjonalny montaż.',
 }
 
 export const defaultServices = [
