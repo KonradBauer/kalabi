@@ -73,13 +73,17 @@ export async function Footer() {
               <ul className="space-y-2">
                 {(column.links || []).map((link, j) => (
                   <li key={j}>
-                    <Link
-                      href={link.link}
-                      target={'newTab' in link && link.newTab ? '_blank' : undefined}
-                      className="text-sm text-surface/60 transition-colors hover:text-accent"
-                    >
-                      {link.label}
-                    </Link>
+                    {link.link ? (
+                      <Link
+                        href={link.link}
+                        target={'newTab' in link && link.newTab ? '_blank' : undefined}
+                        className="text-sm text-surface/60 transition-colors hover:text-accent"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <span className="text-sm text-surface/60">{link.label}</span>
+                    )}
                   </li>
                 ))}
               </ul>
