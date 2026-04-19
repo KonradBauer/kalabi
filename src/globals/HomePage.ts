@@ -171,63 +171,6 @@ export const HomePage: GlobalConfig = {
             },
           ],
         },
-        // ─── REALIZACJE ───
-        {
-          label: 'Realizacje',
-          description: 'Nagłówek sekcji realizacji na stronie głównej. Same realizacje edytujesz w menu bocznym → Realizacje',
-          fields: [
-            {
-              name: 'projectsSection',
-              label: ' ',
-              type: 'group',
-              admin: {
-                hideGutter: true,
-              },
-              fields: [
-                {
-                  name: 'label',
-                  label: 'Etykieta sekcji',
-                  type: 'text',
-                  admin: {
-                    description: 'Mały złoty tekst nad nagłówkiem, np. "Nasze realizacje"',
-                  },
-                },
-                {
-                  name: 'heading',
-                  label: 'Nagłówek',
-                  type: 'text',
-                  admin: {
-                    description: 'Nagłówek sekcji realizacji na stronie głównej',
-                  },
-                },
-                {
-                  name: 'description',
-                  label: 'Opis',
-                  type: 'textarea',
-                  admin: {
-                    description: 'Tekst pod nagłówkiem sekcji realizacji na stronie głównej',
-                  },
-                },
-                {
-                  name: 'ctaText',
-                  label: 'Tekst przycisku',
-                  type: 'text',
-                  admin: {
-                    description: 'Przycisk pod realizacjami na stronie głównej, np. "Zobacz wszystkie realizacje"',
-                  },
-                },
-                {
-                  name: 'ctaLink',
-                  label: 'Link przycisku',
-                  type: 'text',
-                  admin: {
-                    description: 'np. "/realizacje"',
-                  },
-                },
-              ],
-            },
-          ],
-        },
         // ─── CTA BANNER ───
         {
           label: 'Baner CTA',

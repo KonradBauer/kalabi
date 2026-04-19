@@ -134,88 +134,6 @@ export const defaultServices = [
   },
 ]
 
-export const defaultProjectsSection = {
-  label: 'Realizacje',
-  heading: 'Nasze najnowsze projekty',
-  description: 'Każda realizacja to unikalna historia. Zobacz, jak tworzymy meble dopasowane do potrzeb naszych klientów.',
-  ctaText: 'Zobacz wszystkie',
-  ctaLink: '/realizacje',
-}
-
-export const defaultProjects = [
-  {
-    id: 'proj-1',
-    title: 'Nowoczesna kuchnia w bieli',
-    slug: 'nowoczesna-kuchnia-biel',
-    description: 'Minimalistyczna kuchnia z białymi frontami mat i blatem z kwarcu. Funkcjonalny układ w kształcie litery L z wyspą.',
-    category: { id: 'cat-1', name: 'Kuchnie', slug: 'kuchnie' },
-    featured: true,
-    mainImage: null,
-    _placeholder: '/images/placeholder-kitchen.svg',
-    details: { client: 'Prywatny', location: 'Warszawa', year: '2024', scope: 'Projekt + wykonanie + montaż', materials: 'MDF lakierowany, kwarcyt' },
-    order: 1,
-  },
-  {
-    id: 'proj-2',
-    title: 'Garderoba walk-in',
-    slug: 'garderoba-walk-in',
-    description: 'Przestronna garderoba z systemem organizacji i oświetleniem LED. Drzwi przesuwne z lustrem na całej wysokości.',
-    category: { id: 'cat-2', name: 'Garderoby', slug: 'garderoby' },
-    featured: true,
-    mainImage: null,
-    _placeholder: '/images/placeholder-wardrobe.svg',
-    details: { client: 'Prywatny', location: 'Kraków', year: '2024', scope: 'Projekt + wykonanie + montaż', materials: 'Płyta meblowa, aluminium' },
-    order: 2,
-  },
-  {
-    id: 'proj-3',
-    title: 'Łazienka w drewnie i kamieniu',
-    slug: 'lazienka-drewno-kamien',
-    description: 'Zabudowa łazienkowa łącząca ciepło drewna z elegancją kamienia. Podświetlane lustro i szuflady z cichym domykiem.',
-    category: { id: 'cat-3', name: 'Łazienki', slug: 'lazienki' },
-    featured: true,
-    mainImage: null,
-    _placeholder: '/images/placeholder-bathroom.svg',
-    details: { client: 'Prywatny', location: 'Wrocław', year: '2024', scope: 'Wykonanie + montaż', materials: 'Fornir dębowy, granit' },
-    order: 3,
-  },
-  {
-    id: 'proj-4',
-    title: 'Salon z zabudową RTV',
-    slug: 'salon-zabudowa-rtv',
-    description: 'Meblościanka z zabudową na TV, z ukrytym systemem cable management. Połączenie otwartych półek z zamkniętymi szafkami.',
-    category: { id: 'cat-4', name: 'Salony', slug: 'salony' },
-    featured: true,
-    mainImage: null,
-    _placeholder: '/images/placeholder-living.svg',
-    details: { client: 'Prywatny', location: 'Poznań', year: '2023', scope: 'Projekt + wykonanie + montaż', materials: 'Dąb naturalny, metal' },
-    order: 4,
-  },
-  {
-    id: 'proj-5',
-    title: 'Biuro domowe na poddaszu',
-    slug: 'biuro-domowe-poddasze',
-    description: 'Funkcjonalne biuro domowe wbudowane pod skosem dachu. Biurko, regały i szafki - wszystko idealnie dopasowane.',
-    category: { id: 'cat-5', name: 'Biura', slug: 'biura' },
-    featured: true,
-    mainImage: null,
-    _placeholder: '/images/placeholder-office.svg',
-    details: { client: 'Prywatny', location: 'Gdańsk', year: '2023', scope: 'Pomiar + projekt + wykonanie + montaż', materials: 'Płyta laminowana, stal' },
-    order: 5,
-  },
-  {
-    id: 'proj-6',
-    title: 'Kuchnia z wyspą w drewnie',
-    slug: 'kuchnia-wyspa-drewno',
-    description: 'Kuchnia w stylu skandynawskim z dużą wyspą. Fronty z naturalnego forniru dębowego, blat z kwarcu Silestone.',
-    category: { id: 'cat-1', name: 'Kuchnie', slug: 'kuchnie' },
-    featured: true,
-    mainImage: null,
-    _placeholder: '/images/placeholder-kitchen.svg',
-    details: { client: 'Prywatny', location: 'Łódź', year: '2024', scope: 'Projekt + wykonanie + montaż', materials: 'Fornir dębowy, kwarcyt Silestone' },
-    order: 6,
-  },
-]
 
 export const defaultCtaBanner = {
   heading: 'Masz pomysł na meble? Porozmawiajmy!',
@@ -277,28 +195,16 @@ export const defaultTestimonials = [
 export const defaultAboutPage = {
   hero: {
     heading: 'O nas',
-    subheading:
-      'Poznaj Kalabi - producenta mebli na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia.',
     image: null as null,
   },
-  intro: {
-    label: 'Nasza historia',
-    heading: 'Tworzymy meble z pasją od lat',
-    image: null as null,
-    description:
-      'Kalabi to rodzinna firma meblarska z Pajęczna. Łączymy tradycyjne rzemiosło stolarskie z nowoczesnym designem. Każdy mebel powstaje w naszej pracowni z najwyższej jakości materiałów, z dbałością o każdy detal.\n\nWspółpracujemy z klientami na każdym etapie — od pomysłu przez projekt 3D, aż po produkcję i montaż. Wierzymy, że meble powinny być nie tylko piękne, ale przede wszystkim funkcjonalne i dopasowane do stylu życia.',
-  },
-  teamLabel: 'Nasz zespół',
   teamHeading: 'Ludzie, którzy tworzą Kalabi',
-  teamDescription:
-    'Poznaj osoby, które stoją za każdym projektem i każdym meblem.',
+  teamDescription: 'Poznaj osoby, które stoją za każdym projektem i każdym meblem.',
   team: [
     {
       id: 'default-1',
       name: 'Kamil Kujawski',
       role: 'Założyciel / Stolarz',
-      description:
-        'Pasjonat drewna i założyciel Kalabi. Od lat tworzy meble łączące funkcjonalność z estetyką.',
+      description: 'Pasjonat drewna i założyciel Kalabi. Od lat tworzy meble łączące funkcjonalność z estetyką.',
       image: null,
     },
   ],
