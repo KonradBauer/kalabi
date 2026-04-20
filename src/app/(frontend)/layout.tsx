@@ -46,10 +46,10 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'FurnitureStore',
+        '@type': ['FurnitureStore', 'LocalBusiness'],
         '@id': `${siteUrl}/#organization`,
         name: 'Kalabi - Meble na wymiar',
-        alternateName: ['Kalabi', 'Kalabi Meble', 'Kalabi Meble na Wymiar'],
+        alternateName: ['Kalabi', 'Kalabi Meble', 'Kalabi Meble Pajęczno', 'Kalabi Meble na Wymiar'],
         description: siteDescription,
         url: siteUrl,
         logo: {
@@ -64,9 +64,12 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Pajęczno',
-          addressRegion: 'Łódź',
+          addressRegion: 'łódzkie',
+          postalCode: '98-330',
           addressCountry: 'PL',
         },
+        currenciesAccepted: 'PLN',
+        paymentAccepted: 'Przelew bankowy, Gotówka',
         geo: {
           '@type': 'GeoCoordinates',
           latitude: 51.1464,
@@ -192,11 +195,7 @@ export const metadata: Metadata = {
     address: true,
   },
   icons: {
-    icon: [
-      { url: '/favicon.svg', type: 'image/svg+xml' },
-      { url: '/fav.png', type: 'image/png' },
-    ],
-    apple: '/fav.png',
+    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
   },
   openGraph: {
     type: 'website',

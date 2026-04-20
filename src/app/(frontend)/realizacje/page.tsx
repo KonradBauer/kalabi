@@ -11,22 +11,23 @@ import { JsonLd } from '@/components/ui/JsonLd'
 import { breadcrumbSchema, itemListSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Realizacje – Portfolio Mebli na Wymiar | Kalabi Pajęczno',
+  title: 'Realizacje – Meble na wymiar Pajęczno | Portfolio Kalabi',
   description:
-    'Portfolio realizacji Kalabi – kuchnie na wymiar, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Każdy projekt to indywidualne podejście i najwyższa jakość.',
+    'Portfolio mebli na wymiar z Pajęczna – Kalabi. Kuchnie na wymiar, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Zobacz gotowe realizacje i zainspiruj się.',
   keywords: [
-    'realizacje meble na wymiar',
+    'realizacje meble Pajęczno',
     'portfolio mebli na wymiar Pajęczno',
-    'galeria kuchni na wymiar',
+    'galeria kuchni na wymiar Pajęczno',
     'zdjęcia mebli na wymiar',
-    'inspiracje meblarskie',
+    'inspiracje meblarskie Pajęczno',
     'projekty kuchni zdjęcia',
-    'szafy wnękowe realizacje',
+    'szafy wnękowe realizacje Pajęczno',
+    'meble na wymiar galeria',
   ],
   alternates: { canonical: '/realizacje' },
   openGraph: {
-    title: 'Realizacje – Portfolio Kalabi | Meble na Wymiar',
-    description: 'Zobacz nasze realizacje – kuchnie, szafy, garderoby i meble na wymiar z Pajęczna.',
+    title: 'Realizacje – Meble na wymiar Pajęczno | Kalabi',
+    description: 'Portfolio kuchni, szaf, garderoby i mebli na wymiar z Pajęczna. Każda realizacja – indywidualny projekt.',
   },
 }
 

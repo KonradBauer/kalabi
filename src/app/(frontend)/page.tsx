@@ -3,6 +3,9 @@ export const dynamic = 'force-dynamic'
 import React from 'react'
 import { getPayload } from 'payload'
 import config from '@/payload.config'
+import type { Metadata } from 'next'
+import { JsonLd } from '@/components/ui/JsonLd'
+import { faqSchema } from '@/lib/jsonld'
 
 import { Hero } from '@/components/sections/Hero'
 import { VideoCarouselServer } from '@/components/sections/VideoCarouselServer'
@@ -22,6 +25,70 @@ import {
 
 import type { Media, HomePage as HomePageType } from '@/payload-types'
 
+export const metadata: Metadata = {
+  title: {
+    absolute: 'Meble Pajęczno – Kalabi | Meble na wymiar',
+  },
+  description:
+    'Kalabi – producent mebli na wymiar z Pajęczna. Kuchnie, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Indywidualny projekt, produkcja, montaż. Bezpłatna wycena – tel. 661 244 385.',
+  keywords: [
+    'meble Pajęczno',
+    'meble na wymiar Pajęczno',
+    'meble na wymiar',
+    'kuchnie na wymiar Pajęczno',
+    'szafy wnękowe Pajęczno',
+    'meblarnia Pajęczno',
+    'meblarz Pajęczno',
+    'stolarz Pajęczno',
+    'producent mebli Pajęczno',
+    'meble na zamówienie Pajęczno',
+    'kalabi meble Pajęczno',
+    'meble Wieluń',
+    'meble Radomsko',
+    'meble Częstochowa',
+    'meble Łódź',
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    title: 'Meble Pajęczno – Kalabi | Meble na wymiar',
+    description:
+      'Producent mebli na wymiar z Pajęczna. Kuchnie, szafy, garderoby – projekt, produkcja, montaż. Bezpłatna wycena.',
+  },
+}
+
+const HOME_FAQS = [
+  {
+    question: 'Gdzie znajduje się firma Kalabi produkująca meble na wymiar?',
+    answer:
+      'Kalabi mieści się w Pajęcznie (województwo łódzkie). Obsługujemy klientów z Pajęczna i całego regionu – Wielunia, Radomska, Częstochowy, Łodzi i okolic w promieniu 100 km.',
+  },
+  {
+    question: 'Jakie meble na wymiar wykonuje Kalabi z Pajęczna?',
+    answer:
+      'Kalabi wykonuje: kuchnie na wymiar, szafy wnękowe i garderoby, meble łazienkowe na wymiar, meble biurowe oraz meble do salonu. Każdy projekt jest indywidualny i dopasowany do potrzeb klienta.',
+  },
+  {
+    question: 'Czy wycena mebli na wymiar w Pajęcznie jest bezpłatna?',
+    answer:
+      'Tak, wycena mebli na wymiar jest całkowicie bezpłatna. Wystarczy zadzwonić pod numer 661 244 385 lub wypełnić formularz kontaktowy. Odpowiadamy w ciągu 24 godzin.',
+  },
+  {
+    question: 'Jak długo trwa realizacja mebli na wymiar?',
+    answer:
+      'Czas realizacji zależy od zakresu projektu. Standardowo wynosi od 4 do 8 tygodni od zatwierdzenia projektu i podpisania umowy.',
+  },
+  {
+    question: 'Czy Kalabi dojeżdża do klientów poza Pajęczno?',
+    answer:
+      'Tak, realizujemy projekty na terenie całego regionu – Wielunia, Radomska, Częstochowy, Łodzi i okolic. Obsługujemy klientów w promieniu ok. 100 km od Pajęczna.',
+  },
+  {
+    question: 'Czy meble na wymiar z Pajęczna są droższe niż standardowe?',
+    answer:
+      'Meble na wymiar Kalabi są konkurencyjnie wycenione względem jakości wykonania. Bezpłatna wycena pozwala dopasować projekt do budżetu klienta – zadzwoń: 661 244 385.',
+  },
+]
+
 export default async function HomePage() {
   const payload = await getPayload({ config })
 
@@ -38,6 +105,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <JsonLd data={faqSchema(HOME_FAQS)} />
       <Hero
         heading={homePage.hero?.heading || defaultHero.heading}
         subheading={homePage.hero?.subheading || defaultHero.subheading}

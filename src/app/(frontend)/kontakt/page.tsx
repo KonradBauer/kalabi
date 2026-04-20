@@ -9,27 +9,46 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { ContactForm } from '@/components/sections/ContactForm'
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/ui/JsonLd'
-import { breadcrumbSchema } from '@/lib/jsonld'
+import { breadcrumbSchema, faqSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Kontakt – Kalabi Meble na Wymiar | Pajęczno | Tel. 661 244 385',
+  title: 'Kontakt – Meble Pajęczno | Kalabi | Tel. 661 244 385',
   description:
-    'Skontaktuj się z Kalabi – producent mebli na wymiar. Pajęczno i okolice. Tel: 661 244 385, email: kalabimeblenawymiar@gmail.com. Bezpłatna wycena w 24h.',
+    'Skontaktuj się z Kalabi – producent mebli na wymiar z Pajęczna. Tel: 661 244 385, email: kalabimeblenawymiar@gmail.com. Bezpłatna wycena mebli w 24h.',
   keywords: [
     'kontakt kalabi',
+    'meble Pajęczno kontakt',
     'meble na wymiar Pajęczno kontakt',
-    'wycena mebli na wymiar',
+    'wycena mebli na wymiar Pajęczno',
     'bezpłatna wycena mebli',
     '661 244 385',
     'kalabimeblenawymiar gmail',
+    'meblarz Pajęczno kontakt',
     'stolarz Pajęczno kontakt',
   ],
   alternates: { canonical: '/kontakt' },
   openGraph: {
-    title: 'Kontakt – Kalabi Meble na Wymiar | Pajęczno',
-    description: 'Bezpłatna wycena mebli na wymiar. Tel: 661 244 385 – odpowiemy w 24h.',
+    title: 'Kontakt – Meble Pajęczno | Kalabi',
+    description: 'Bezpłatna wycena mebli na wymiar w Pajęcznie. Tel: 661 244 385 – odpowiemy w 24h.',
   },
 }
+
+const CONTACT_FAQS = [
+  {
+    question: 'Jak zamówić bezpłatną wycenę mebli na wymiar w Pajęcznie?',
+    answer:
+      'Zadzwoń pod numer 661 244 385 lub wypełnij formularz kontaktowy na stronie kalabimeble.pl. Odpowiadamy w ciągu 24 godzin i umawiamy się na bezpłatną konsultację.',
+  },
+  {
+    question: 'Jaki jest numer telefonu do Kalabi w Pajęcznie?',
+    answer: 'Telefon do Kalabi – producent mebli na wymiar z Pajęczna: 661 244 385.',
+  },
+  {
+    question: 'Czy Kalabi realizuje projekty mebli poza Pajęcznem?',
+    answer:
+      'Tak, obsługujemy klientów w promieniu ok. 100 km od Pajęczna – w Wieluniu, Radomsku, Częstochowie, Łodzi i całym regionie łódzkim.',
+  },
+]
 
 export default async function KontaktPage() {
   const payload = await getPayload({ config })
@@ -42,6 +61,7 @@ export default async function KontaktPage() {
         { name: 'Strona główna', url: '/' },
         { name: 'Kontakt', url: '/kontakt' },
       ])} />
+      <JsonLd data={faqSchema(CONTACT_FAQS)} />
       {/* Hero */}
       <section className="bg-primary py-20">
         <Container className="text-center">
@@ -67,7 +87,8 @@ export default async function KontaktPage() {
                   align="left"
                 />
 
-                <div className="mt-8 space-y-6">
+                <address className="mt-8 not-italic">
+                <div className="space-y-6">
                   {company?.address && (
                     <div className="flex gap-4">
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-border text-accent">
@@ -115,6 +136,7 @@ export default async function KontaktPage() {
                     </div>
                   )}
                 </div>
+                </address>
 
                 {/* Google Maps */}
                 {company?.address && (

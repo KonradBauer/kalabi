@@ -118,15 +118,14 @@ export const defaultServices = [
   },
   {
     id: 'svc-6',
-    title: 'Pomiar i projekt 3D',
+    title: 'Pomiar i wycena',
     slug: 'projekt',
-    shortDescription:
-      'Bezpłatny pomiar w domu klienta i fotorealistyczna wizualizacja 3D. Zobaczysz swoje meble zanim powstaną.',
+    shortDescription: 'Bezpłatny pomiar w domu klienta i szczegółowa wycena na miejscu. Dobierzemy rozwiązania dopasowane do Twojej przestrzeni.',
     icon: 'Projekt',
     image: null,
     features: [
       { feature: 'Bezpłatny pomiar' },
-      { feature: 'Wizualizacja 3D' },
+      { feature: 'Wycena na miejscu' },
       { feature: 'Dobór materiałów' },
     ],
     order: 6,

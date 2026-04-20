@@ -1,5 +1,17 @@
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kalabimeble.pl'
 
+export function faqSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  }
+}
+
 export function breadcrumbSchema(items: { name: string; url?: string }[]) {
   return {
     '@context': 'https://schema.org',

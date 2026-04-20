@@ -1,9 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 import Lightbox from 'yet-another-react-lightbox'
 import 'yet-another-react-lightbox/styles.css'
+import { SkeletonImage } from '@/components/ui/SkeletonImage'
 
 type GalleryImage = {
   url: string
@@ -40,7 +40,7 @@ export function GalleryLightbox({ images }: GalleryLightboxProps) {
             }}
             className="group relative aspect-[4/3] overflow-hidden bg-primary cursor-pointer"
           >
-            <Image
+            <SkeletonImage
               src={img.url}
               alt={img.alt}
               fill

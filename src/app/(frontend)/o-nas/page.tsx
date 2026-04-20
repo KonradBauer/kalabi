@@ -14,21 +14,23 @@ import { JsonLd } from '@/components/ui/JsonLd'
 import { breadcrumbSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'O nas - Kalabi Producent Mebli na Wymiar | Pajęczno',
+  title: 'O nas – Meblarnia Kalabi | Producent mebli Pajęczno',
   description:
-    'Poznaj Kalabi – rodzinna firma produkująca meble na wymiar z Pajęczna. Pasja do drewna, indywidualne podejście i lata doświadczenia. Bezpłatna konsultacja.',
+    'Kalabi – meblarnia z Pajęczna. Produkujemy meble na wymiar z pasją i precyzją. Kuchnie, szafy, garderoby i meble łazienkowe. Poznaj naszą historię i zespół.',
   keywords: [
     'kalabi meble o nas',
     'producent mebli Pajęczno',
+    'meblarnia Pajęczno',
     'firma meblarska Pajęczno',
     'stolarnia Pajęczno',
-    'meble na wymiar firma',
-    'o nas kalabi',
+    'meblarz Pajęczno',
+    'meble na wymiar firma Pajęczno',
+    'kalabi Pajęczno',
   ],
   alternates: { canonical: '/o-nas' },
   openGraph: {
-    title: 'O nas – Kalabi Meble na Wymiar | Pajęczno',
-    description: 'Poznaj naszą historię, pasję i podejście do tworzenia mebli na wymiar w Pajęcznie.',
+    title: 'O nas – Meblarnia Kalabi | Pajęczno',
+    description: 'Producent mebli na wymiar z Pajęczna. Poznaj naszą historię, pasję i podejście do rzemiosła.',
   },
 }
 
