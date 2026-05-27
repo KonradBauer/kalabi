@@ -104,23 +104,23 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
         makesOffer: [
           {
             '@type': 'Offer',
-            itemOffered: { '@type': 'Service', name: 'Kuchnie na wymiar', url: `${siteUrl}/uslugi#kuchnie` },
+            itemOffered: { '@type': 'Service', name: 'Kuchnie na wymiar', url: `${siteUrl}/#uslugi` },
           },
           {
             '@type': 'Offer',
-            itemOffered: { '@type': 'Service', name: 'Szafy i garderoby na wymiar', url: `${siteUrl}/uslugi#szafy` },
+            itemOffered: { '@type': 'Service', name: 'Szafy i garderoby na wymiar', url: `${siteUrl}/#uslugi` },
           },
           {
             '@type': 'Offer',
-            itemOffered: { '@type': 'Service', name: 'Meble łazienkowe na wymiar', url: `${siteUrl}/uslugi#lazienka` },
+            itemOffered: { '@type': 'Service', name: 'Meble łazienkowe na wymiar', url: `${siteUrl}/#uslugi` },
           },
           {
             '@type': 'Offer',
-            itemOffered: { '@type': 'Service', name: 'Meble biurowe na wymiar', url: `${siteUrl}/uslugi#biuro` },
+            itemOffered: { '@type': 'Service', name: 'Meble biurowe na wymiar', url: `${siteUrl}/#uslugi` },
           },
           {
             '@type': 'Offer',
-            itemOffered: { '@type': 'Service', name: 'Meble do salonu na wymiar', url: `${siteUrl}/uslugi#salon` },
+            itemOffered: { '@type': 'Service', name: 'Meble do salonu na wymiar', url: `${siteUrl}/#uslugi` },
           },
         ],
       },

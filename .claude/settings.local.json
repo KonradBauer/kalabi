@@ -41,7 +41,17 @@
       "Bash(ls:*)",
       "Bash(grep -r \"dialog\\\\|Dialog\\\\|Modal\\\\|modal\" /c/dev/kalabi/src --include=*.tsx --include=*.ts)",
       "Bash(identify public/fav.png)",
-      "Bash(pnpm tsc *)"
+      "Bash(pnpm tsc *)",
+      "WebFetch(domain:kalabimeble.pl)",
+      "WebFetch(domain:phantom-browser-virid.vercel.app)",
+      "PowerShell(Get-Content *)",
+      "PowerShell($content = Get-Content \"C:\\\\dev\\\\kalabi\\\\.claude\\\\ux-audit\\\\use-as-skill\\\\skills\\\\ux-audit\\\\projects\\\\kalabimeble\\\\kalabimeble_audit.html\" -Raw -Encoding UTF8; $matches = [regex]::Matches\\($content, '\\\\{[^}]{1,40}\\\\}'\\); $remaining = $matches | Where-Object { $_.Value -notmatch '^\\\\{[ij]\\\\}$|^\\\\{n\\\\}$|^\\\\{total\\\\}$|^\\\\{slug\\\\}$|^\\\\{project-' }; echo \"Niezastąpione placeholdery:\"; $remaining | Select-Object -ExpandProperty Value | Sort-Object -Unique)",
+      "PowerShell($html = Get-Content \"C:\\\\dev\\\\kalabi\\\\.claude\\\\ux-audit\\\\use-as-skill\\\\skills\\\\ux-audit\\\\projects\\\\kalabimeble\\\\kalabimeble_audit.html\" -Raw -Encoding UTF8; $start = $html.IndexOf\\('{\"namespace\"'\\); $end = $html.IndexOf\\('</script>', $start\\); $json = $html.Substring\\($start, $end - $start\\).Trim\\(\\); try { $null = $json | ConvertFrom-Json; echo \"JSON valide OK\" } catch { echo \"JSON blad: $_\" })",
+      "PowerShell($html = Get-Content \"C:\\\\dev\\\\kalabi\\\\.claude\\\\ux-audit\\\\use-as-skill\\\\skills\\\\ux-audit\\\\projects\\\\kalabimeble\\\\kalabimeble_audit.html\" -Raw -Encoding UTF8; $start = $html.IndexOf\\('\"namespace\": \"audit-kalabimeble'\\); echo \"Start index: $start\"; if \\($start -gt 0\\) { $jsonStart = $html.LastIndexOf\\('{', $start\\); $end = $html.IndexOf\\('</script>', $start\\); echo \"JSON start: $jsonStart, end: $end\" })",
+      "PowerShell($html = Get-Content \"C:\\\\dev\\\\kalabi\\\\.claude\\\\ux-audit\\\\use-as-skill\\\\skills\\\\ux-audit\\\\projects\\\\kalabimeble\\\\kalabimeble_audit.html\" -Raw -Encoding UTF8; $jsonStart = 43596; $end = 84490; $json = $html.Substring\\($jsonStart, $end - $jsonStart\\).Trim\\(\\); try { $obj = $json | ConvertFrom-Json; echo \"JSON OK\"; echo \"wireframes: $\\(\\($obj.wireframes\\).Count\\)\"; echo \"strategy: $\\(\\($obj.strategy\\).Count\\)\"; echo \"wireframe: $\\(\\($obj.wireframe\\).Count\\)\"; echo \"questions: $\\(\\($obj.questions\\).Count\\)\" } catch { echo \"JSON blad: $\\($_.Exception.Message\\)\" })",
+      "PowerShell($size = \\(Get-Item \"C:\\\\dev\\\\kalabi\\\\.claude\\\\ux-audit\\\\use-as-skill\\\\skills\\\\ux-audit\\\\projects\\\\kalabimeble\\\\kalabimeble_audit.html\"\\).Length; echo \"Plik audytu: $\\([math]::Round\\($size/1024\\)\\)KB\")",
+      "PowerShell(Start-Process \"C:\\\\dev\\\\kalabi\\\\.claude\\\\ux-audit\\\\use-as-skill\\\\skills\\\\ux-audit\\\\projects\\\\kalabimeble\\\\kalabimeble_audit.html\")",
+      "Bash(Remove-Item *)"
     ]
   }
 }

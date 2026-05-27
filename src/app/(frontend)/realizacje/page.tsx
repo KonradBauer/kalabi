@@ -81,13 +81,9 @@ export default async function RealizacjePage() {
       <section className="border-t border-border py-16 bg-background">
         <Container className="text-center">
           <p className="text-muted">
-            Zainteresowany podobnym projektem? Sprawdź{' '}
-            <a href="/uslugi" className="font-medium text-accent underline underline-offset-4 hover:text-secondary transition-colors">
-              nasze usługi meblarskie
-            </a>
-            {' '}lub{' '}
+            Zainteresowany podobnym projektem?{' '}
             <a href="/kontakt" className="font-medium text-accent underline underline-offset-4 hover:text-secondary transition-colors">
-              poproś o bezpłatną wycenę
+              Poproś o bezpłatną wycenę
             </a>
             .
           </p>
