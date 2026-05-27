@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const revalidate = 900
 
 import React from 'react'
 import { notFound } from 'next/navigation'
@@ -38,19 +38,20 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
   if (!project) return { title: 'Nie znaleziono' }
 
+  const metaTitle = project.title.charAt(0).toUpperCase() + project.title.slice(1)
   const mainImage = project.mainImage as Media | undefined
-  const ogImage = mainImage?.url ? { url: mainImage.url, alt: project.title } : undefined
+  const ogImage = mainImage?.url ? { url: mainImage.url, alt: metaTitle } : undefined
 
   const categoryName = typeof project.category === 'object' && project.category !== null
     ? (project.category as ProjectCategory).name
     : undefined
 
   return {
-    title: project.meta?.title || `${project.title} – Realizacja Kalabi`,
+    title: { absolute: project.meta?.title || `${metaTitle} – Realizacja | Kalabi Meble na Wymiar` },
     description: project.meta?.description || project.description ||
-      `${project.title} – realizacja mebli na wymiar firmy Kalabi z Pajęczna.`,
+      `${metaTitle} – realizacja mebli na wymiar firmy Kalabi z Pajęczna.`,
     keywords: [
-      project.title,
+      metaTitle,
       ...(categoryName ? [categoryName, `${categoryName} na wymiar`] : []),
       'realizacja meble na wymiar',
       'meble Pajęczno',
@@ -58,7 +59,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     ],
     alternates: { canonical: `/realizacje/${slug}` },
     openGraph: {
-      title: `${project.title} – Realizacja | Kalabi Meble na Wymiar`,
+      title: `${metaTitle} – Realizacja | Kalabi Meble na Wymiar`,
       description: project.meta?.description || project.description || '',
       ...(ogImage && { images: [ogImage] }),
     },
@@ -77,6 +78,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
   const project = data.docs[0]
   if (!project) notFound()
 
+  const displayTitle = project.title.charAt(0).toUpperCase() + project.title.slice(1)
   const mainImage = project.mainImage as Media | undefined
   const category = project.category as ProjectCategory | undefined
   const gallery = project.gallery as { image: Media; caption?: string | null }[] | undefined
@@ -121,7 +123,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
         <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" />
         <Container className="relative z-10 flex h-full flex-col justify-end pb-12">
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
-            {project.title}
+            {displayTitle}
           </h1>
         </Container>
       </section>
@@ -171,9 +173,11 @@ export default async function ProjectPage({ params }: { params: Params }) {
               </h2>
             </ScrollReveal>
             <GalleryLightbox
-              images={gallery.map((item) => ({
+              images={gallery.map((item, idx) => ({
                 url: item.image.url || '',
-                alt: item.image.alt || '',
+                alt: item.image.alt && !/^\d+$/.test(item.image.alt.trim())
+                  ? item.image.alt
+                  : `${project.title} – zdjęcie ${idx + 1}`,
                 width: item.image.width || 1200,
                 height: item.image.height || 900,
                 caption: item.caption,

@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 
 import React from 'react'
 import { getPayload } from 'payload'
@@ -12,16 +12,16 @@ import { JsonLd } from '@/components/ui/JsonLd'
 import { breadcrumbSchema, faqSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Kontakt – Meble Pajęczno | Kalabi | Tel. 661 244 385',
+  title: { absolute: 'Kontakt – Meble Pajęczno | Kalabi | Tel. 725 659 806' },
   description:
-    'Skontaktuj się z Kalabi – producent mebli na wymiar z Pajęczna. Tel: 661 244 385, email: kalabimeblenawymiar@gmail.com. Bezpłatna wycena mebli w 24h.',
+    'Skontaktuj się z Kalabi – producent mebli na wymiar z Pajęczna. Tel: 725 659 806, email: kalabimeblenawymiar@gmail.com. Bezpłatna wycena mebli w 24h.',
   keywords: [
     'kontakt kalabi',
     'meble Pajęczno kontakt',
     'meble na wymiar Pajęczno kontakt',
     'wycena mebli na wymiar Pajęczno',
     'bezpłatna wycena mebli',
-    '661 244 385',
+    '725 659 806',
     'kalabimeblenawymiar gmail',
     'meblarz Pajęczno kontakt',
     'stolarz Pajęczno kontakt',
@@ -29,7 +29,8 @@ export const metadata: Metadata = {
   alternates: { canonical: '/kontakt' },
   openGraph: {
     title: 'Kontakt – Meble Pajęczno | Kalabi',
-    description: 'Bezpłatna wycena mebli na wymiar w Pajęcznie. Tel: 661 244 385 – odpowiemy w 24h.',
+    description: 'Bezpłatna wycena mebli na wymiar w Pajęcznie. Tel: 725 659 806 – odpowiemy w 24h.',
+    images: [{ url: '/images/hero-1.jpg', width: 1200, height: 630, alt: 'Kalabi – kontakt i bezpłatna wycena mebli' }],
   },
 }
 
@@ -37,11 +38,11 @@ const CONTACT_FAQS = [
   {
     question: 'Jak zamówić bezpłatną wycenę mebli na wymiar w Pajęcznie?',
     answer:
-      'Zadzwoń pod numer 661 244 385 lub wypełnij formularz kontaktowy na stronie kalabimeble.pl. Odpowiadamy w ciągu 24 godzin i umawiamy się na bezpłatną konsultację.',
+      'Zadzwoń pod numer 725 659 806 lub wypełnij formularz kontaktowy na stronie kalabimeble.pl. Odpowiadamy w ciągu 24 godzin i umawiamy się na bezpłatną konsultację.',
   },
   {
     question: 'Jaki jest numer telefonu do Kalabi w Pajęcznie?',
-    answer: 'Telefon do Kalabi – producent mebli na wymiar z Pajęczna: 661 244 385.',
+    answer: 'Telefon do Kalabi – producent mebli na wymiar z Pajęczna: 725 659 806.',
   },
   {
     question: 'Czy Kalabi realizuje projekty mebli poza Pajęcznem?',

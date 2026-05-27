@@ -23,6 +23,9 @@ export function PayloadImage({
 }: PayloadImageProps) {
   if (!media?.url) return null
 
+  // CMS alt fields sometimes contain auto-generated numeric strings — strip them
+  const resolvedAlt = media.alt && !/^\d+$/.test(media.alt.trim()) ? media.alt : ''
+
   const imgProps = fill
     ? { fill: true as const }
     : {
@@ -33,7 +36,7 @@ export function PayloadImage({
   return (
     <Image
       src={media.url}
-      alt={media.alt || ''}
+      alt={resolvedAlt}
       sizes={sizes}
       priority={priority}
       className={className}

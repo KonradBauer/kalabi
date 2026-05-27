@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const revalidate = 1800
 
 import React from 'react'
 import { getPayload } from 'payload'
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     absolute: 'Meble Pajęczno – Kalabi | Meble na wymiar',
   },
   description:
-    'Kalabi – producent mebli na wymiar z Pajęczna. Kuchnie, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Indywidualny projekt, produkcja, montaż. Bezpłatna wycena – tel. 661 244 385.',
+    'Kalabi – producent mebli na wymiar z Pajęczna. Kuchnie, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Indywidualny projekt, produkcja, montaż. Bezpłatna wycena – tel. 725 659 806.',
   keywords: [
     'meble Pajęczno',
     'meble na wymiar Pajęczno',
@@ -70,7 +70,7 @@ const HOME_FAQS = [
   {
     question: 'Czy wycena mebli na wymiar w Pajęcznie jest bezpłatna?',
     answer:
-      'Tak, wycena mebli na wymiar jest całkowicie bezpłatna. Wystarczy zadzwonić pod numer 661 244 385 lub wypełnić formularz kontaktowy. Odpowiadamy w ciągu 24 godzin.',
+      'Tak, wycena mebli na wymiar jest całkowicie bezpłatna. Wystarczy zadzwonić pod numer 725 659 806 lub wypełnić formularz kontaktowy. Odpowiadamy w ciągu 24 godzin.',
   },
   {
     question: 'Jak długo trwa realizacja mebli na wymiar?',
@@ -85,7 +85,7 @@ const HOME_FAQS = [
   {
     question: 'Czy meble na wymiar z Pajęczna są droższe niż standardowe?',
     answer:
-      'Meble na wymiar Kalabi są konkurencyjnie wycenione względem jakości wykonania. Bezpłatna wycena pozwala dopasować projekt do budżetu klienta – zadzwoń: 661 244 385.',
+      'Meble na wymiar Kalabi są konkurencyjnie wycenione względem jakości wykonania. Bezpłatna wycena pozwala dopasować projekt do budżetu klienta – zadzwoń: 725 659 806.',
   },
 ]
 

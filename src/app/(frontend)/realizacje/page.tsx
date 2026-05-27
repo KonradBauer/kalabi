@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const revalidate = 900
 
 import React from 'react'
 import { getPayload } from 'payload'
@@ -11,7 +11,7 @@ import { JsonLd } from '@/components/ui/JsonLd'
 import { breadcrumbSchema, itemListSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Realizacje – Meble na wymiar Pajęczno | Portfolio Kalabi',
+  title: { absolute: 'Realizacje – Meble na wymiar Pajęczno | Portfolio Kalabi' },
   description:
     'Portfolio mebli na wymiar z Pajęczna – Kalabi. Kuchnie na wymiar, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Zobacz gotowe realizacje i zainspiruj się.',
   keywords: [
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Realizacje – Meble na wymiar Pajęczno | Kalabi',
     description: 'Portfolio kuchni, szaf, garderoby i mebli na wymiar z Pajęczna. Każda realizacja – indywidualny projekt.',
+    images: [{ url: '/images/hero-1.jpg', width: 1200, height: 630, alt: 'Kalabi – realizacje mebli na wymiar Pajęczno' }],
   },
 }
 
@@ -52,7 +53,7 @@ export default async function RealizacjePage() {
       <section className="bg-primary py-20">
         <Container className="text-center">
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
-            Nasze realizacje
+            Realizacje – meble na wymiar Pajęczno
           </h1>
         </Container>
       </section>
@@ -74,6 +75,22 @@ export default async function RealizacjePage() {
               Projekty pojawią się wkrótce.
             </p>
           )}
+        </Container>
+      </section>
+
+      <section className="border-t border-border py-16 bg-background">
+        <Container className="text-center">
+          <p className="text-muted">
+            Zainteresowany podobnym projektem? Sprawdź{' '}
+            <a href="/uslugi" className="font-medium text-accent underline underline-offset-4 hover:text-secondary transition-colors">
+              nasze usługi meblarskie
+            </a>
+            {' '}lub{' '}
+            <a href="/kontakt" className="font-medium text-accent underline underline-offset-4 hover:text-secondary transition-colors">
+              poproś o bezpłatną wycenę
+            </a>
+            .
+          </p>
         </Container>
       </section>
     </>

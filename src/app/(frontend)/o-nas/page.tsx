@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const revalidate = 1800
 
 import React from 'react'
 import { getPayload } from 'payload'
@@ -14,7 +14,7 @@ import { JsonLd } from '@/components/ui/JsonLd'
 import { breadcrumbSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'O nas – Meblarnia Kalabi | Producent mebli Pajęczno',
+  title: { absolute: 'O nas – Meblarnia Kalabi | Producent mebli Pajęczno' },
   description:
     'Kalabi – meblarnia z Pajęczna. Produkujemy meble na wymiar z pasją i precyzją. Kuchnie, szafy, garderoby i meble łazienkowe. Poznaj naszą historię i zespół.',
   keywords: [
@@ -31,6 +31,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'O nas – Meblarnia Kalabi | Pajęczno',
     description: 'Producent mebli na wymiar z Pajęczna. Poznaj naszą historię, pasję i podejście do rzemiosła.',
+    images: [{ url: '/images/hero-2.jpg', width: 1200, height: 630, alt: 'Kalabi – meblarnia Pajęczno' }],
   },
 }
 
@@ -65,7 +66,7 @@ export default async function AboutPage() {
         )}
         <Container className="relative z-10 py-20 text-center">
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
-            {hero.heading || 'O nas'}
+            {hero.heading || 'O nas – Meblarnia Kalabi'}
           </h1>
         </Container>
       </section>

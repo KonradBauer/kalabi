@@ -8,6 +8,7 @@ import { Footer } from '@/components/layout/Footer'
 import { PageTransition } from '@/components/layout/PageTransition'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
 import { FaviconSwitcher } from '@/components/ui/FaviconSwitcher'
+import { JsonLd as JsonLdComponent } from '@/components/ui/JsonLd'
 import { defaultCompanyInfo } from '@/lib/defaults'
 import './styles.css'
 
@@ -143,12 +144,7 @@ function JsonLd({ siteUrl, phone, email, address, socialLinks }: JsonLdProps) {
     ],
   }
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(businessData) }}
-    />
-  )
+  return <JsonLdComponent data={businessData} />
 }
 
 export const viewport: Viewport = {

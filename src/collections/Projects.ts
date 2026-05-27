@@ -6,6 +6,19 @@ export const Projects: CollectionConfig = {
     singular: 'Realizacja',
     plural: 'Realizacje',
   },
+  hooks: {
+    beforeValidate: [
+      ({ data }) => {
+        if (data?.slug) {
+          data.slug = data.slug.toLowerCase().trim().replace(/\s+/g, '-')
+        }
+        if (data?.title) {
+          data.title = data.title.charAt(0).toUpperCase() + data.title.slice(1)
+        }
+        return data
+      },
+    ],
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'category', 'featured', 'updatedAt'],

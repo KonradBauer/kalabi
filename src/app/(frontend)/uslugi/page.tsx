@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic'
+export const revalidate = 1800
 
 import React from 'react'
 import { getPayload } from 'payload'
@@ -12,9 +12,9 @@ import { JsonLd } from '@/components/ui/JsonLd'
 import { breadcrumbSchema, serviceListSchema, faqSchema } from '@/lib/jsonld'
 
 export const metadata: Metadata = {
-  title: 'Meble Pajęczno – Usługi | Kuchnie, Szafy, Garderoby | Kalabi',
+  title: { absolute: 'Usługi | Kuchnie, Szafy, Garderoby na wymiar – Kalabi Pajęczno' },
   description:
-    'Meble na wymiar Pajęczno – Kalabi: kuchnie, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Projekt, produkcja i montaż na terenie całego regionu. Bezpłatna wycena – tel. 661 244 385.',
+    'Meble na wymiar Pajęczno – Kalabi: kuchnie, szafy wnękowe, garderoby, meble łazienkowe i biurowe. Projekt, produkcja i montaż na terenie całego regionu. Bezpłatna wycena – tel. 725 659 806.',
   keywords: [
     'meble Pajęczno',
     'kuchnie na wymiar Pajęczno',
@@ -34,6 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Meble Pajęczno – Kalabi | Kuchnie, Szafy, Garderoby',
     description: 'Meble na wymiar Pajęczno: kuchnie, szafy, garderoby, meble łazienkowe – projekt, produkcja, montaż.',
+    images: [{ url: '/images/hero-3.jpg', width: 1200, height: 630, alt: 'Kalabi – usługi meblarskie Pajęczno' }],
   },
 }
 
@@ -84,7 +85,7 @@ export default async function UslugiPage() {
       <section className="bg-primary py-20">
         <Container className="text-center">
           <h1 className="font-heading text-4xl font-bold text-surface sm:text-5xl lg:text-6xl">
-            Nasze usługi
+            Meble na wymiar – nasze usługi
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-surface/70">
             Oferujemy kompleksowe usługi w zakresie projektowania i wykonania mebli na wymiar.
@@ -153,6 +154,22 @@ export default async function UslugiPage() {
               Usługi pojawią się wkrótce.
             </p>
           )}
+        </Container>
+      </section>
+
+      <section className="border-t border-border py-16 bg-background">
+        <Container className="text-center">
+          <p className="text-muted">
+            Zobacz nasze gotowe{' '}
+            <a href="/realizacje" className="font-medium text-accent underline underline-offset-4 hover:text-secondary transition-colors">
+              realizacje mebli na wymiar
+            </a>
+            {' '}lub{' '}
+            <a href="/kontakt" className="font-medium text-accent underline underline-offset-4 hover:text-secondary transition-colors">
+              zamów bezpłatną wycenę
+            </a>
+            .
+          </p>
         </Container>
       </section>
     </>

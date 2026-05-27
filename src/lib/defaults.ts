@@ -247,7 +247,7 @@ export const defaultFooter = {
   ],
   contactInfo: {
     address: 'Pajęczno',
-    phone: '+48 661 244 385',
+    phone: '+48 725 659 806',
     email: 'kalabimeblenawymiar@gmail.com',
   },
   socialLinks: [
@@ -261,7 +261,7 @@ export const defaultCompanyInfo = {
   name: 'Kalabi Producent Mebli na Wymiar',
   nip: '000-000-00-00',
   address: 'Pajęczno',
-  phone: '+48 661 244 385',
+  phone: '+48 725 659 806',
   email: 'kalabimeblenawymiar@gmail.com',
   googleMapsUrl: '',
   socialLinks: [

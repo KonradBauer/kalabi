@@ -7,10 +7,15 @@ type ProjectCardProps = {
   project: Project & { _placeholder?: string }
 }
 
+function capitalizeFirst(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 export function ProjectCard({ project }: ProjectCardProps) {
   const image = project.mainImage as Media | undefined
   const placeholder = (project as any)._placeholder as string | undefined
   const imgSrc = image?.url || placeholder
+  const title = capitalizeFirst(project.title)
 
   return (
     <Link
@@ -29,7 +34,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
       <div className="absolute inset-x-0 bottom-0 p-6">
         <h3 className="font-heading text-xl font-bold text-surface">
-          {project.title}
+          {title}
         </h3>
       </div>
     </Link>

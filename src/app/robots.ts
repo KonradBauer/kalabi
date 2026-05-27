@@ -11,9 +11,13 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/admin/', '/api/', '/_next/'],
       },
       // AI training bots — content is proprietary, not licensed for model training
+      // AI training bots — treść zastrzeżona, nie licencjonowana do trenowania modeli
       { userAgent: 'GPTBot', disallow: ['/'] },
       { userAgent: 'ChatGPT-User', disallow: ['/'] },
-      { userAgent: 'OAI-SearchBot', disallow: ['/'] },
+      // Search/citation bots — blokuj strony, ale pozwól czytać llms.txt (cytowania w AI)
+      { userAgent: 'OAI-SearchBot', allow: ['/llms.txt'], disallow: ['/'] },
+      { userAgent: 'PerplexityBot', allow: ['/llms.txt'], disallow: ['/'] },
+      { userAgent: 'YouBot', allow: ['/llms.txt'], disallow: ['/'] },
       { userAgent: 'CCBot', disallow: ['/'] },
       { userAgent: 'ClaudeBot', disallow: ['/'] },
       { userAgent: 'anthropic-ai', disallow: ['/'] },
@@ -28,8 +32,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: 'FacebookBot', disallow: ['/'] },
       { userAgent: 'Omgilibot', disallow: ['/'] },
       { userAgent: 'omgili', disallow: ['/'] },
-      { userAgent: 'YouBot', disallow: ['/'] },
-      { userAgent: 'PerplexityBot', disallow: ['/'] },
       { userAgent: 'ImagesiftBot', disallow: ['/'] },
       { userAgent: 'Applebot-Extended', disallow: ['/'] },
       { userAgent: 'DataForSeoBot', disallow: ['/'] },
