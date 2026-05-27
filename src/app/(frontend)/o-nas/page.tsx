@@ -1,4 +1,4 @@
-export const revalidate = 1800
+export const dynamic = 'force-dynamic'
 
 import React from 'react'
 import { getPayload } from 'payload'
