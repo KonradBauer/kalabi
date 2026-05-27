@@ -39,7 +39,9 @@
       "Bash(taskkill:*)",
       "Bash(curl:*)",
       "Bash(ls:*)",
-      "Bash(grep -r \"dialog\\\\|Dialog\\\\|Modal\\\\|modal\" /c/dev/kalabi/src --include=*.tsx --include=*.ts)"
+      "Bash(grep -r \"dialog\\\\|Dialog\\\\|Modal\\\\|modal\" /c/dev/kalabi/src --include=*.tsx --include=*.ts)",
+      "Bash(identify public/fav.png)",
+      "Bash(pnpm tsc *)"
     ]
   }
 }
