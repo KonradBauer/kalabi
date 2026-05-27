@@ -25,7 +25,7 @@ const poppins = Poppins({
   display: 'swap',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://kalabimeble.pl'
 const siteName = 'Kalabi'
 const siteDescription =
   'Kalabi - producent mebli na wymiar z Pajęczna. Kuchnie, szafy, garderoby, meble łazienkowe i biurowe. Indywidualne projekty, najwyższa jakość wykonania, bezpłatna wycena.'
@@ -202,10 +202,10 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: '/images/hero-1.jpg',
+        url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Kalabi - Meble na wymiar',
+        alt: 'Kalabi - Meble na wymiar Pajęczno',
       },
     ],
   },
@@ -213,7 +213,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kalabi | Meble na wymiar Pajęczno',
     description: siteDescription,
-    images: ['/images/hero-1.jpg'],
+    images: ['/images/og-image.jpg'],
   },
   alternates: {
     canonical: siteUrl,

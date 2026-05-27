@@ -53,6 +53,14 @@ export const metadata: Metadata = {
     title: 'Meble Pajęczno – Kalabi | Meble na wymiar',
     description:
       'Producent mebli na wymiar z Pajęczna. Kuchnie, szafy, garderoby – projekt, produkcja, montaż. Bezpłatna wycena.',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Kalabi - Meble na wymiar Pajęczno',
+      },
+    ],
   },
 }
 
