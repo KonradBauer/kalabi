@@ -129,12 +129,12 @@ export async function Footer() {
           <p className="mt-2 text-xs text-surface/30">
             Powered by{' '}
             <a
-              href="https://kbauer.pl"
+              href="https://studiocodeart.pl"
               target="_blank"
               rel="noopener noreferrer"
               className="text-surface/40 transition-colors hover:text-accent"
             >
-              kbauer.pl
+              studiocodeart.pl
             </a>
           </p>
         </Container>
