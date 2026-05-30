@@ -191,7 +191,7 @@ export const metadata: Metadata = {
     address: true,
   },
   icons: {
-    icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
+    icon: [{ url: '/favicon.png', type: 'image/png' }],
   },
   openGraph: {
     type: 'website',
@@ -202,7 +202,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     images: [
       {
-        url: '/images/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Kalabi - Meble na wymiar Pajęczno',
@@ -213,7 +213,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Kalabi | Meble na wymiar Pajęczno',
     description: siteDescription,
-    images: ['/images/og-image.jpg'],
+    images: ['/og-image.png'],
   },
   alternates: {
     canonical: siteUrl,
