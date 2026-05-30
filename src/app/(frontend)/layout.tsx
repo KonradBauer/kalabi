@@ -7,7 +7,6 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { PageTransition } from '@/components/layout/PageTransition'
 import { ScrollToTop } from '@/components/ui/ScrollToTop'
-import { FaviconSwitcher } from '@/components/ui/FaviconSwitcher'
 import { JsonLd as JsonLdComponent } from '@/components/ui/JsonLd'
 import { defaultCompanyInfo } from '@/lib/defaults'
 import './styles.css'
@@ -249,8 +248,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="pl" className={`${inter.variable} ${poppins.variable}`}>
       <body className="min-h-screen overflow-x-hidden bg-background font-body text-primary antialiased">
-        <FaviconSwitcher />
-        <JsonLd siteUrl={siteUrl} phone={contactPhone} email={contactEmail} address={contactAddress} socialLinks={socialLinks} />
+<JsonLd siteUrl={siteUrl} phone={contactPhone} email={contactEmail} address={contactAddress} socialLinks={socialLinks} />
         <Header />
         <PageTransition>
           <main className="pt-[108px]">{children}</main>
