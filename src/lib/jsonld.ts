@@ -34,7 +34,7 @@ export function serviceListSchema(
     provider: { '@id': `${siteUrl}/#organization` },
     name: service.title,
     ...(service.shortDescription ? { description: service.shortDescription } : {}),
-    ...(service.slug ? { url: `${siteUrl}/uslugi#${service.slug}` } : {}),
+    url: `${siteUrl}/#uslugi`,
     areaServed: {
       '@type': 'GeoCircle',
       geoMidpoint: { '@type': 'GeoCoordinates', latitude: 51.1464, longitude: 19.2264 },

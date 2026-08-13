@@ -14,7 +14,7 @@ type ServicesGridProps = {
 
 export function ServicesGrid({ label, heading, description, services }: ServicesGridProps) {
   return (
-    <section className="bg-surface py-24 lg:py-32">
+    <section id="uslugi" className="bg-surface py-24 lg:py-32">
       <Container>
         <ScrollReveal>
           <SectionHeading label={label} heading={heading} description={description} />

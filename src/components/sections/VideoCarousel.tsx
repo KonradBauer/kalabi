@@ -135,6 +135,8 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
                 <video
                   ref={videoRef}
                   src={current.url}
+                  poster={current.thumbnailUrl || thumbnails[current.id] || undefined}
+                  preload="metadata"
                   className="h-full w-full object-contain"
                   muted
                   playsInline
@@ -145,6 +147,7 @@ export function VideoCarousel({ label, heading, videos }: VideoCarouselProps) {
                 {/* Play/pause overlay */}
                 <button
                   onClick={togglePlay}
+                  aria-label={isPlaying ? 'Wstrzymaj film' : 'Odtwórz film'}
                   className="absolute inset-0 flex items-center justify-center"
                 >
                   {!isPlaying && (

@@ -45,6 +45,6 @@ Obsługiwane miasta: Pajęczno, Wieluń, Radomsko, Częstochowa, Łódź, Bełch
 
 - Strona główna: https://kalabimeble.pl
 - O nas: https://kalabimeble.pl/o-nas
-- Usługi: https://kalabimeble.pl/uslugi
+- Usługi: https://kalabimeble.pl/#uslugi
 - Realizacje: https://kalabimeble.pl/realizacje
 - Kontakt: https://kalabimeble.pl/kontakt

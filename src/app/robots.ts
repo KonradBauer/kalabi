@@ -10,20 +10,19 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/admin/', '/api/', '/_next/'],
       },
-      // AI training bots — content is proprietary, not licensed for model training
-      // AI training bots — treść zastrzeżona, nie licencjonowana do trenowania modeli
+      // Trenowanie modeli — treść zastrzeżona, nie licencjonowana do trenowania
       { userAgent: 'GPTBot', disallow: ['/'] },
-      { userAgent: 'ChatGPT-User', disallow: ['/'] },
-      // Search/citation bots — blokuj strony, ale pozwól czytać llms.txt (cytowania w AI)
-      { userAgent: 'OAI-SearchBot', allow: ['/llms.txt'], disallow: ['/'] },
-      { userAgent: 'PerplexityBot', allow: ['/llms.txt'], disallow: ['/'] },
-      { userAgent: 'YouBot', allow: ['/llms.txt'], disallow: ['/'] },
       { userAgent: 'CCBot', disallow: ['/'] },
-      { userAgent: 'ClaudeBot', disallow: ['/'] },
       { userAgent: 'anthropic-ai', disallow: ['/'] },
       { userAgent: 'Claude-Web', disallow: ['/'] },
       { userAgent: 'Bytespider', disallow: ['/'] },
-      { userAgent: 'Google-Extended', disallow: ['/'] },
+      // Boty wyszukiwania/cytowań na żywo — pełny dostęp (widoczność w odpowiedziach AI = GEO)
+      { userAgent: 'ChatGPT-User', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
+      { userAgent: 'OAI-SearchBot', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
+      { userAgent: 'ClaudeBot', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
+      { userAgent: 'PerplexityBot', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
+      { userAgent: 'Google-Extended', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
+      { userAgent: 'YouBot', allow: ['/llms.txt'], disallow: ['/'] },
       { userAgent: 'Amazonbot', disallow: ['/'] },
       { userAgent: 'cohere-ai', disallow: ['/'] },
       { userAgent: 'Diffbot', disallow: ['/'] },
