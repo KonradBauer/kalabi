@@ -2,7 +2,7 @@
 # From https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
 FROM node:22.17.0-alpine AS base
-RUN npm install -g pnpm@latest
+RUN npm install -g pnpm@10
 
 # Install dependencies only when needed
 FROM base AS deps
