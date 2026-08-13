@@ -7,7 +7,7 @@
 - Adres: Cmentarna 22A, 98-330 Pajęczno, Polska
 - Telefon: +48 725 659 806
 - Email: kalabimeblenawymiar@gmail.com
-- Strona: https://kalabimeble.pl
+- Strona: [kalabimeble.pl](https://kalabimeble.pl)
 
 ## Usługi
 
@@ -19,7 +19,7 @@
 
 ## Realizacje
 
-Portfolio ukończonych projektów dostępne na https://kalabimeble.pl/realizacje
+Portfolio ukończonych projektów dostępne na [stronie realizacji](https://kalabimeble.pl/realizacje).
 
 Kategorie realizacji:
 - Kuchnie na wymiar
@@ -43,8 +43,8 @@ Obsługiwane miasta: Pajęczno, Wieluń, Radomsko, Częstochowa, Łódź, Bełch
 
 ## Strony
 
-- Strona główna: https://kalabimeble.pl
-- O nas: https://kalabimeble.pl/o-nas
-- Usługi: https://kalabimeble.pl/#uslugi
-- Realizacje: https://kalabimeble.pl/realizacje
-- Kontakt: https://kalabimeble.pl/kontakt
+- [Strona główna](https://kalabimeble.pl): Kalabi – meble na wymiar z Pajęczna, oferta i realizacje
+- [O nas](https://kalabimeble.pl/o-nas): Historia firmy i zespół
+- [Usługi](https://kalabimeble.pl/#uslugi): Kuchnie, szafy wnękowe, garderoby, meble łazienkowe, biurowe i do salonu
+- [Realizacje](https://kalabimeble.pl/realizacje): Portfolio ukończonych projektów
+- [Kontakt](https://kalabimeble.pl/kontakt): Dane kontaktowe i formularz wyceny
