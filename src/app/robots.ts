@@ -10,13 +10,14 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: ['/admin/', '/api/', '/_next/'],
       },
-      // Trenowanie modeli — treść zastrzeżona, nie licencjonowana do trenowania
-      { userAgent: 'GPTBot', disallow: ['/'] },
+      // Trenowanie modeli — treść zastrzeżona, ale "wielka trójka" (GPTBot/ClaudeBot/PerplexityBot)
+      // ma pełny dostęp dla widoczności w AI search (GEO). Reszta training-only botów zostaje blokowana.
       { userAgent: 'CCBot', disallow: ['/'] },
       { userAgent: 'anthropic-ai', disallow: ['/'] },
       { userAgent: 'Claude-Web', disallow: ['/'] },
       { userAgent: 'Bytespider', disallow: ['/'] },
       // Boty wyszukiwania/cytowań na żywo — pełny dostęp (widoczność w odpowiedziach AI = GEO)
+      { userAgent: 'GPTBot', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
       { userAgent: 'ChatGPT-User', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
       { userAgent: 'OAI-SearchBot', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
       { userAgent: 'ClaudeBot', allow: '/', disallow: ['/admin/', '/api/', '/_next/'] },
